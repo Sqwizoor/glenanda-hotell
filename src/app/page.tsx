@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
+import { motion, useScroll, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { SmartImage } from "@/components/SmartImage";
@@ -21,7 +21,7 @@ import {
   Dumbbell,
   Eye
 } from "lucide-react";
-import { useEffect, useRef, useState, useCallback, type MouseEvent as ReactMouseEvent } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
@@ -437,10 +437,6 @@ function Slideshow({ images, interval = 6000 }: { images: string[]; interval?: n
 
 export default function HomePage() {
   const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
 
   // Motion variants for cleaner, modern staggered animations
   const containerStagger: Variants = {
@@ -554,10 +550,10 @@ export default function HomePage() {
               Premium accommodations in South Johannesburg's finest location • Fiber Wi‑Fi • 24/7 Support • 
               Secure Parking • Perfect for solo business trips, romantic getaways, family vacations, and corporate events.
             </motion.p>
-            
-            {/* Enhanced CTA Buttons with better mobile layout */}
-            <motion.div
-              initial={{ opacity:0, y:20 }}
+            >
+              Premium accommodations in South Johannesburg&apos;s finest location • Fiber Wi‑Fi • 24/7 Support • 
+              Secure Parking • Perfect for solo business trips, romantic getaways, family vacations, and corporate events.
+            </motion.p>{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:1.1, duration:0.7 }}
               className="mt-3 sm:mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6"
@@ -1435,8 +1431,8 @@ export default function HomePage() {
               <motion.div key={venue.title} variants={itemFadeUp} className="group">
                 <Card className="h-full bg-white border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
                   <CardContent className="p-0">
-                    <div className="relative h-48 overflow-hidden">
-                      <Image
+            ].map((venue) => (
+              <motion.div key={venue.title} variants={itemFadeUp} className="group">
                         src={venue.image}
                         alt={venue.title}
                         fill
