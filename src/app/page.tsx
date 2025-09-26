@@ -480,7 +480,7 @@ export default function HomePage() {
         </div>
       </div>
       {/* Modern Hero Section — Enhanced with better mobile responsiveness */}
-      <section ref={heroRef} className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+  <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible">
         {/* Enhanced Background slideshow with better mobile optimization */}
         <Slideshow images={["/room14.jpeg","/room6.jpeg","/niceview.jpeg","/room11.jpeg"]} />
         
