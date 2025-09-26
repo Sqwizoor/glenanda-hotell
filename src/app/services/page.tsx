@@ -219,7 +219,7 @@ export default function ServicesPage() {
               Core Hotel Amenities
             </h2>
             <p className="text-zinc-400 max-w-2xl mx-auto">
-              Essential services and facilities designed to enhance every group member's stay.
+              Essential services and facilities designed to enhance every group member&apos;s stay.
             </p>
           </div>
           
