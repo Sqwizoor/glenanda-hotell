@@ -21,7 +21,7 @@ import {
   Dumbbell,
   Eye
 } from "lucide-react";
-import { useEffect, useRef, useState, useCallback, useMemo, type MouseEvent as ReactMouseEvent } from "react";
+import { useEffect, useRef, useState, useCallback, type MouseEvent as ReactMouseEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
@@ -442,9 +442,6 @@ export default function HomePage() {
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-
   // Motion variants for cleaner, modern staggered animations
   const containerStagger: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -458,27 +455,6 @@ export default function HomePage() {
   const itemFadeUp: Variants = {
     hidden: { opacity: 0, y: 16 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.2, 0.65, 0.3, 0.9] } }
-  };
-
-  // Subtle interactive tilt for hero media
-  const tiltX = useMotionValue(0);
-  const tiltY = useMotionValue(0);
-  const tiltXspring = useSpring(tiltX, { stiffness: 120, damping: 12 });
-  const tiltspringY = useSpring(tiltY, { stiffness: 120, damping: 12 });
-
-  const onHeroMouseMove = (e: ReactMouseEvent<HTMLDivElement>) => {
-    const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const rx = ((y - rect.height / 2) / rect.height) * -10; // -10deg to 10deg
-    const ry = ((x - rect.width / 2) / rect.width) * 10;
-    tiltX.set(rx);
-    tiltY.set(ry);
-  };
-
-  const onHeroMouseLeave = () => {
-    tiltX.set(0);
-    tiltY.set(0);
   };
 
   return (
@@ -692,7 +668,7 @@ export default function HomePage() {
               variants={itemFadeUp} 
               className="text-xl text-gray-600 max-w-3xl mx-auto"
             >
-              Whether you're traveling solo on business, planning a romantic getaway, enjoying a family reunion, or organizing a corporate retreat, we provide personalized service and exclusive amenities for every type of stay.
+              Whether you&apos;re traveling solo on business, planning a romantic getaway, enjoying a family reunion, or organizing a corporate retreat, we provide personalized service and exclusive amenities for every type of stay.
             </motion.p>
           </motion.div>
 
@@ -929,7 +905,7 @@ export default function HomePage() {
                       >
                         <Button asChild className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 group shadow-lg hover:shadow-xl transition-all duration-300">
                           <a
-                            href={`https://wa.me/27762073299?text=${encodeURIComponent(`Hi Glenanda Hotel, I'd like to enquire about the ${service.title}.`)}`}
+                            href={`https://wa.me/27762073299?text=${encodeURIComponent(`Hi Glenanda Hotel, I&apos;d like to enquire about the ${service.title}.`)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -1107,7 +1083,7 @@ export default function HomePage() {
                 title: "Customizable Itineraries",
                 description: "We'll help you plan the perfect group experience.",
               }
-            ].map((feature, index) => (
+            ].map((feature) => (
               <motion.div key={feature.title} variants={itemFadeUp}>
                 <Card className="h-full text-center p-8 bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group">
                   <CardContent className="space-y-6">
@@ -1529,7 +1505,7 @@ export default function HomePage() {
                 title: "Accommodation Packages",
                 description: "Special group rates and room block reservations for multi-day events."
               }
-            ].map((service, index) => (
+            ].map((service) => (
               <motion.div key={service.title} variants={itemFadeUp}>
                 <div className="text-center p-8 bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="text-4xl mb-4">{service.icon}</div>
@@ -1550,7 +1526,7 @@ export default function HomePage() {
           >
             <div className="text-center mb-12">
               <h3 className="text-3xl font-bold text-gray-900 mb-4">Perfect Venue for Every Occasion</h3>
-              <p className="text-lg text-gray-600">We've successfully hosted a wide variety of events for groups of all sizes</p>
+              <p className="text-lg text-gray-600">We&apos;ve successfully hosted a wide variety of events for groups of all sizes</p>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
