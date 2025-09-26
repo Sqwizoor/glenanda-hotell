@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,7 +10,6 @@ import {
   MapPin, 
   Clock, 
   Send, 
-  MessageSquare,
   Users,
   Calendar,
   ArrowRight,
@@ -26,7 +25,7 @@ import {
   Coffee,
   Headphones
 } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 const contactMethods = [
@@ -63,29 +62,29 @@ const contactMethods = [
 
 const departments = [
   {
-    name: "Group Reservations",
-    description: "Corporate events, conferences, and large group bookings",
+    name: "Reservations",
+    description: "Individual rooms, couples suites, family bookings, and group reservations",
     icon: Users,
-    contact: "groups@glenandahotel.co.za",
+    contact: "reservations@glenandahotel.co.za",
     phone: "+27 11 234 5679"
   },
   {
     name: "Event Planning",
-    description: "Weddings, celebrations, and special occasion planning",
+    description: "Romantic dinners, family celebrations, corporate events, and weddings",
     icon: PartyPopper,
     contact: "events@glenandahotel.co.za",
     phone: "+27 11 234 5680"
   },
   {
     name: "Business Services",
-    description: "Meeting rooms, corporate packages, and business support",
+    description: "Solo business travel, meeting rooms, and corporate packages",
     icon: Briefcase,
     contact: "business@glenandahotel.co.za",
     phone: "+27 11 234 5681"
   },
   {
     name: "Guest Relations",
-    description: "General inquiries, feedback, and guest assistance",
+    description: "General inquiries, feedback, and personalized guest assistance",
     icon: Heart,
     contact: "guest@glenandahotel.co.za",
     phone: "+27 11 234 5678"
@@ -152,8 +151,8 @@ export default function ContactPage() {
               Contact Glenanda Hotel
             </h1>
             <p className="text-xl md:text-2xl text-zinc-300 max-w-4xl mx-auto leading-relaxed">
-              Ready to plan your stay or event? Our dedicated team is here to help make your 
-              group experience exceptional. Reach out through any of our convenient channels.
+              Ready to plan your stay? Whether you're traveling solo, as a couple, with family, or organizing a group event, 
+              our dedicated team is here to help make your experience exceptional.
             </p>
           </motion.div>
         </div>
@@ -238,7 +237,7 @@ export default function ContactPage() {
                     Send Us a Message
                   </CardTitle>
                   <p className="text-zinc-400 text-center">
-                    Fill out the form below and we'll get back to you promptly
+                    Fill out the form below and we&apos;ll get back to you promptly
                   </p>
                 </CardHeader>
                 <CardContent className="p-8">
@@ -406,7 +405,7 @@ export default function ContactPage() {
                       </motion.div>
                       <h3 className="text-2xl font-bold text-white">Message Sent!</h3>
                       <p className="text-zinc-400">
-                        Thank you for contacting us. We'll respond within 24 hours.
+                        Thank you for contacting us. We&apos;ll respond within 24 hours.
                       </p>
                       <Button
                         onClick={() => setSubmitted(false)}

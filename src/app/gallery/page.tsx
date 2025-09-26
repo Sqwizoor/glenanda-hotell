@@ -2,7 +2,6 @@
 
 import { useMemo, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -509,7 +508,7 @@ export default function GalleryPage() {
           >
             <h2 className="text-4xl font-bold mb-6">Ready to Experience Glenanda Hotel?</h2>
             <p className="text-xl mb-8 text-emerald-50">
-              Whether you're planning a corporate retreat, family celebration, or romantic getaway, we're here to create an unforgettable experience tailored to your needs.
+              Whether you&apos;re planning a corporate retreat, family celebration, or romantic getaway, we&apos;re here to create an unforgettable experience tailored to your needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 

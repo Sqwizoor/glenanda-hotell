@@ -11,42 +11,42 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
-// Enhanced amenity groups with group services
+// Enhanced amenity groups with services for all guest types
 const amenityGroups = [
   {
     icon: Wifi,
     title: "High-Speed Fibre Wi‑Fi",
-    description: "Enterprise-grade connectivity perfect for business groups and remote work sessions.",
-    features: ["100+ concurrent devices", "Secure business network", "Guest network available", "24/7 technical support"],
-    groupFriendly: true
+    description: "Enterprise-grade connectivity perfect for business travelers and leisure guests.",
+    features: ["Unlimited high-speed access", "Secure business network", "Guest network available", "24/7 technical support"],
+    groupFriendly: false
   },
   {
     icon: Coffee,
-    title: "Group Dining Services",
-    description: "Flexible dining options from continental breakfast to private dining experiences.",
-    features: ["Group breakfast packages", "Private dining rooms", "Customizable menus", "Dietary accommodations"],
-    groupFriendly: true
+    title: "Flexible Dining Services",
+    description: "Dining options for every need - from solo breakfast to group celebrations.",
+    features: ["Room service available", "Restaurant dining", "Private dining rooms", "Dietary accommodations"],
+    groupFriendly: false
   },
   {
     icon: BedDouble,
     title: "Comfortable Accommodations",
-    description: "Premium bedding and quiet rooms ensure restful sleep for all group members.",
-    features: ["Anti‑allergy pillows", "Blackout curtains", "Individual climate control", "Adjoining rooms available"],
-    groupFriendly: true
+    description: "Premium bedding and quiet rooms ensure restful sleep for every guest.",
+    features: ["Anti‑allergy pillows", "Blackout curtains", "Individual climate control", "Various room types"],
+    groupFriendly: false
   },
   {
     icon: Building2,
-    title: "Meeting & Event Spaces",
-    description: "Flexible spaces for corporate meetings, training sessions, and social gatherings.",
-    features: ["Various room sizes", "AV equipment included", "Flexible seating arrangements", "Catering services"],
+    title: "Business & Event Facilities",
+    description: "Professional spaces for meetings, events, and special occasions.",
+    features: ["Various room sizes", "AV equipment included", "Flexible seating", "Business center access"],
     groupFriendly: true
   },
   {
     icon: Car,
-    title: "Group Transportation",
-    description: "Secure parking and transportation coordination for large groups.",
-    features: ["Bus parking available", "Airport transfer coordination", "Local tour arrangements", "24/7 parking security"],
-    groupFriendly: true
+    title: "Transportation & Parking",
+    description: "Secure parking and transportation services for all guests.",
+    features: ["Secure parking", "Airport transfers", "Local tour information", "Taxi booking assistance"],
+    groupFriendly: false
   },
   {
     icon: Users,
@@ -123,16 +123,16 @@ export default function ServicesPage() {
         >
           <div className="inline-flex items-center gap-2 mb-4 text-emerald-400">
             <Sparkles className="w-5 h-5" />
-            <span className="text-sm font-medium tracking-wider uppercase">Premium Group Services</span>
+            <span className="text-sm font-medium tracking-wider uppercase">Premium Hotel Services</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Exceptional Services
             <span className="block bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
-              For Groups Of All Sizes
+              For Every Guest
             </span>
           </h1>
           <p className="text-zinc-400 text-lg max-w-3xl mx-auto leading-relaxed">
-            From intimate business meetings to large conferences and celebrations, our comprehensive services ensure every group experience exceeds expectations.
+            From solo business travelers and romantic couples to families and large corporate groups, our comprehensive services ensure every guest experience exceeds expectations.
           </p>
         </motion.div>
 
@@ -144,12 +144,11 @@ export default function ServicesPage() {
           className="mb-20"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Specialized Group Solutions
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Comprehensive Hotel Solutions
             </h2>
             <p className="text-zinc-400 max-w-2xl mx-auto">
-              Tailored services designed specifically for groups, events, and corporate gatherings.
-            </p>
+              Whether you're traveling alone, as a couple, with family, or with a large group, we have specialized services to make your stay exceptional.</p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">

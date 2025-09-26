@@ -18,7 +18,8 @@ import {
   Users,
   ClipboardList,
   UtensilsCrossed,
-  Dumbbell
+  Dumbbell,
+  Eye
 } from "lucide-react";
 import { useEffect, useRef, useState, useCallback, useMemo, type MouseEvent as ReactMouseEvent } from "react";
 import Link from "next/link";
@@ -140,46 +141,95 @@ function GalleryCarousel() {
   }, [emblaApi, onSelect]);
 
   return (
-    <div className="relative" aria-label="Spaces & Atmosphere carousel">
+    <div className="relative" aria-label="Hotel Gallery carousel">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex gap-6">
-          {resultsMedia.map((item, idx) => (
-            <motion.div
-              key={item.src}
-              className="relative min-w-[80%] sm:min-w-[55%] md:min-w-[40%] lg:min-w-[30%] aspect-[4/3] overflow-hidden rounded-2xl shadow-lg group cursor-pointer"
-              whileHover={{ y: -6 }}
-              onClick={() => open(idx)}
-            >
-              {item.type === 'image' ? (
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  sizes="(max-width:640px) 80vw, (max-width:768px) 55vw, (max-width:1024px) 40vw, 30vw"
-                  className="object-cover transition-all duration-700 group-hover:scale-105"
-                  priority={idx < 2}
-                />
-              ) : (
-                <LazyVideo src={item.src} className="w-full h-full object-cover" />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
-              <div className="absolute bottom-3 left-3 right-3 text-white/90 text-sm font-medium drop-shadow">
-                {item.alt}
-              </div>
-            </motion.div>
-          ))}
+          {resultsMedia.map((item, idx) => {
+            // Determine content type for badge
+            const contentType = item.src.includes('spa') ? 'Spa & Wellness' :
+                               item.src.includes('group') ? 'Group Events' :
+                               item.src.includes('room') ? 'Accommodations' :
+                               item.src.includes('dining') ? 'Dining' :
+                               'Hotel Amenities';
+            
+            const badgeColor = item.src.includes('spa') ? 'bg-emerald-500' :
+                              item.src.includes('group') ? 'bg-purple-500' :
+                              item.src.includes('room') ? 'bg-blue-500' :
+                              item.src.includes('dining') ? 'bg-amber-500' :
+                              'bg-gray-500';
+            
+            return (
+              <motion.div
+                key={item.src}
+                className="relative min-w-[80%] sm:min-w-[55%] md:min-w-[40%] lg:min-w-[30%] aspect-[4/3] overflow-hidden rounded-2xl shadow-lg group cursor-pointer"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => open(idx)}
+              >
+                {item.type === 'image' ? (
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width:640px) 80vw, (max-width:768px) 55vw, (max-width:1024px) 40vw, 30vw"
+                    className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
+                    priority={idx < 2}
+                  />
+                ) : (
+                  <LazyVideo src={item.src} className="w-full h-full object-cover" />
+                )}
+                
+                {/* Enhanced overlay with gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+                
+                {/* Content type badge */}
+                <div className="absolute top-3 left-3">
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium text-white ${badgeColor} backdrop-blur-sm shadow-lg opacity-90 group-hover:opacity-100 transition-opacity`}>
+                    {contentType}
+                  </span>
+                </div>
+                
+                {/* View icon on hover */}
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  </div>
+                </div>
+                
+                {/* Enhanced description */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                  <p className="text-white text-sm font-medium leading-relaxed drop-shadow-lg">
+                    {item.alt}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
-      {/* Prev/Next Buttons */}
-      <div className="absolute -top-16 right-0 flex items-center gap-2">
+      {/* Enhanced Prev/Next Buttons */}
+      <div className="absolute -top-16 right-0 flex items-center gap-3">
         <button
           onClick={() => emblaApi && emblaApi.scrollPrev()}
-          className="px-3 py-2 rounded-md bg-gray-900/70 text-white text-xs hover:bg-gray-900/90"
-        >Prev</button>
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+          aria-label="Previous images"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
         <button
           onClick={() => emblaApi && emblaApi.scrollNext()}
-          className="px-3 py-2 rounded-md bg-gray-900/70 text-white text-xs hover:bg-gray-900/90"
-        >Next</button>
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+          aria-label="Next images"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
       </div>
       {/* Dots */}
       <div className="flex justify-center gap-2 mt-8">
@@ -198,48 +248,48 @@ function GalleryCarousel() {
 
 const homeServices = [
   {
-    id: "group-deluxe",
-    title: "Group Deluxe Rooms",
-    subtitle: "Perfect for teams & friends",
-    duration: "Sleeps 2-4 per room",
-    price: "From R1 150 / night per room",
-    popular: false,
-    groupFriendly: true,
-    image: "/room3.jpeg",
-    description: "Multiple adjoining rooms with shared common areas, ideal for corporate teams and friend groups wanting proximity and comfort."
+    id: "business-executive",
+    title: "Executive Business Rooms",
+    subtitle: "Perfect for solo business travelers",
+    duration: "Single occupancy",
+    price: "From R950 / night",
+    popular: true,
+    groupFriendly: false,
+    image: "/group5.jpeg",
+    description: "Premium single rooms with work desk, high-speed WiFi, and business center access - ideal for the executive traveler."
+  },
+  {
+    id: "couples-romantic",
+    title: "Romantic Couples Suites",
+    subtitle: "Intimate getaway accommodations",
+    duration: "Sleeps 2 people",
+    price: "From R1 800 / night",
+    popular: true,
+    groupFriendly: false,
+    image: "/group13.jpeg",
+    description: "Elegant suites with private balcony, king-size bed, and romantic amenities - perfect for anniversaries and honeymoons."
   },
   {
     id: "family-suites",
     title: "Family & Group Suites",
-    subtitle: "Spacious accommodations",
+    subtitle: "Spacious family accommodations",
     duration: "Sleeps 4-8 people",
     price: "From R2 200 / night",
     popular: true,
     groupFriendly: true,
-    image: "/room10.jpeg",
-    description: "Extra-large suites with multiple bedrooms, living areas, and kitchenettes - perfect for extended families and small groups."
+    image: "/group16.jpeg",
+    description: "Extra-large suites with multiple bedrooms, living areas, and kitchenettes - perfect for families and small groups."
   },
   {
     id: "corporate-package",
-    title: "Corporate Group Package",
-    subtitle: "All-inclusive business solution",
-    duration: "10-50 participants",
+    title: "Corporate Events & Groups",
+    subtitle: "All-inclusive business solutions",
+    duration: "10-200 participants",
     price: "From R850 / person / night",
-    popular: true,
-    groupFriendly: true,
-    image: "/room6.jpeg",
-    description: "Comprehensive package including accommodation, meeting rooms, catering, AV equipment, and dedicated event coordination."
-  },
-  {
-    id: "event-venue",
-    title: "Event & Celebration Venue",
-    subtitle: "Complete event hosting",
-    duration: "20-200 guests",
-    price: "From R12 000 / event",
     popular: false,
     groupFriendly: true,
-    image: "/niceview.jpeg",
-    description: "Full event hosting with venue hire, catering options, decoration services, and professional event management support."
+    image: "/group11.jpeg",
+    description: "Comprehensive packages including accommodation, meeting rooms, catering, and event coordination for corporate groups."
   }
 ];
 
@@ -252,12 +302,21 @@ type MediaItem =
   | { type: "video"; src: string; alt: string; poster?: string };
 
 const resultsMedia: MediaItem[] = [
+  { type: "image", src: "/spa.jpeg", alt: "Serene spa treatment room with calming ambiance" },
+  { type: "image", src: "/spa2.jpeg", alt: "Luxury spa facilities for ultimate relaxation" },
   { type: "image", src: "/group11.jpeg", alt: "Large group enjoying hotel amenities together" },
   { type: "image", src: "/group12.jpeg", alt: "Corporate team meeting in our conference facilities" },
+  { type: "image", src: "/room14.jpeg", alt: "Presidential suite for VIP group stays" },
+  { type: "image", src: "/room6.jpeg", alt: "Executive rooms perfect for business groups" },
   { type: "image", src: "/group13.jpeg", alt: "Family celebration in our event space" },
+  { type: "image", src: "/room11.jpeg", alt: "Connecting rooms for families and teams" },
+  { type: "image", src: "/dining2.jpeg", alt: "Group dining setup for special occasions" },
   { type: "image", src: "/group14.jpeg", alt: "Wedding party in our elegant dining room" },
+  { type: "image", src: "/room12.jpeg", alt: "Spacious suites accommodating larger groups" },
   { type: "image", src: "/group16.jpeg", alt: "Business retreat participants networking" },
+  { type: "image", src: "/niceview.jpeg", alt: "Panoramic views enjoyed by all our guests" },
   { type: "image", src: "/group17.jpeg", alt: "Multi-generational family reunion gathering" },
+  { type: "image", src: "/guests2.jpeg", alt: "Relaxed social atmosphere in guest areas" },
   { type: "image", src: "/group18.jpeg", alt: "Social club event with group dining" },
   { type: "image", src: "/group2.jpeg", alt: "Corporate conference with full group accommodation" },
   { type: "image", src: "/group3.jpeg", alt: "Birthday celebration party setup" },
@@ -265,13 +324,6 @@ const resultsMedia: MediaItem[] = [
   { type: "image", src: "/group5.jpeg", alt: "Anniversary dinner with extended family" },
   { type: "image", src: "/group8.jpeg", alt: "Executive retreat with group accommodation" },
   { type: "image", src: "/group9.jpeg", alt: "Social gathering in our spacious lounge" },
-  { type: "image", src: "/room14.jpeg", alt: "Presidential suite for VIP group stays" },
-  { type: "image", src: "/room6.jpeg", alt: "Executive rooms perfect for business groups" },
-  { type: "image", src: "/room11.jpeg", alt: "Connecting rooms for families and teams" },
-  { type: "image", src: "/room12.jpeg", alt: "Spacious suites accommodating larger groups" },
-  { type: "image", src: "/dining2.jpeg", alt: "Group dining setup for special occasions" },
-  { type: "image", src: "/niceview.jpeg", alt: "Panoramic views enjoyed by all our guests" },
-  { type: "image", src: "/guests2.jpeg", alt: "Relaxed social atmosphere in guest areas" },
 ];
 
 // Lightweight lazy video that only loads when near viewport
@@ -455,97 +507,165 @@ export default function HomePage() {
           </Link>
         </div>
       </div>
-      {/* Hero Section — clean minimalist with crossfade slideshow */}
-      <section ref={heroRef} className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
-        {/* Background slideshow */}
+      {/* Modern Hero Section — Enhanced with better mobile responsiveness */}
+      <section ref={heroRef} className="relative h-[90vh] flex items-center justify-center overflow-hidden">
+        {/* Enhanced Background slideshow with better mobile optimization */}
         <Slideshow images={["/room14.jpeg","/room6.jpeg","/niceview.jpeg","/room11.jpeg"]} />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.55),rgba(0,0,0,0.65))]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_60%)] mix-blend-overlay" />
-        {/* Content */}
+        
+        {/* Enhanced overlay with better gradients */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+        
+        {/* Dynamic floating elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/6 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+          <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-2000" />
+        </div>
+        
+        {/* Enhanced Content with better responsive design */}
         <motion.div
-          initial={{ opacity:0, y:30 }}
+          initial={{ opacity:0, y:40 }}
           animate={{ opacity:1, y:0 }}
-          transition={{ duration:0.9, ease:[0.16,1,0.3,1] }}
-          className="relative z-10 w-full px-4"
+          transition={{ duration:1.2, ease:[0.16,1,0.3,1] }}
+          className="relative z-10 w-full px-4 sm:px-6 lg:px-8"
         >
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-6xl mx-auto text-center">
+            {/* Enhanced Badge with animation */}
             <motion.div
-              className="inline-flex items-center space-x-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white/90 mb-8"
-              initial={{ opacity:0, y:10 }}
-              animate={{ opacity:1, y:0 }}
-              transition={{ delay:0.3 }}
+              className="inline-flex items-center space-x-3 px-6 py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white/95 mb-6 shadow-lg"
+              initial={{ opacity:0, y:20, scale: 0.9 }}
+              animate={{ opacity:1, y:0, scale: 1 }}
+              transition={{ delay:0.3, duration:0.8, ease:[0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.05 }}
             >
-              <Sparkles className="w-4 h-4 text-emerald-300" />
-              <span className="text-[11px] tracking-[0.25em] font-medium">GLENANDA HOTEL</span>
+              <Sparkles className="w-5 h-5 text-emerald-300 animate-pulse" />
+              <span className="text-xs sm:text-sm tracking-[0.15em] font-semibold">GLENANDA LUXURY HOTEL</span>
             </motion.div>
+            
+            {/* Enhanced Main Heading with better typography */}
             <motion.h1
-              initial={{ opacity:0, y:24 }}
+              initial={{ opacity:0, y:30 }}
               animate={{ opacity:1, y:0 }}
-              transition={{ delay:0.45, duration:0.9 }}
-              className="font-semibold leading-[1.05] text-white text-4xl sm:text-5xl md:text-[4rem] md:leading-[1.05] tracking-tight"
+              transition={{ delay:0.5, duration:1, ease:[0.22, 1, 0.36, 1] }}
+              className="font-bold leading-[0.95] text-white mb-4"
+              style={{
+                fontSize: 'clamp(2rem, 8vw, 4.5rem)',
+                lineHeight: 'clamp(2.2rem, 8.5vw, 4.8rem)'
+              }}
             >
-              Unforgettable Stays for Your Group
-              <span className="block mt-3 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-amber-200 to-emerald-200 text-2xl md:text-3xl font-light tracking-wide">Experience the best of South Johannesburg with our tailored group packages.</span>
+              <span className="block">Unforgettable Experiences</span>
+              <span className="block">for Every Guest</span>
+              <motion.span 
+                className="block mt-4 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-amber-200 to-emerald-200 font-light tracking-wide"
+                style={{ fontSize: 'clamp(1.2rem, 4vw, 2rem)' }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 0.8 }}
+              >
+                Solo travelers, couples, families & corporate groups
+              </motion.span>
             </motion.h1>
+            
+            {/* Enhanced description */}
             <motion.p
               initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
-              transition={{ delay:0.7, duration:0.7 }}
-              className="mt-8 text-white/80 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+              transition={{ delay:0.8, duration:0.8 }}
+              className="mt-4 text-white/85 max-w-3xl mx-auto leading-relaxed"
+              style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)' }}
             >
-              Quiet residential address • Curated suites • Fiber Wi‑Fi • Fast direct support. A calm base between meetings and weekend escapes.
+              Premium accommodations in South Johannesburg's finest location • Fiber Wi‑Fi • 24/7 Support • 
+              Secure Parking • Perfect for solo business trips, romantic getaways, family vacations, and corporate events.
             </motion.p>
+            
+            {/* Enhanced CTA Buttons with better mobile layout */}
             <motion.div
               initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
-              transition={{ delay:0.85, duration:0.6 }}
-              className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+              transition={{ delay:1.1, duration:0.7 }}
+              className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
             >
-              <Link href="/rooms" className="group relative">
-                <Button size="lg" className="rounded-full px-10 py-6 bg-emerald-600 hover:bg-emerald-500 text-white text-base shadow-lg shadow-emerald-900/30">
-                  View Rooms
-                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              <Link href="/rooms" className="group relative w-full sm:w-auto">
+                <Button 
+                  size="lg" 
+                  className="w-full sm:w-auto rounded-full px-8 sm:px-12 py-4 sm:py-6 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-2xl shadow-emerald-900/40 hover:shadow-emerald-500/30 transform hover:scale-105 transition-all duration-300"
+                  style={{ fontSize: 'clamp(0.875rem, 2vw, 1.125rem)' }}
+                >
+                  <Eye className="mr-2 w-5 h-5" />
+                  Explore Rooms
+                  <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
-              <Link href="/contact">
-                <Button variant="outline" size="lg" className="rounded-full px-10 py-6 border-white/30 text-white hover:bg-white/10">
-                  Group Bookings
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full sm:w-auto rounded-full px-8 sm:px-12 py-4 sm:py-6 border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 backdrop-blur-sm font-semibold transition-all duration-300"
+                  style={{ fontSize: 'clamp(0.875rem, 2vw, 1.125rem)' }}
+                >
+                  <Users className="mr-2 w-5 h-5" />
+                  Book Your Stay
                 </Button>
               </Link>
             </motion.div>
+            
+            {/* Enhanced Stats Grid with better mobile responsive design */}
             <motion.div
-              initial={{ opacity:0, y:10 }}
+              initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
-              transition={{ delay:1.05 }}
-              className="mt-12 grid grid-cols-3 gap-8 max-w-md mx-auto text-left text-white/70"
+              transition={{ delay:1.4 }}
+              className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto"
             >
               {[
-                {label:'Parking', value:'Secure'},
-                {label:'Wi‑Fi', value:'Fiber'},
-                {label:'Support', value:'24/7'}
-              ].map(s => (
-                <div key={s.label} className="space-y-1">
-                  <div className="text-[11px] uppercase tracking-wide text-white/40">{s.label}</div>
-                  <div className="font-medium text-white">{s.value}</div>
-                </div>
+                {label:'Accommodations', value:'50+ Rooms', icon: '🏨'},
+                {label:'All Guest Types', value:'1-200 People', icon: '👥'},
+                {label:'Support', value:'24/7 Service', icon: '🔧'}
+              ].map((stat, index) => (
+                <motion.div 
+                  key={stat.label} 
+                  className="text-center p-3 sm:p-4 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-emerald-400/30 transition-all duration-300 group"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.4 + index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <div className="text-2xl sm:text-3xl mb-2 group-hover:scale-110 transition-transform">{stat.icon}</div>
+                  <div className="font-bold text-white mb-1" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)' }}>
+                    {stat.value}
+                  </div>
+                  <div className="text-white/60 font-medium" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+                    {stat.label}
+                  </div>
+                </motion.div>
               ))}
             </motion.div>
           </div>
         </motion.div>
 
-        {/* Scroll cue */}
+        {/* Enhanced Scroll indicator with animation */}
         <motion.div
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center"
-          animate={{ opacity:[0.3,1,0.3] }}
-          transition={{ duration:2.8, repeat:Infinity }}
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
         >
-          <div className="w-px h-12 bg-gradient-to-b from-white/70 to-white/0" />
-          <div className="mt-3 text-[10px] tracking-[0.3em] text-white/60">SCROLL</div>
+          <motion.div 
+            className="w-px h-12 bg-gradient-to-b from-white/60 to-transparent"
+            animate={{ scaleY: [1, 1.2, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+          <motion.div 
+            className="mt-2 text-xs tracking-[0.3em] text-white/60 font-medium"
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            SCROLL
+          </motion.div>
         </motion.div>
       </section>
 
-      {/* Group Packages Section */}
+      {/* Accommodation Packages Section */}
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -560,19 +680,19 @@ export default function HomePage() {
               className="inline-block px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4"
             >
               <Users className="inline-block w-4 h-4 mr-2" />
-              Perfect for Groups
+              For Every Guest
             </motion.div>
             <motion.h2 
               variants={itemFadeUp} 
               className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
             >
-              Tailored Packages for Your Group
+              Tailored Packages for Every Stay
             </motion.h2>
             <motion.p 
               variants={itemFadeUp} 
               className="text-xl text-gray-600 max-w-3xl mx-auto"
             >
-              Whether it's a corporate retreat, a family reunion, or a special celebration, we provide a seamless experience with personalized service and exclusive amenities for your group.
+              Whether you're traveling solo on business, planning a romantic getaway, enjoying a family reunion, or organizing a corporate retreat, we provide personalized service and exclusive amenities for every type of stay.
             </motion.p>
           </motion.div>
 
@@ -586,23 +706,23 @@ export default function HomePage() {
             {[
               {
                 icon: ClipboardList,
-                title: "Custom Itineraries",
-                description: "We work with you to plan activities, dining, and transport.",
+                title: "Personalized Itineraries",
+                description: "Custom planning for activities, dining, and transport - whether solo or with companions.",
               },
               {
                 icon: UtensilsCrossed,
-                title: "Group Dining",
-                description: "Private dining spaces and customized menus to suit your group's taste.",
+                title: "Flexible Dining",
+                description: "From intimate couple dinners to family meals and group banquets.",
               },
               {
                 icon: Dumbbell,
                 title: "Spa & Wellness",
-                description: "Exclusive group access to our spa facilities and wellness packages.",
+                description: "Individual treatments, couples experiences, and group wellness packages.",
               },
               {
                 icon: Crown,
-                title: "Exclusive Perks",
-                description: "Enjoy special rates, welcome amenities, and dedicated support.",
+                title: "Premium Service",
+                description: "VIP treatment for all guests with welcome amenities and dedicated support.",
               },
             ].map((feature) => (
               <motion.div key={feature.title} variants={itemFadeUp}>
@@ -627,7 +747,7 @@ export default function HomePage() {
           >
             <Link href="/contact" className="group relative">
               <Button size="lg" className="rounded-full px-10 py-6 bg-emerald-600 hover:bg-emerald-500 text-white text-base shadow-lg shadow-emerald-900/30">
-                Inquire About Group Bookings
+                Book Your Perfect Stay
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
@@ -847,10 +967,10 @@ export default function HomePage() {
               className="text-center mb-16"
             >
               <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                Spaces & Atmosphere
+                Hotel Gallery & Experiences
               </motion.h2>
               <motion.p variants={itemFadeUp} className="text-xl text-gray-600">
-                A glimpse into our rooms, textures, natural light and calming design language.
+                Discover our luxurious spaces - from serene spa facilities and elegant rooms to vibrant social areas and stunning views that create unforgettable moments.
               </motion.p>
             </motion.div>
             <GalleryCarousel />
@@ -920,53 +1040,12 @@ export default function HomePage() {
             </div>
             <motion.div variants={itemFadeUp} className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl">
               <Image
-                src="/spa-relax.jpeg"
+                src="/spa.jpeg"
                 alt="Relaxing spa environment"
                 fill
                 sizes="(max-width:1024px) 100vw, 50vw"
                 className="object-cover"
               />
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="section-padding bg-white">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            variants={containerStagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            className="text-center mb-16"
-          >
-            <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              What Our Guests Say
-            </motion.h2>
-            <motion.p variants={itemFadeUp} className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're proud to have hosted a variety of groups, from corporate teams to family reunions.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            variants={containerStagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
-            className="grid md:grid-cols-1 lg:grid-cols-2 gap-8"
-          >
-            <motion.div variants={itemFadeUp}>
-              <Card className="h-full p-8 bg-gray-50/50 border-0 shadow-lg">
-                <p className="text-lg text-gray-700 italic mb-6">"The perfect venue for our annual corporate retreat. The staff was incredibly accommodating, and the facilities were top-notch. We'll definitely be back!"</p>
-                <p className="text-right font-bold text-emerald-600">- Tech Solutions Inc.</p>
-              </Card>
-            </motion.div>
-            <motion.div variants={itemFadeUp}>
-              <Card className="h-full p-8 bg-gray-50/50 border-0 shadow-lg">
-                <p className="text-lg text-gray-700 italic mb-6">"Our family reunion at Glenanda Hotel was a huge success. The suites were spacious, and the kids loved the pool. The team went above and beyond to make our stay memorable."</p>
-                <p className="text-right font-bold text-emerald-600">- The Johnson Family</p>
-              </Card>
             </motion.div>
           </motion.div>
         </div>
@@ -1303,224 +1382,6 @@ export default function HomePage() {
                     </p>
                   </CardContent>
                 </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Google Reviews Style Testimonials */}
-      <section className="section-padding bg-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            variants={containerStagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            className="text-center mb-12"
-          >
-            {/* Google Reviews Header */}
-            <motion.div
-              variants={itemFadeUp}
-              className="inline-flex items-center space-x-3 mb-8"
-            >
-              <div className="flex items-center space-x-2">
-                <svg className="w-8 h-8" viewBox="0 0 24 24">
-                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                </svg>
-                <span className="text-xl font-medium text-gray-700">Google</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                    </svg>
-                  ))}
-                </div>
-                <span className="text-lg font-medium text-gray-700">4.9</span>
-                <span className="text-gray-500">•</span>
-                <span className="text-gray-500">Based on 127 reviews</span>
-              </div>
-            </motion.div>
-            
-            <motion.h2 
-              variants={itemFadeUp} 
-              className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
-            >
-              Guest Reviews
-            </motion.h2>
-            <motion.p 
-              variants={itemFadeUp} 
-              className="text-lg text-gray-600"
-            >
-              Genuine impressions from travelers who stayed with us
-            </motion.p>
-          </motion.div>
-          {/* Google-style Reviews Grid */}
-          <motion.div
-            variants={containerStagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
-            className="space-y-6"
-          >
-            {[
-              {
-                name: "Thandi M.",
-                avatar: "TM",
-                rating: 5,
-                date: "2 weeks ago",
-                review: "Loved the calm residential feel yet still close to everything. Room was spotless, bed super comfortable and check‑in was effortless via WhatsApp.",
-                helpful: 9
-              },
-              {
-                name: "James R.",
-                avatar: "JR", 
-                rating: 5,
-                date: "1 month ago",
-                review: "Fast Wi‑Fi, quiet nights and really good coffee station. Perfect for my remote work week in Joburg. Staff responded instantly when I needed an iron.",
-                helpful: 6
-              },
-              {
-                name: "Ayesha P.",
-                avatar: "AP",
-                rating: 5,
-                date: "3 weeks ago", 
-                review: "Suite view at sunset was amazing. Loved the modern finishes and the linen quality. Definitely booking again for our next stopover.",
-                helpful: 11
-              }
-            ].map((review, index) => (
-              <motion.div
-                key={review.name}
-                variants={itemFadeUp}
-                className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-300 group max-w-4xl mx-auto"
-                whileHover={{ scale: 1.01 }}
-                transition={{ duration: 0.2 }}
-              >
-                {/* Review Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    {/* User Avatar */}
-                    <motion.div 
-                      className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-medium text-sm"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {review.avatar}
-                    </motion.div>
-                    <div>
-                      <motion.h4 
-                        className="font-medium text-gray-900 hover:text-blue-600 cursor-pointer transition-colors duration-200"
-                        whileHover={{ x: 2 }}
-                      >
-                        {review.name}
-                      </motion.h4>
-                      <div className="flex items-center space-x-2 text-sm text-gray-500">
-                        <span>{review.date}</span>
-                        <span>•</span>
-                        <div className="flex items-center space-x-1">
-                          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                          </svg>
-                          <span>Cape Town</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* More options button */}
-                  <motion.button 
-                    className="p-1 hover:bg-gray-100 rounded-full transition-colors duration-200"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"/>
-                    </svg>
-                  </motion.button>
-                </div>
-
-                {/* Star Rating */}
-                <motion.div 
-                  className="flex items-center space-x-1 mb-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 + 0.3 }}
-                >
-                  {[...Array(review.rating)].map((_, i) => (
-                    <motion.svg
-                      key={i}
-                      className="w-4 h-4 text-yellow-400 fill-current"
-                      viewBox="0 0 20 20"
-                      initial={{ scale: 0, rotate: -180 }}
-                      whileInView={{ scale: 1, rotate: 0 }}
-                      transition={{ 
-                        delay: index * 0.1 + i * 0.05 + 0.4,
-                        type: "spring",
-                        stiffness: 200
-                      }}
-                      whileHover={{ scale: 1.2 }}
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                    </motion.svg>
-                  ))}
-                </motion.div>
-
-                {/* Review Text */}
-                <motion.p 
-                  className="text-gray-700 leading-relaxed mb-4 text-sm"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: index * 0.1 + 0.6 }}
-                >
-                  {review.review}
-                </motion.p>
-
-                {/* Review Actions */}
-                <motion.div 
-                  className="flex items-center justify-between pt-3 border-t border-gray-100"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 + 0.8 }}
-                >
-                  <div className="flex items-center space-x-4">
-                    {/* Helpful button */}
-                    <motion.button 
-                      className="flex items-center space-x-2 text-gray-500 hover:text-blue-600 transition-colors duration-200 text-sm"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L9 6v11.5m0 0L7 20"/>
-                      </svg>
-                      <span>Helpful ({review.helpful})</span>
-                    </motion.button>
-
-                    {/* Share button */}
-                    <motion.button 
-                      className="flex items-center space-x-2 text-gray-500 hover:text-blue-600 transition-colors duration-200 text-sm"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
-                      </svg>
-                      <span>Share</span>
-                    </motion.button>
-                  </div>
-
-                  {/* Google verified checkmark */}
-                  <div className="flex items-center space-x-1 text-xs text-gray-500">
-                    <svg className="w-3 h-3 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-                    </svg>
-                    <span>Verified</span>
-                  </div>
-                </motion.div>
               </motion.div>
             ))}
           </motion.div>
