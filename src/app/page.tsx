@@ -528,18 +528,18 @@ export default function HomePage() {
           initial={{ opacity:0, y:40 }}
           animate={{ opacity:1, y:0 }}
           transition={{ duration:1.2, ease:[0.16,1,0.3,1] }}
-          className="relative z-10 w-full px-4 sm:px-6 lg:px-8"
+          className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-0"
         >
           <div className="max-w-6xl mx-auto text-center">
             {/* Enhanced Badge with animation */}
             <motion.div
-              className="inline-flex items-center space-x-3 px-6 py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white/95 mb-6 shadow-lg"
+              className="inline-flex items-center space-x-2 sm:space-x-3 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white/95 mb-3 sm:mb-6 shadow-lg"
               initial={{ opacity:0, y:20, scale: 0.9 }}
               animate={{ opacity:1, y:0, scale: 1 }}
               transition={{ delay:0.3, duration:0.8, ease:[0.22, 1, 0.36, 1] }}
               whileHover={{ scale: 1.05 }}
             >
-              <Sparkles className="w-5 h-5 text-emerald-300 animate-pulse" />
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-300 animate-pulse" />
               <span className="text-xs sm:text-sm tracking-[0.15em] font-semibold">GLENANDA LUXURY HOTEL</span>
             </motion.div>
             
@@ -548,17 +548,17 @@ export default function HomePage() {
               initial={{ opacity:0, y:30 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:0.5, duration:1, ease:[0.22, 1, 0.36, 1] }}
-              className="font-bold leading-[0.95] text-white mb-4"
+              className="font-bold leading-[0.95] text-white mb-2 sm:mb-4"
               style={{
-                fontSize: 'clamp(2rem, 8vw, 4.5rem)',
-                lineHeight: 'clamp(2.2rem, 8.5vw, 4.8rem)'
+                fontSize: 'clamp(1.75rem, 7vw, 4.5rem)',
+                lineHeight: 'clamp(1.9rem, 7.5vw, 4.8rem)'
               }}
             >
               <span className="block">Unforgettable Experiences</span>
               <span className="block">for Every Guest</span>
               <motion.span 
-                className="block mt-4 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-amber-200 to-emerald-200 font-light tracking-wide"
-                style={{ fontSize: 'clamp(1.2rem, 4vw, 2rem)' }}
+                className="block mt-2 sm:mt-4 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-amber-200 to-emerald-200 font-light tracking-wide"
+                style={{ fontSize: 'clamp(1rem, 3.5vw, 2rem)' }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 0.8 }}
@@ -572,8 +572,8 @@ export default function HomePage() {
               initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:0.8, duration:0.8 }}
-              className="mt-4 text-white/85 max-w-3xl mx-auto leading-relaxed"
-              style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)' }}
+              className="mt-2 sm:mt-4 text-white/85 max-w-3xl mx-auto leading-relaxed"
+              style={{ fontSize: 'clamp(0.875rem, 2.2vw, 1.25rem)' }}
             >
               Premium accommodations in South Johannesburg's finest location • Fiber Wi‑Fi • 24/7 Support • 
               Secure Parking • Perfect for solo business trips, romantic getaways, family vacations, and corporate events.
@@ -584,27 +584,27 @@ export default function HomePage() {
               initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:1.1, duration:0.7 }}
-              className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+              className="mt-3 sm:mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6"
             >
               <Link href="/rooms" className="group relative w-full sm:w-auto">
                 <Button 
                   size="lg" 
-                  className="w-full sm:w-auto rounded-full px-8 sm:px-12 py-4 sm:py-6 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-2xl shadow-emerald-900/40 hover:shadow-emerald-500/30 transform hover:scale-105 transition-all duration-300"
-                  style={{ fontSize: 'clamp(0.875rem, 2vw, 1.125rem)' }}
+                  className="w-full sm:w-auto rounded-full px-6 sm:px-12 py-3 sm:py-6 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-2xl shadow-emerald-900/40 hover:shadow-emerald-500/30 transform hover:scale-105 transition-all duration-300"
+                  style={{ fontSize: 'clamp(0.875rem, 1.8vw, 1.125rem)' }}
                 >
-                  <Eye className="mr-2 w-5 h-5" />
+                  <Eye className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
                   Explore Rooms
-                  <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
               <Link href="/contact" className="w-full sm:w-auto">
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full sm:w-auto rounded-full px-8 sm:px-12 py-4 sm:py-6 border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 backdrop-blur-sm font-semibold transition-all duration-300"
-                  style={{ fontSize: 'clamp(0.875rem, 2vw, 1.125rem)' }}
+                  className="w-full sm:w-auto rounded-full px-6 sm:px-12 py-3 sm:py-6 border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 backdrop-blur-sm font-semibold transition-all duration-300"
+                  style={{ fontSize: 'clamp(0.875rem, 1.8vw, 1.125rem)' }}
                 >
-                  <Users className="mr-2 w-5 h-5" />
+                  <Users className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
                   Book Your Stay
                 </Button>
               </Link>
@@ -615,7 +615,7 @@ export default function HomePage() {
               initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:1.4 }}
-              className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto"
+              className="mt-4 sm:mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-6 max-w-2xl mx-auto"
             >
               {[
                 {label:'Accommodations', value:'50+ Rooms', icon: '🏨'},
@@ -624,17 +624,17 @@ export default function HomePage() {
               ].map((stat, index) => (
                 <motion.div 
                   key={stat.label} 
-                  className="text-center p-3 sm:p-4 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-emerald-400/30 transition-all duration-300 group"
+                  className="text-center p-2 sm:p-4 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-emerald-400/30 transition-all duration-300 group"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.4 + index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="text-2xl sm:text-3xl mb-2 group-hover:scale-110 transition-transform">{stat.icon}</div>
-                  <div className="font-bold text-white mb-1" style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)' }}>
+                  <div className="text-xl sm:text-3xl mb-1 sm:mb-2 group-hover:scale-110 transition-transform">{stat.icon}</div>
+                  <div className="font-bold text-white mb-1" style={{ fontSize: 'clamp(0.875rem, 2.2vw, 1.25rem)' }}>
                     {stat.value}
                   </div>
-                  <div className="text-white/60 font-medium" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+                  <div className="text-white/60 font-medium" style={{ fontSize: 'clamp(0.6875rem, 1.8vw, 0.875rem)' }}>
                     {stat.label}
                   </div>
                 </motion.div>
@@ -645,18 +645,18 @@ export default function HomePage() {
 
         {/* Enhanced Scroll indicator with animation */}
         <motion.div
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center"
+          className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}
         >
           <motion.div 
-            className="w-px h-12 bg-gradient-to-b from-white/60 to-transparent"
+            className="w-px h-8 sm:h-12 bg-gradient-to-b from-white/60 to-transparent"
             animate={{ scaleY: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
           <motion.div 
-            className="mt-2 text-xs tracking-[0.3em] text-white/60 font-medium"
+            className="mt-1 sm:mt-2 text-xs tracking-[0.3em] text-white/60 font-medium"
             animate={{ y: [0, 5, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
