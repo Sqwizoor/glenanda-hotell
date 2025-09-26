@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
-  Sparkles, Wifi, Coffee, BedDouble, UtensilsCrossed, Shield, Car, Dumbbell, Leaf, Clock, 
+  Sparkles, Wifi, Coffee, BedDouble, Shield, Car, Leaf, Clock, 
   ArrowRight, Calendar, Check, Users, Briefcase, PartyPopper, Building2, ChefHat, Mic,
-  Camera, MapPin, Gift, Phone, MessageCircle
+  MapPin, Gift, Phone, MessageCircle
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -144,11 +144,11 @@ export default function ServicesPage() {
           className="mb-20"
         >
           <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Comprehensive Hotel Solutions
             </h2>
             <p className="text-zinc-400 max-w-2xl mx-auto">
-              Whether you're traveling alone, as a couple, with family, or with a large group, we have specialized services to make your stay exceptional.</p>
+              Whether you&apos;re traveling alone, as a couple, with family, or with a large group, we have specialized services to make your stay exceptional.</p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
@@ -192,7 +192,7 @@ export default function ServicesPage() {
                           ))}
                         </div>
                         
-                        <Link href={`https://wa.me/27123456789?text=I'm interested in ${service.title} services`} target="_blank">
+                        <Link href={`https://wa.me/27123456789?text=I&apos;m interested in ${service.title} services`} target="_blank">
                           <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white group">
                             Inquire Now
                             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -364,7 +364,7 @@ export default function ServicesPage() {
                 Contact our group services team to discuss your requirements and receive a customized proposal.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href={`https://wa.me/27123456789?text=I'd like to inquire about group services and availability`} target="_blank">
+                <Link href={`https://wa.me/27123456789?text=I&apos;d like to inquire about group services and availability`} target="_blank">
                   <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white group">
                     <MessageCircle className="w-5 h-5 mr-2" />
                     WhatsApp Inquiry

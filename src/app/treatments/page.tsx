@@ -141,16 +141,12 @@ const scaleIn = {
 
 export default function TreatmentsPage() {
   const [selectedFilter, setSelectedFilter] = useState("all");
-  const [hoveredPackage, setHoveredPackage] = useState<string | null>(null);
   const heroRef = useRef(null);
   
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.6]);
 
   const filteredPackages = useMemo(() => spaPackages.filter(pkg => 
     selectedFilter === "all" || pkg.category === selectedFilter
@@ -161,10 +157,7 @@ export default function TreatmentsPage() {
       {/* Modern Hero Section - Fully Responsive */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
         {/* Parallax Background */}
-        <motion.div 
-          style={{ y, opacity }}
-          className="absolute inset-0 z-0"
-        >
+        <div className="absolute inset-0 z-0">
           <Image
             src="/bath2.jpeg"
             alt="Luxury spa experience"
@@ -174,7 +167,7 @@ export default function TreatmentsPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-800/70 to-slate-900/90" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-transparent to-slate-800/30" />
-        </motion.div>
+        </div>
 
         {/* Floating Elements - Hidden on small screens */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
@@ -377,8 +370,6 @@ export default function TreatmentsPage() {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.08 }}
-                onHoverStart={() => setHoveredPackage(pkg.id)}
-                onHoverEnd={() => setHoveredPackage(null)}
                 className="group relative"
               >
                 <Card className="bg-slate-800/50 border border-slate-700/50 shadow-2xl hover:shadow-emerald-500/10 hover:border-emerald-500/30 backdrop-blur-sm transition-all duration-500 overflow-hidden h-full group-hover:transform group-hover:scale-[1.02]">
@@ -476,7 +467,7 @@ export default function TreatmentsPage() {
                         asChild
                       >
                         <a 
-                          href={`https://wa.me/27762073299?text=${encodeURIComponent(`Hi Glenanda Hotel, I'd like to book the ${pkg.title} spa package.`)}`}
+                          href={`https://wa.me/27762073299?text=${encodeURIComponent(`Hi Glenanda Hotel, I&apos;d like to book the ${pkg.title} spa package.`)}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -688,11 +679,11 @@ export default function TreatmentsPage() {
               },
               {
                 q: "Can I book for a group of friends?",
-                a: "Absolutely! Our 'Friends Spa Day' package is perfect for groups of 3-6 people, and we can accommodate larger groups with advance booking.",
+                a: "Absolutely! Our &apos;Friends Spa Day&apos; package is perfect for groups of 3-6 people, and we can accommodate larger groups with advance booking.",
               },
               {
                 q: "Do you offer couples treatments?",
-                a: "Yes, our 'Couples Spa Experience' includes side-by-side treatments in a private suite with champagne and treats included.",
+                a: "Yes, our &apos;Couples Spa Experience&apos; includes side-by-side treatments in a private suite with champagne and treats included.",
               },
               {
                 q: "What should I bring to my spa appointment?",
@@ -730,18 +721,16 @@ export default function TreatmentsPage() {
           >
             Ready to Unwind?
           </motion.h2>
-          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            Book your perfect spa experience today. Whether you're seeking solo relaxation, a romantic couples retreat, or a fun day with friends.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+              Book your perfect spa experience today. Whether you&apos;re seeking solo relaxation, a romantic couples retreat, or a fun day with friends.
+            </p>          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-4 rounded-full shadow-xl font-semibold"
               asChild
             >
               <a 
-                href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20spa%20treatment."
+                href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I&apos;d%20like%20to%20book%20a%20spa%20treatment."
                 target="_blank"
                 rel="noopener noreferrer"
               >

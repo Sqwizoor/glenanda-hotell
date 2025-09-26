@@ -151,7 +151,7 @@ export default function ContactPage() {
               Contact Glenanda Hotel
             </h1>
             <p className="text-xl md:text-2xl text-zinc-300 max-w-4xl mx-auto leading-relaxed">
-              Ready to plan your stay? Whether you're traveling solo, as a couple, with family, or organizing a group event, 
+              Ready to plan your stay? Whether you&apos;re traveling solo, as a couple, with family, or organizing a group event, 
               our dedicated team is here to help make your experience exceptional.
             </p>
           </motion.div>
