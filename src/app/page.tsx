@@ -550,10 +550,8 @@ export default function HomePage() {
               Premium accommodations in South Johannesburg's finest location • Fiber Wi‑Fi • 24/7 Support • 
               Secure Parking • Perfect for solo business trips, romantic getaways, family vacations, and corporate events.
             </motion.p>
-            >
-              Premium accommodations in South Johannesburg&apos;s finest location • Fiber Wi‑Fi • 24/7 Support • 
-              Secure Parking • Perfect for solo business trips, romantic getaways, family vacations, and corporate events.
-            </motion.p>{ opacity:0, y:20 }}
+            <motion.div
+              initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:1.1, duration:0.7 }}
               className="mt-3 sm:mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6"
@@ -1431,8 +1429,8 @@ export default function HomePage() {
               <motion.div key={venue.title} variants={itemFadeUp} className="group">
                 <Card className="h-full bg-white border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
                   <CardContent className="p-0">
-            ].map((venue) => (
-              <motion.div key={venue.title} variants={itemFadeUp} className="group">
+                    <div className="relative h-48 overflow-hidden">
+                      <Image
                         src={venue.image}
                         alt={venue.title}
                         fill
