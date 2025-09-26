@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { SmartImage } from "@/components/SmartImage";
@@ -547,7 +547,7 @@ export default function HomePage() {
               className="mt-2 sm:mt-4 text-white/85 max-w-3xl mx-auto leading-relaxed"
               style={{ fontSize: 'clamp(0.875rem, 2.2vw, 1.25rem)' }}
             >
-              Premium accommodations in South Johannesburg's finest location • Fiber Wi‑Fi • 24/7 Support • 
+              Premium accommodations in South Johannesburg&apos;s finest location • Fiber Wi‑Fi • 24/7 Support • 
               Secure Parking • Perfect for solo business trips, romantic getaways, family vacations, and corporate events.
             </motion.p>
             <motion.div
@@ -1425,7 +1425,7 @@ export default function HomePage() {
                 image: "/niceview.jpeg",
                 icon: "🌳"
               }
-            ].map((venue, index) => (
+            ].map((venue) => (
               <motion.div key={venue.title} variants={itemFadeUp} className="group">
                 <Card className="h-full bg-white border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
                   <CardContent className="p-0">
