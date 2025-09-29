@@ -11,16 +11,26 @@ import {
   ChefHat,
   Utensils,
   Coffee,
-  Wine,
   Star,
   Heart,
   ArrowRight,
-  Check,
   Sparkles
 } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+// Menu Item Interface
+interface MenuItem {
+  id: number;
+  name: string;
+  description: string;
+  price: string;
+  category: string;
+  popular: boolean;
+  spicy: boolean;
+  prepTime: string;
+}
 
 // Motion variants
 const containerStagger: Variants = {
@@ -189,7 +199,7 @@ const menuItems = {
 
 export default function MenuPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [cart, setCart] = useState<any[]>([]);
+  const [cart, setCart] = useState<MenuItem[]>([]);
 
   const categories = [
     { id: "all", name: "All Items", icon: Utensils },
@@ -207,7 +217,7 @@ export default function MenuPage() {
     return menuItems[selectedCategory as keyof typeof menuItems] || [];
   };
 
-  const addToCart = (item: any) => {
+  const addToCart = (item: MenuItem) => {
     setCart(prev => [...prev, item]);
   };
 
@@ -366,7 +376,7 @@ Please deliver to my room. Thank you!`;
             <div className="bg-gradient-to-r from-emerald-100 to-teal-100 rounded-2xl p-6 shadow-lg max-w-4xl mx-auto">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <ChefHat className="w-6 h-6 text-emerald-600" />
-                <h3 className="text-xl font-bold text-emerald-800">Chef's Special Notice</h3>
+                <h3 className="text-xl font-bold text-emerald-800">Chef&apos;s Special Notice</h3>
                 <ChefHat className="w-6 h-6 text-emerald-600" />
               </div>
               <p className="text-emerald-700 leading-relaxed">
@@ -387,7 +397,7 @@ Please deliver to my room. Thank you!`;
               exit="hidden"
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-              {getFilteredItems().map((item, index) => (
+              {getFilteredItems().map((item) => (
                 <motion.div
                   key={item.id}
                   variants={itemFadeUp}
