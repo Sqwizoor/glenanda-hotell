@@ -4,7 +4,6 @@ import Image from "next/image";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import PageTransition from "@/components/PageTransition";
-import FloatingActions from "@/components/FloatingActions";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 
 const geistSans = Geist({
@@ -49,7 +48,6 @@ export default function RootLayout({
               {children}
             </PageTransition>
           </main>
-          <FloatingActions />
         <footer className="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
           <div className="max-w-7xl mx-auto px-4 py-12 grid gap-10 md:grid-cols-4">
             <div>
