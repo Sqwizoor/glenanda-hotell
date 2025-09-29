@@ -457,30 +457,30 @@ export default function HomePage() {
     <div className="overflow-hidden">
       {/* Floating Quick Action Bar */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[48] md:hidden">
-        <div className="flex items-center gap-3 px-4 py-3 rounded-full backdrop-blur-xl bg-white/70 shadow-lg shadow-emerald-900/10 border border-white/40">
-          <Link href="/rooms" className="flex flex-col items-center text-[10px] font-medium text-gray-700">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-full backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 shadow-lg shadow-emerald-900/10 dark:shadow-emerald-300/10 border border-white/40 dark:border-gray-700/40">
+          <Link href="/rooms" className="flex flex-col items-center text-[10px] font-medium text-gray-700 dark:text-gray-300">
             <div className="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-md">R</div>
             <span className="mt-1">Rooms</span>
           </Link>
-          <div className="w-px h-10 bg-gradient-to-b from-transparent via-emerald-300/50 to-transparent" />
+          <div className="w-px h-10 bg-gradient-to-b from-transparent via-emerald-300/50 dark:via-emerald-600/50 to-transparent" />
           <a
             href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book."
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center text-[10px] font-medium text-gray-700"
+            className="flex flex-col items-center text-[10px] font-medium text-gray-700 dark:text-gray-300"
           >
             <div className="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white flex items-center justify-center shadow-md">WA</div>
             <span className="mt-1">Chat</span>
           </a>
-          <div className="w-px h-10 bg-gradient-to-b from-transparent via-emerald-300/50 to-transparent" />
-          <Link href="/contact" className="flex flex-col items-center text-[10px] font-medium text-gray-700">
+          <div className="w-px h-10 bg-gradient-to-b from-transparent via-emerald-300/50 dark:via-emerald-600/50 to-transparent" />
+          <Link href="/contact" className="flex flex-col items-center text-[10px] font-medium text-gray-700 dark:text-gray-300">
             <div className="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-md">✉</div>
             <span className="mt-1">Contact</span>
           </Link>
         </div>
       </div>
       {/* Modern Hero Section — Enhanced with better mobile responsiveness */}
-  <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible">
+  <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-20">
         {/* Enhanced Background slideshow with better mobile optimization */}
         <Slideshow images={["/room14.jpeg","/room6.jpeg","/niceview.jpeg","/room11.jpeg"]} />
         
@@ -500,18 +500,18 @@ export default function HomePage() {
           initial={{ opacity:0, y:40 }}
           animate={{ opacity:1, y:0 }}
           transition={{ duration:1.2, ease:[0.16,1,0.3,1] }}
-          className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-0"
+          className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
         >
           <div className="max-w-6xl mx-auto text-center">
             {/* Enhanced Badge with animation */}
             <motion.div
-              className="inline-flex items-center space-x-2 sm:space-x-3 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white/95 mb-3 sm:mb-6 shadow-lg"
+              className="inline-flex items-center space-x-2 sm:space-x-3 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/20 dark:border-white/10 text-white/95 mb-2 sm:mb-4 shadow-lg"
               initial={{ opacity:0, y:20, scale: 0.9 }}
               animate={{ opacity:1, y:0, scale: 1 }}
               transition={{ delay:0.3, duration:0.8, ease:[0.22, 1, 0.36, 1] }}
               whileHover={{ scale: 1.05 }}
             >
-              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-300 animate-pulse" />
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-300 dark:text-emerald-400 animate-pulse" />
               <span className="text-xs sm:text-sm tracking-[0.15em] font-semibold">GLENANDA LUXURY HOTEL</span>
             </motion.div>
             
@@ -520,17 +520,17 @@ export default function HomePage() {
               initial={{ opacity:0, y:30 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:0.5, duration:1, ease:[0.22, 1, 0.36, 1] }}
-              className="font-bold leading-[0.95] text-white mb-2 sm:mb-4"
+              className="font-bold leading-[0.95] text-white mb-2 sm:mb-3"
               style={{
-                fontSize: 'clamp(1.75rem, 7vw, 4.5rem)',
-                lineHeight: 'clamp(1.9rem, 7.5vw, 4.8rem)'
+                fontSize: 'clamp(1.5rem, 6vw, 3.5rem)',
+                lineHeight: 'clamp(1.7rem, 6.5vw, 3.8rem)'
               }}
             >
               <span className="block">Unforgettable Experiences</span>
               <span className="block">for Every Guest</span>
               <motion.span 
-                className="block mt-2 sm:mt-4 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-amber-200 to-emerald-200 font-light tracking-wide"
-                style={{ fontSize: 'clamp(1rem, 3.5vw, 2rem)' }}
+                className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-amber-200 to-emerald-200 font-light tracking-wide"
+                style={{ fontSize: 'clamp(0.875rem, 3vw, 1.5rem)' }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 0.8 }}
@@ -544,8 +544,8 @@ export default function HomePage() {
               initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:0.8, duration:0.8 }}
-              className="mt-2 sm:mt-4 text-white/85 max-w-3xl mx-auto leading-relaxed"
-              style={{ fontSize: 'clamp(0.875rem, 2.2vw, 1.25rem)' }}
+              className="mt-2 sm:mt-3 text-white/85 max-w-3xl mx-auto leading-relaxed"
+              style={{ fontSize: 'clamp(0.8rem, 2vw, 1.1rem)' }}
             >
               Premium accommodations in South Johannesburg&apos;s finest location • Fiber Wi‑Fi • 24/7 Support • 
               Secure Parking • Perfect for solo business trips, romantic getaways, family vacations, and corporate events.
@@ -554,27 +554,27 @@ export default function HomePage() {
               initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:1.1, duration:0.7 }}
-              className="mt-3 sm:mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6"
+              className="mt-3 sm:mt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
             >
               <Link href="/rooms" className="group relative w-full sm:w-auto">
                 <Button 
                   size="lg" 
-                  className="w-full sm:w-auto rounded-full px-6 sm:px-12 py-3 sm:py-6 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-2xl shadow-emerald-900/40 hover:shadow-emerald-500/30 transform hover:scale-105 transition-all duration-300"
-                  style={{ fontSize: 'clamp(0.875rem, 1.8vw, 1.125rem)' }}
+                  className="w-full sm:w-auto rounded-full px-4 sm:px-8 py-2.5 sm:py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-2xl shadow-emerald-900/40 hover:shadow-emerald-500/30 transform hover:scale-105 transition-all duration-300"
+                  style={{ fontSize: 'clamp(0.8rem, 1.6vw, 1rem)' }}
                 >
-                  <Eye className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
+                  <Eye className="mr-2 w-4 h-4" />
                   Explore Rooms
-                  <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
               <Link href="/contact" className="w-full sm:w-auto">
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full sm:w-auto rounded-full px-6 sm:px-12 py-3 sm:py-6 border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 backdrop-blur-sm font-semibold transition-all duration-300"
-                  style={{ fontSize: 'clamp(0.875rem, 1.8vw, 1.125rem)' }}
+                  className="w-full sm:w-auto rounded-full px-4 sm:px-8 py-2.5 sm:py-4 border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 backdrop-blur-sm font-semibold transition-all duration-300"
+                  style={{ fontSize: 'clamp(0.8rem, 1.6vw, 1rem)' }}
                 >
-                  <Users className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
+                  <Users className="mr-2 w-4 h-4" />
                   Book Your Stay
                 </Button>
               </Link>
@@ -585,7 +585,7 @@ export default function HomePage() {
               initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:1.4 }}
-              className="mt-4 sm:mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-6 max-w-2xl mx-auto"
+              className="mt-3 sm:mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-2 sm:gap-4 max-w-2xl mx-auto"
             >
               {[
                 {label:'Accommodations', value:'50+ Rooms', icon: '🏨'},
@@ -594,17 +594,17 @@ export default function HomePage() {
               ].map((stat, index) => (
                 <motion.div 
                   key={stat.label} 
-                  className="text-center p-2 sm:p-4 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-emerald-400/30 transition-all duration-300 group"
+                  className="text-center p-2 sm:p-3 rounded-xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 hover:border-emerald-400/30 transition-all duration-300 group"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.4 + index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="text-xl sm:text-3xl mb-1 sm:mb-2 group-hover:scale-110 transition-transform">{stat.icon}</div>
-                  <div className="font-bold text-white mb-1" style={{ fontSize: 'clamp(0.875rem, 2.2vw, 1.25rem)' }}>
+                  <div className="text-lg sm:text-2xl mb-1 group-hover:scale-110 transition-transform">{stat.icon}</div>
+                  <div className="font-bold text-white mb-1" style={{ fontSize: 'clamp(0.8rem, 2vw, 1.1rem)' }}>
                     {stat.value}
                   </div>
-                  <div className="text-white/60 font-medium" style={{ fontSize: 'clamp(0.6875rem, 1.8vw, 0.875rem)' }}>
+                  <div className="text-white/60 font-medium" style={{ fontSize: 'clamp(0.65rem, 1.6vw, 0.8rem)' }}>
                     {stat.label}
                   </div>
                 </motion.div>
@@ -636,7 +636,7 @@ export default function HomePage() {
       </section>
 
       {/* Accommodation Packages Section */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <motion.div
             variants={containerStagger}
@@ -647,20 +647,20 @@ export default function HomePage() {
           >
             <motion.div
               variants={itemFadeUp}
-              className="inline-block px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4"
+              className="inline-block px-4 py-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-medium mb-4"
             >
               <Users className="inline-block w-4 h-4 mr-2" />
               For Every Guest
             </motion.div>
             <motion.h2 
               variants={itemFadeUp} 
-              className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
+              className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6"
             >
               Tailored Packages for Every Stay
             </motion.h2>
             <motion.p 
               variants={itemFadeUp} 
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto"
             >
               Whether you&apos;re traveling solo on business, planning a romantic getaway, enjoying a family reunion, or organizing a corporate retreat, we provide personalized service and exclusive amenities for every type of stay.
             </motion.p>
@@ -696,14 +696,14 @@ export default function HomePage() {
               },
             ].map((feature) => (
               <motion.div key={feature.title} variants={itemFadeUp}>
-                <Card className="h-full text-center p-8 bg-gray-50/50 border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                <Card className="h-full text-center p-8 bg-gray-50/50 dark:bg-gray-800/50 border-0 shadow-lg hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 group">
                   <div className="flex justify-center mb-6">
-                    <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center">
-                      <feature.icon className="w-8 h-8 text-emerald-600" />
+                    <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+                      <feature.icon className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3">{feature.title}</h3>
-                  <p className="text-gray-600">{feature.description}</p>
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3">{feature.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
                 </Card>
               </motion.div>
             ))}
@@ -715,18 +715,26 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-60px" }}
             className="text-center mt-16"
           >
-            <Link href="/contact" className="group relative">
-              <Button size="lg" className="rounded-full px-10 py-6 bg-emerald-600 hover:bg-emerald-500 text-white text-base shadow-lg shadow-emerald-900/30">
-                Book Your Perfect Stay
-                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact" className="group relative">
+                <Button size="lg" className="rounded-full px-10 py-6 bg-emerald-600 hover:bg-emerald-500 text-white text-base shadow-lg shadow-emerald-900/30">
+                  Book Your Perfect Stay
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+              <Link href="/menu" className="group relative">
+                <Button size="lg" variant="outline" className="rounded-full px-10 py-6 border-emerald-600 text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 text-base shadow-lg">
+                  View Room Service Menu
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Services Preview (styled like Services page, with images) */}
-      <section className="section-padding skincare-gradient">
+      <section className="section-padding skincare-gradient dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="max-w-7xl mx-auto">
           <motion.div
             variants={containerStagger}
@@ -737,13 +745,13 @@ export default function HomePage() {
           >
             <motion.div
               variants={itemFadeUp}
-              className="inline-block px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4"
+              className="inline-block px-4 py-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-medium mb-4"
             >
         ✨ Accommodation for Every Traveler
             </motion.div>
             <motion.h2 
               variants={itemFadeUp} 
-              className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
+              className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6"
               whileInView={{ 
                 background: [
           "linear-gradient(90deg, #065f46, #f59e0b)",
@@ -758,7 +766,7 @@ export default function HomePage() {
             </motion.h2>
             <motion.p 
               variants={itemFadeUp} 
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto"
               whileInView={{ opacity: [0.8, 1, 0.8] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
@@ -790,9 +798,9 @@ export default function HomePage() {
                   duration: 0.4 
                 }}
               >
-                <Card className="h-full bg-white border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden relative">
+                <Card className="h-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-2xl dark:hover:shadow-2xl transition-all duration-500 overflow-hidden relative">
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-500/5 dark:from-emerald-500/10 dark:to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     initial={false}
                   />
                   
@@ -876,16 +884,16 @@ export default function HomePage() {
                         whileHover={{ x: 5 }}
                         transition={{ duration: 0.2 }}
                       >
-                        <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-emerald-600 transition-colors duration-300">
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
                           {service.title}
                         </h3>
-                        <p className="text-emerald-600 text-sm font-medium">
+                        <p className="text-emerald-600 dark:text-emerald-400 text-sm font-medium">
                           {service.subtitle}
                         </p>
                       </motion.div>
 
                       <motion.p 
-                        className="text-gray-600 text-sm leading-relaxed line-clamp-3"
+                        className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed line-clamp-3"
                         whileHover={{ color: "#374151" }}
                         transition={{ duration: 0.2 }}
                       >
@@ -926,7 +934,7 @@ export default function HomePage() {
       </section>
 
       {/* Spaces & Atmosphere Section with Carousel & Lightbox */}
-      <section className="section-padding bg-white" id="spaces-atmosphere">
+      <section className="section-padding bg-white dark:bg-gray-900" id="spaces-atmosphere">
         <LightboxProvider>
           <div className="max-w-7xl mx-auto">
             <motion.div
@@ -936,10 +944,10 @@ export default function HomePage() {
               viewport={{ once: true, margin: "-80px" }}
               className="text-center mb-16"
             >
-              <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6">
                 Hotel Gallery & Experiences
               </motion.h2>
-              <motion.p variants={itemFadeUp} className="text-xl text-gray-600">
+              <motion.p variants={itemFadeUp} className="text-xl text-gray-600 dark:text-gray-400">
                 Discover our luxurious spaces - from serene spa facilities and elegant rooms to vibrant social areas and stunning views that create unforgettable moments.
               </motion.p>
             </motion.div>
@@ -948,81 +956,374 @@ export default function HomePage() {
         </LightboxProvider>
       </section>
 
-      {/* Spa & Wellness Section */}
-      <section className="section-padding bg-emerald-50/50">
-        <div className="max-w-7xl mx-auto">
+      {/* Modern Massage & Spa Section */}
+      <section className="section-padding bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 dark:from-gray-900 dark:via-purple-900/20 dark:to-gray-900 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-20 w-40 h-40 bg-purple-400 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-20 right-20 w-60 h-60 bg-pink-400 rounded-full blur-3xl animate-pulse delay-1000" />
+          <div className="absolute top-1/2 left-1/3 w-32 h-32 bg-rose-400 rounded-full blur-2xl animate-pulse delay-2000" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header Section */}
           <motion.div
             variants={containerStagger}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-80px" }}
-            className="grid lg:grid-cols-2 gap-12 items-center"
+            className="text-center mb-20"
           >
-            <div className="text-left">
+            <motion.div
+              variants={itemFadeUp}
+              className="inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 rounded-full text-purple-700 dark:text-purple-300 text-sm font-medium mb-6 shadow-lg"
+            >
+              <Sparkles className="w-5 h-5 animate-pulse" />
+              <span className="tracking-wide">LUXURY MASSAGE & SPA EXPERIENCE</span>
+              <Heart className="w-5 h-5 animate-pulse" />
+            </motion.div>
+            
+            <motion.h2 
+              variants={itemFadeUp} 
+              className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 dark:from-purple-400 dark:via-pink-400 dark:to-rose-400 bg-clip-text text-transparent mb-8"
+              style={{ lineHeight: '1.1' }}
+            >
+              Premium Massage & Spa Services
+            </motion.h2>
+            
+            <motion.p 
+              variants={itemFadeUp} 
+              className="text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed"
+            >
+              Escape to our world-class spa sanctuary where expert therapists use premium techniques and organic products to rejuvenate your body, mind, and spirit. From deep tissue massages to luxury facial treatments, we offer everything you need for complete relaxation.
+            </motion.p>
+          </motion.div>
+
+          {/* Hero Image Gallery Carousel */}
+          <motion.div
+            variants={itemFadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="mb-20"
+          >
+            <div className="relative h-96 md:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
               <motion.div
-                variants={itemFadeUp}
-                className="inline-block px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4"
-              >
-                <Dumbbell className="inline-block w-4 h-4 mr-2" />
-                Your Oasis of Calm
-              </motion.div>
-              <motion.h2 
-                variants={itemFadeUp} 
-                className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
-              >
-                Indulge at Our Serene Spa
-              </motion.h2>
-              <motion.p 
-                variants={itemFadeUp} 
-                className="text-xl text-gray-600 mb-8"
-              >
-                Our on-site spa is a sanctuary of tranquility, offering a range of treatments to rejuvenate your body and soul. We offer special packages for groups looking to unwind together.
-              </motion.p>
-              <motion.div
-                variants={containerStagger}
-                className="space-y-4"
+                className="flex h-full"
+                animate={{ x: [0, -100, -200, -300, -400, -500, -600, -700, 0] }}
+                transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
               >
                 {[
-                  { icon: Users, text: "Exclusive Group Packages" },
-                  { icon: Heart, text: "Couples' Treatments" },
-                  { icon: Award, text: "Expert Therapists" },
-                  { icon: Shield, text: "Private Relaxation Lounge" },
-                ].map((item) => (
-                  <motion.div key={item.text} variants={itemFadeUp} className="flex items-center">
-                    <div className="w-8 h-8 rounded-full bg-emerald-200 flex items-center justify-center mr-4">
-                      <item.icon className="w-5 h-5 text-emerald-700" />
+                  { src: "/massage-spa.jpeg", alt: "Luxury spa treatment room with ambient lighting" },
+                  { src: "/massage-spa2.jpeg", alt: "Professional massage therapy session" },
+                  { src: "/massage-spa3.jpeg", alt: "Serene spa environment with natural elements" },
+                  { src: "/massage-spa4.jpeg", alt: "Hot stone massage therapy setup" },
+                  { src: "/massage-spa5.jpeg", alt: "Aromatherapy and essential oils treatment" },
+                  { src: "/massage-spa6.jpeg", alt: "Couples massage suite with romantic ambiance" },
+                  { src: "/massage-spa7.jpeg", alt: "Facial treatment and skincare services" },
+                  { src: "/massage-spa9.jpeg", alt: "Relaxation lounge with premium amenities" },
+                ].map((image, index) => (
+                  <motion.div
+                    key={index}
+                    className="min-w-full h-full relative"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="100vw"
+                      className="object-cover"
+                      priority={index < 3}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    <div className="absolute bottom-8 left-8 right-8">
+                      <p className="text-white text-lg font-medium drop-shadow-lg">
+                        {image.alt}
+                      </p>
                     </div>
-                    <span className="text-lg text-gray-700">{item.text}</span>
                   </motion.div>
                 ))}
               </motion.div>
-              <motion.div
-                variants={itemFadeUp}
-                className="mt-10"
-              >
-                <Link href="/treatments" className="group relative">
-                  <Button size="lg" className="rounded-full px-10 py-6 bg-emerald-600 hover:bg-emerald-500 text-white text-base shadow-lg shadow-emerald-900/30">
-                    Explore Spa Treatments
-                    <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </motion.div>
+              
+              {/* Overlay with gradient */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-transparent to-pink-600/20 pointer-events-none" />
             </div>
-            <motion.div variants={itemFadeUp} className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl">
-              <Image
-                src="/spa.jpeg"
-                alt="Relaxing spa environment"
-                fill
-                sizes="(max-width:1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </motion.div>
+          </motion.div>
+
+          {/* Services Grid */}
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
+          >
+            {[
+              {
+                icon: "💆‍♀️",
+                title: "Therapeutic Massage",
+                description: "Deep tissue, Swedish, hot stone, and aromatherapy massages by certified professionals",
+                services: ["Deep Tissue", "Swedish Relaxation", "Hot Stone", "Aromatherapy"],
+                image: "/massage-spa.jpeg"
+              },
+              {
+                icon: "✨",
+                title: "Luxury Facial Treatments",
+                description: "Anti-aging facials, deep cleansing, and premium skincare using organic products",
+                services: ["Anti-Aging Facial", "Deep Cleansing", "Hydrating Treatment", "Organic Skincare"],
+                image: "/massage-spa3.jpeg"
+              },
+              {
+                icon: "💑",
+                title: "Couples' Spa Packages",
+                description: "Romantic spa experiences designed for two with side-by-side treatments",
+                services: ["Couples Massage", "Romantic Package", "Anniversary Special", "Honeymoon Spa"],
+                image: "/massage-spa6.jpeg"
+              },
+              {
+                icon: "🧘‍♀️",
+                title: "Wellness & Relaxation",
+                description: "Complete wellness programs including meditation, yoga, and holistic healing",
+                services: ["Meditation Sessions", "Wellness Consultation", "Stress Relief", "Energy Healing"],
+                image: "/massage-spa7.jpeg"
+              }
+            ].map((service, index) => (
+              <motion.div
+                key={service.title}
+                variants={itemFadeUp}
+                className="group"
+                whileHover={{ y: -12, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <Card className="h-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border-0 shadow-xl hover:shadow-2xl dark:hover:shadow-2xl transition-all duration-500 overflow-hidden relative">
+                  {/* Background Image */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  
+                  <CardContent className="p-8 relative z-10">
+                    {/* Icon */}
+                    <motion.div
+                      className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300"
+                      whileHover={{ rotate: [0, -10, 10, 0] }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {service.icon}
+                    </motion.div>
+                    
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                      {service.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                      {service.description}
+                    </p>
+                    
+                    {/* Services List */}
+                    <div className="space-y-2 mb-8">
+                      {service.services.map((item, idx) => (
+                        <motion.div
+                          key={idx}
+                          className="flex items-center text-sm text-gray-700 dark:text-gray-300"
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: idx * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mr-3 flex-shrink-0" />
+                          {item}
+                        </motion.div>
+                      ))}
+                    </div>
+                    
+                    {/* Book Button */}
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                      <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+                        Book Treatment
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </motion.div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Premium Features Section */}
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl p-12 shadow-2xl mb-20"
+          >
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Why Choose Our Spa?</h3>
+              <p className="text-lg text-gray-600 dark:text-gray-400">Premium amenities and professional service that sets us apart</p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-8">
+              {[
+                { icon: "🏆", title: "Award-Winning", subtitle: "Certified Therapists" },
+                { icon: "🌿", title: "Organic Products", subtitle: "Natural & Premium" },
+                { icon: "🕐", title: "Flexible Hours", subtitle: "7 Days a Week" },
+                { icon: "👥", title: "Group Packages", subtitle: "Special Rates" },
+                { icon: "🎯", title: "Personalized", subtitle: "Tailored Treatments" },
+                { icon: "🛡️", title: "Private Suites", subtitle: "Complete Privacy" }
+              ].map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  variants={itemFadeUp}
+                  className="text-center group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <motion.div
+                    className="text-3xl mb-3 group-hover:animate-bounce"
+                    whileHover={{ rotateY: 180 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    {feature.icon}
+                  </motion.div>
+                  <h4 className="font-bold text-gray-900 dark:text-gray-100 mb-1">{feature.title}</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{feature.subtitle}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Image Showcase Grid */}
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="mb-20"
+          >
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Experience Our Spa Facilities</h3>
+              <p className="text-lg text-gray-600 dark:text-gray-400">Take a virtual tour of our premium spa environments</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { src: "/massage-spa2.jpeg", title: "Treatment Rooms", subtitle: "Private & Serene" },
+                { src: "/massage-spa4.jpeg", title: "Hot Stone Setup", subtitle: "Premium Equipment" },
+                { src: "/massage-spa5.jpeg", title: "Aromatherapy", subtitle: "Essential Oils" },
+                { src: "/massage-spa9.jpeg", title: "Relaxation Lounge", subtitle: "Post-Treatment" }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemFadeUp}
+                  className="group relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg"
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6 text-white">
+                    <h4 className="font-bold text-lg mb-1">{item.title}</h4>
+                    <p className="text-sm opacity-90">{item.subtitle}</p>
+                  </div>
+                  
+                  {/* Hover Overlay */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-purple-600/80 to-pink-600/80 dark:from-purple-700/80 dark:to-pink-700/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                    whileHover={{ scale: 1 }}
+                  >
+                    <div className="text-white text-center">
+                      <Eye className="w-8 h-8 mx-auto mb-2" />
+                      <p className="font-semibold">View Details</p>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Call to Action */}
+          <motion.div
+            variants={itemFadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 rounded-3xl p-12 text-white shadow-2xl relative overflow-hidden">
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-8 left-8 w-20 h-20 border border-white rounded-full" />
+                <div className="absolute bottom-8 right-8 w-32 h-32 border border-white rounded-full" />
+                <div className="absolute top-1/2 left-1/3 w-16 h-16 border border-white rounded-full" />
+              </div>
+              
+              <div className="relative z-10">
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    rotate: [0, 2, -2, 0]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                  className="text-6xl mb-6"
+                >
+                  💆‍♀️✨
+                </motion.div>
+                
+                <h3 className="text-4xl font-bold mb-6">Ready to Unwind & Rejuvenate?</h3>
+                <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
+                  Book your premium spa experience today. Our expert therapists are ready to provide you with the ultimate relaxation and wellness journey.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button asChild size="lg" className="bg-white text-purple-600 hover:bg-gray-50 px-12 py-6 rounded-full shadow-lg text-lg">
+                      <Link href="/treatments">
+                        <Sparkles className="mr-2 h-5 w-5" />
+                        View All Treatments
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                    </Button>
+                  </motion.div>
+                  
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-12 py-6 rounded-full text-lg">
+                      <a
+                        href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20spa%20treatment."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        📱 Book via WhatsApp
+                      </a>
+                    </Button>
+                  </motion.div>
+                </div>
+
+                <div className="mt-8 text-white/90">
+                  <p className="font-semibold text-lg">📞 +27 76 207 3299</p>
+                  <p>Open 7 days a week • Professional certified therapists</p>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="section-padding bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+      {/* Room Service Menu Section */}
+      <section className="section-padding bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 dark:from-gray-900 dark:via-orange-900/10 dark:to-gray-900">
         <div className="max-w-7xl mx-auto">
           <motion.div
             variants={containerStagger}
@@ -1031,10 +1332,241 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-80px" }}
             className="text-center mb-16"
           >
-            <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <motion.div
+              variants={itemFadeUp}
+              className="inline-block px-4 py-2 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-sm font-medium mb-4"
+            >
+              <UtensilsCrossed className="inline-block w-4 h-4 mr-2" />
+              Room Service Available 24/7
+            </motion.div>
+            <motion.h2 
+              variants={itemFadeUp} 
+              className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6"
+            >
+              Delicious Room Service Menu
+            </motion.h2>
+            <motion.p 
+              variants={itemFadeUp} 
+              className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto"
+            >
+              Enjoy fresh, delicious meals delivered directly to your room. From crispy chicken wings to traditional South African favorites with our signature hotel gravy.
+            </motion.p>
+          </motion.div>
+
+          {/* Featured Menu Items Grid */}
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+          >
+            {[
+              {
+                name: "Wings with Chips",
+                description: "Crispy golden chicken wings served with fresh-cut seasoned chips",
+                price: "From R65",
+                category: "Most Popular",
+                image: "/dining.jpeg",
+                prepTime: "15-20 min",
+                sizes: "4, 6, 8 or 12 pieces"
+              },
+              {
+                name: "Wings with Pap & Gravy",
+                description: "Tender wings with traditional pap and our hotel gravy prepared by professional chefs",
+                price: "From R50",
+                category: "Chef's Special", 
+                image: "/dining2.jpeg",
+                prepTime: "15-25 min",
+                sizes: "4, 6, 8 or 12 pieces"
+              },
+              {
+                name: "House Special Samosas",
+                description: "12 crispy samosas with signature spice blend - Glen Special, Sweetcorn & Cheese, or Mince",
+                price: "R99 (12 pieces)",
+                category: "Snacks & Sides",
+                image: "/dining4.jpeg",
+                prepTime: "15-20 min",
+                sizes: "12 pieces per order"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={item.name}
+                variants={itemFadeUp}
+                className="group"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <Card className="h-full bg-white border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="relative h-48 overflow-hidden">
+                      <motion.div 
+                        whileHover={{ scale: 1.08 }} 
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        className="w-full h-full"
+                      >
+                        <SmartImage
+                          src={item.image}
+                          alt={item.name}
+                          fill
+                          sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                          className="object-cover w-full h-full"
+                          priority={index < 2}
+                          asMotion={false}
+                        />
+                      </motion.div>
+                      
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      
+                      {/* Category Badge */}
+                      <div className="absolute top-4 left-4">
+                        <Badge className="bg-orange-500 text-white shadow-lg">
+                          {item.category}
+                        </Badge>
+                      </div>
+                      
+                      {/* Price Badge */}
+                      <div className="absolute bottom-4 right-4">
+                        <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                          <span className="font-bold text-orange-600">{item.price}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                        {item.name}
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+                        {item.description}
+                      </p>
+                      
+                      {/* Details */}
+                      <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
+                        <div className="flex items-center">
+                          <Clock className="w-4 h-4 mr-1" />
+                          {item.prepTime}
+                        </div>
+                        <div className="text-right">
+                          <span className="font-medium">{item.sizes}</span>
+                        </div>
+                      </div>
+                      
+                      {/* Order Button */}
+                      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                        <Button asChild className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+                          <a
+                            href={`https://wa.me/27762073299?text=${encodeURIComponent(`Hi Glenanda Hotel, I'd like to order ${item.name} for room service delivery.`)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Order Now
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </a>
+                        </Button>
+                      </motion.div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Fresh Juices Section */}
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl mb-12"
+          >
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Fresh Tropical Juices</h3>
+              <p className="text-gray-600 dark:text-gray-400">Freshly squeezed daily • Perfect refreshment for any time</p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { name: "Fresh Mango Juice", price: "R30", icon: "🥭" },
+                { name: "Fruit Cocktail", price: "R30", icon: "🍸" },
+                { name: "Passion Fruit Juice", price: "R30", icon: "🧡" }
+              ].map((juice, index) => (
+                <motion.div
+                  key={juice.name}
+                  variants={itemFadeUp}
+                  className="text-center p-6 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/30 dark:to-amber-900/30 rounded-2xl hover:shadow-lg transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <div className="text-3xl mb-3">{juice.icon}</div>
+                  <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">{juice.name}</h4>
+                  <p className="text-orange-600 dark:text-orange-400 font-bold text-lg">{juice.price}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Service Info & CTA */}
+          <motion.div
+            variants={itemFadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-3xl p-8 text-white shadow-2xl">
+              <h3 className="text-3xl font-bold mb-4">24/7 Room Service Available</h3>
+              <p className="text-lg mb-6 text-white/90">
+                Professional chefs • Free delivery to your room • Call or WhatsApp anytime
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button asChild size="lg" className="bg-white text-orange-600 hover:bg-gray-50 px-8 py-4 rounded-full shadow-lg">
+                    <Link href="/menu">
+                      <UtensilsCrossed className="mr-2 h-5 w-5" />
+                      View Full Menu
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                </motion.div>
+                
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-4 rounded-full">
+                    <a
+                      href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20see%20your%20room%20service%20menu."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      📱 WhatsApp Order
+                    </a>
+                  </Button>
+                </motion.div>
+              </div>
+
+              <div className="text-center text-white/90">
+                <p className="font-semibold">📞 +27 76 207 3299</p>
+                <p className="text-sm">Available 24 hours a day, 7 days a week</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="section-padding bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            className="text-center mb-16"
+          >
+            <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6">
               Why Stay With Us?
             </motion.h2>
-            <motion.p variants={itemFadeUp} className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <motion.p variants={itemFadeUp} className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               Blending understated style with warm South African hospitality and smart conveniences.
             </motion.p>
           </motion.div>
@@ -1079,25 +1611,49 @@ export default function HomePage() {
               }
             ].map((feature) => (
               <motion.div key={feature.title} variants={itemFadeUp}>
-                <Card className="h-full text-center p-8 bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group">
+                <Card className="h-full text-center p-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl dark:hover:shadow-2xl transition-all duration-500 group">
                   <CardContent className="space-y-6">
                     <div className="flex justify-center">
-                      <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center">
-                        <feature.icon className="w-8 h-8 text-emerald-600" />
+                      <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+                        <feature.icon className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-800">{feature.title}</h3>
-                    <p className="text-gray-600">{feature.description}</p>
+                    <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200">{feature.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Why Choose Us CTA */}
+          <motion.div
+            variants={itemFadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="text-center mt-16"
+          >
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/rooms" className="group relative">
+                <Button size="lg" className="rounded-full px-10 py-6 bg-emerald-600 hover:bg-emerald-500 text-white text-base shadow-lg shadow-emerald-900/30">
+                  Explore Our Rooms
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+              <Link href="/menu" className="group relative">
+                <Button size="lg" variant="outline" className="rounded-full px-10 py-6 border-emerald-600 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 text-base shadow-lg">
+                  View Our Menu
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Treatment Process */}
-      <section className="section-padding skincare-gradient">
+      <section className="section-padding skincare-gradient dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="max-w-7xl mx-auto">
           <motion.div
             variants={containerStagger}
@@ -1106,10 +1662,10 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-80px" }}
             className="text-center mb-16"
           >
-            <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6">
               Simple Booking Journey
             </motion.h2>
-            <motion.p variants={itemFadeUp} className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <motion.p variants={itemFadeUp} className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               Reserve in minutes—arrive relaxed and ready to unwind.
             </motion.p>
           </motion.div>
@@ -1292,7 +1848,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="section-padding bg-gradient-to-br from-gray-50 to-white">
+      <section className="section-padding bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-4xl mx-auto">
           <motion.div
             variants={containerStagger}
@@ -1301,10 +1857,10 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-80px" }}
             className="text-center mb-16"
           >
-            <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6">
               Frequently Asked Questions
             </motion.h2>
-            <motion.p variants={itemFadeUp} className="text-xl text-gray-600">
+            <motion.p variants={itemFadeUp} className="text-xl text-gray-600 dark:text-gray-400">
               Everything you need to know about our treatments
             </motion.p>
           </motion.div>
@@ -1359,7 +1915,7 @@ export default function HomePage() {
       </section>
 
       {/* Event & Conference Facilities Section */}
-      <section className="section-padding bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+      <section className="section-padding bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-indigo-900/10 dark:to-gray-900">
         <div className="max-w-7xl mx-auto">
           <motion.div
             variants={containerStagger}
@@ -1370,19 +1926,19 @@ export default function HomePage() {
           >
             <motion.div
               variants={itemFadeUp}
-              className="inline-block px-6 py-3 bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 rounded-full text-sm font-medium mb-4"
+              className="inline-block px-6 py-3 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium mb-4"
             >
               🏛️ World-Class Event Facilities
             </motion.div>
             <motion.h2 
               variants={itemFadeUp} 
-              className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
+              className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6"
             >
               Host Memorable Events for Any Size Group
             </motion.h2>
             <motion.p 
               variants={itemFadeUp} 
-              className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
+              className="text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed"
             >
               From intimate board meetings to grand celebrations accommodating up to 500 guests, our versatile event spaces and comprehensive services ensure your gathering is executed flawlessly.
             </motion.p>
@@ -1590,7 +2146,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-600 relative overflow-hidden">
+      <section className="section-padding bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-600 dark:from-emerald-700 dark:via-emerald-800 dark:to-teal-800 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse"></div>

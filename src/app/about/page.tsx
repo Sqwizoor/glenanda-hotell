@@ -119,9 +119,9 @@ const stats = [
 
 export default function AboutPage() {
   return (
-    <div className="pt-20">
+    <div className="pt-20 dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+      <section className="py-20 bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -130,12 +130,12 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
                 About
-                <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent"> Glenanda Hotel</span>
+                <span className="bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent"> Glenanda Hotel</span>
               </h1>
               
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
                 A privately run city retreat blending relaxed character with dependable comfort. We focus on restful rooms, sincere service and effortless stays—without unnecessary fuss.
               </p>
 
@@ -147,7 +147,7 @@ export default function AboutPage() {
                   </Button>
                 </Link>
                 <Link href="/contact">
-                  <Button variant="outline" size="lg" className="border-emerald-200 text-emerald-700 hover:bg-emerald-50 px-8 py-4 rounded-xl">
+                  <Button variant="outline" size="lg" className="border-emerald-200 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 px-8 py-4 rounded-xl">
                     <Phone className="w-5 h-5 mr-2" />
                     Contact Us
                   </Button>
@@ -177,11 +177,11 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg"
+                className="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-emerald-600">98%</div>
-                  <div className="text-sm text-gray-600">Client Satisfaction</div>
+                  <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">98%</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Client Satisfaction</div>
                 </div>
               </motion.div>
             </motion.div>
@@ -190,7 +190,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -202,10 +202,10 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="text-3xl md:text-4xl font-bold text-emerald-600 mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">
                   {stat.number}{stat.suffix}
                 </div>
-                <div className="text-gray-600">{stat.label}</div>
+                <div className="text-gray-600 dark:text-gray-400">{stat.label}</div>
               </motion.div>
             ))}
           </div>
