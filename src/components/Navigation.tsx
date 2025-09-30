@@ -183,7 +183,7 @@ export default function Navigation() {
 								</div>
 							</motion.a>
 							<motion.a
-								href="tel:+27762073299"
+								href="tel:+27603114115"
 								className="group"
 								whileHover={{ scale: 1.1 }}
 								whileTap={{ scale: 0.95 }}
@@ -215,7 +215,7 @@ export default function Navigation() {
 					<div className="md:hidden flex items-center space-x-3">
 						<ThemeToggle />
 						<motion.a
-							href="tel:+27762073299"
+							href="tel:+27603114115"
 							className="group"
 							whileHover={{ scale: 1.1 }}
 							whileTap={{ scale: 0.95 }}
@@ -325,7 +325,7 @@ export default function Navigation() {
 										<Instagram className="w-6 h-6 text-white" />
 									</a>
 									<a
-										href="tel:+27762073299"
+										href="tel:+27603114115"
 										className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow"
 									>
 										<Phone className="w-6 h-6 text-white" />

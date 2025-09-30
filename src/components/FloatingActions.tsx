@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Phone, X } from "lucide-react";
 
 // Update these to your preferred numbers
-const PHONE_E164 = "+27727389214"; // South Africa +27
-const WHATSAPP_E164 = "+27727389214";
+const PHONE_E164 = "+27603114115"; // South Africa +27
+const WHATSAPP_E164 = "+27603114115";
 
 export default function FloatingActions() {
   const [open, setOpen] = useState(false);

@@ -1313,7 +1313,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="mt-8 text-white/90">
-                  <p className="font-semibold text-lg">📞 +27 76 207 3299</p>
+                  <p className="font-semibold text-lg">📞 +27 60 311 4115</p>
                   <p>Open 7 days a week • Professional certified therapists</p>
                 </div>
               </div>
@@ -1545,7 +1545,7 @@ export default function HomePage() {
               </div>
 
               <div className="text-center text-white/90">
-                <p className="font-semibold">📞 +27 76 207 3299</p>
+                <p className="font-semibold">📞 +27 60 311 4115</p>
                 <p className="text-sm">Available 24 hours a day, 7 days a week</p>
               </div>
             </div>

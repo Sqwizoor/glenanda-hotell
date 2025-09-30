@@ -312,7 +312,7 @@ Please deliver to my room. Thank you!`;
                 <Phone className="w-6 h-6 text-emerald-200" />
                 <div>
                   <p className="font-semibold">Order Now</p>
-                  <p className="text-sm opacity-90">+27 76 207 3299</p>
+                  <p className="text-sm opacity-90">+27 60 311 4115</p>
                 </div>
               </div>
               <div className="flex items-center justify-center gap-3">
@@ -559,7 +559,7 @@ Please deliver to my room. Thank you!`;
               </motion.div>
               
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <a href="tel:+27762073299">
+                <a href="tel:+27603114115">
                   <Button 
                     variant="outline" 
                     size="lg" 
@@ -580,7 +580,7 @@ Please deliver to my room. Thank you!`;
               transition={{ delay: 0.5 }}
               viewport={{ once: true }}
             >
-              <p className="text-lg font-semibold mb-2">📞 +27 76 207 3299</p>
+              <p className="text-lg font-semibold mb-2">📞 +27 60 311 4115</p>
               <p className="text-sm">Available 24/7 • Free delivery to your room</p>
             </motion.div>
           </motion.div>

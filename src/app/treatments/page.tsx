@@ -754,7 +754,7 @@ export default function TreatmentsPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-slate-300">
             <div className="flex items-center space-x-2">
               <Phone className="w-5 h-5 text-emerald-400" />
-              <span>+27 76 207 3299</span>
+              <span>+27 60 311 4115</span>
             </div>
             <div className="flex items-center space-x-2">
               <MapPin className="w-5 h-5 text-emerald-400" />

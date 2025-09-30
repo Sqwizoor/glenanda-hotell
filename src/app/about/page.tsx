@@ -434,7 +434,7 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8 text-white/80">
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <span>+27 76 207 3299</span>
+                <span>+27 60 311 4115</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />

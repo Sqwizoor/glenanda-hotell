@@ -30,7 +30,7 @@ const exo2 = Exo_2({
 
 export const metadata: Metadata = {
   title: "Glenanda Hotel | Modern Comfort & Luxury Stays",
-  description: "Glenanda Hotel – contemporary rooms, refined dining, curated experiences. Book your stay: +27 76 207 3299",
+  description: "Glenanda Hotel – contemporary rooms, refined dining, curated experiences. Book your stay: +27 60 311 4115",
 };
 
 export default function RootLayout({
@@ -68,8 +68,8 @@ export default function RootLayout({
             </div>
             <div className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
               <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 tracking-wide">Contact</h4>
-              <p><span className="text-gray-500 dark:text-gray-400">Phone:</span> <a href="tel:+27762073299" className="font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">+27 76 207 3299</a></p>
-              <p><span className="text-gray-500 dark:text-gray-400">WhatsApp:</span> <a href="https://wa.me/27762073299" target="_blank" rel="noopener" className="font-medium hover:text-emerald-600 dark:hover:text-emerald-400">Chat Now</a></p>
+              <p><span className="text-gray-500 dark:text-gray-400">Phone:</span> <a href="tel:+27603114115" className="font-medium hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">+27 60 311 4115</a></p>
+              <p><span className="text-gray-500 dark:text-gray-400">WhatsApp:</span> <a href="https://wa.me/27603114115" target="_blank" rel="noopener" className="font-medium hover:text-emerald-600 dark:hover:text-emerald-400">Chat Now</a></p>
               <p><span className="text-gray-500 dark:text-gray-400">Email:</span> <a href="mailto:reservations@glenandahotel.co.za" className="font-medium hover:text-emerald-600 dark:hover:text-emerald-400">reservations@glenandahotel.co.za</a></p>
               <p><span className="text-gray-500 dark:text-gray-400">Location:</span> Glenanda, Johannesburg, South Africa</p>
             </div>
