@@ -1,17 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import type { SVGProps } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Phone, X } from "lucide-react";
+import { motion } from "framer-motion";
 
-// Update these to your preferred numbers
-const PHONE_E164 = "+27603114115"; // South Africa +27
+// WhatsApp number
 const WHATSAPP_E164 = "+27603114115";
 
 export default function FloatingActions() {
-  const [open, setOpen] = useState(false);
-
   const WhatsAppIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       {/* Green circular background */}
@@ -24,85 +19,20 @@ export default function FloatingActions() {
     </svg>
   );
 
-  const items = [
-    {
-      id: "wa",
-      href: `https://wa.me/${WHATSAPP_E164.replace("+", "")}`,
-      label: "WhatsApp",
-      color: "",
-      Icon: WhatsAppIcon,
-      target: "_blank" as const,
-    },
-    {
-      id: "call",
-      href: `tel:${PHONE_E164}`,
-      label: "Call Us",
-      color: "",
-      Icon: Phone,
-      target: undefined,
-    },
-  ];
-
   return (
     <div className="fixed right-5 bottom-6 z-50 select-none">
-  {/* Expanded actions */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.2 }}
-    className="mb-3 flex flex-col items-end gap-3"
-          >
-            {items.map(({ id, href, label, color, Icon, target }) => (
-              <motion.a
-                key={id}
-                href={href}
-                target={target}
-                rel={target === "_blank" ? "noopener noreferrer" : undefined}
-        aria-label={label}
-        className="group transition-transform p-2 flex items-center justify-center text-emerald-600 hover:text-emerald-700 focus:outline-none"
-        whileHover={{ y: -2, scale: 1.12 }}
-                onClick={() => setOpen(false)}
-              >
-        <Icon className="w-6 h-6" />
-        <span className="sr-only">{label}</span>
-              </motion.a>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Main FAB */}
-      <motion.button
-        aria-label={open ? "Close quick actions" : "Open quick actions"}
-        onClick={() => setOpen((v) => !v)}
-        className="relative w-14 h-14 rounded-full bg-emerald-600 text-white shadow-xl hover:shadow-2xl flex items-center justify-center"
+      {/* WhatsApp FAB */}
+      <motion.a
+        href={`https://wa.me/${WHATSAPP_E164.replace("+", "")}?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20make%20an%20inquiry.`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with us on WhatsApp"
+        className="flex w-14 h-14 rounded-full shadow-xl hover:shadow-2xl items-center justify-center"
         whileTap={{ scale: 0.95 }}
         whileHover={{ scale: 1.05 }}
       >
-        <motion.div
-          key={open ? "x" : "dots"}
-          initial={{ rotate: -90, opacity: 0 }}
-          animate={{ rotate: 0, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          {open ? (
-            <X className="w-6 h-6" />
-          ) : (
-            // Three pulsing dots look
-            <div className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-white/90 animate-pulse" />
-              <span className="w-2 h-2 rounded-full bg-white/90 animate-pulse [animation-delay:150ms]" />
-              <span className="w-2 h-2 rounded-full bg-white/90 animate-pulse [animation-delay:300ms]" />
-            </div>
-          )}
-        </motion.div>
-        {/* subtle ring */}
-        <span className="absolute inset-0 rounded-full ring-2 ring-white/20" />
-      </motion.button>
+        <WhatsAppIcon className="w-14 h-14" />
+      </motion.a>
     </div>
   );
 }

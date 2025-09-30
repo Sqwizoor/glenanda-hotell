@@ -455,30 +455,7 @@ export default function HomePage() {
 
   return (
     <div className="overflow-hidden">
-      {/* Floating Quick Action Bar */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[48] md:hidden">
-        <div className="flex items-center gap-3 px-4 py-3 rounded-full backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 shadow-lg shadow-emerald-900/10 dark:shadow-emerald-300/10 border border-white/40 dark:border-gray-700/40">
-          <Link href="/rooms" className="flex flex-col items-center text-[10px] font-medium text-gray-700 dark:text-gray-300">
-            <div className="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-md">R</div>
-            <span className="mt-1">Rooms</span>
-          </Link>
-          <div className="w-px h-10 bg-gradient-to-b from-transparent via-emerald-300/50 dark:via-emerald-600/50 to-transparent" />
-          <a
-            href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center text-[10px] font-medium text-gray-700 dark:text-gray-300"
-          >
-            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white flex items-center justify-center shadow-md">WA</div>
-            <span className="mt-1">Chat</span>
-          </a>
-          <div className="w-px h-10 bg-gradient-to-b from-transparent via-emerald-300/50 dark:via-emerald-600/50 to-transparent" />
-          <Link href="/contact" className="flex flex-col items-center text-[10px] font-medium text-gray-700 dark:text-gray-300">
-            <div className="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-md">✉</div>
-            <span className="mt-1">Contact</span>
-          </Link>
-        </div>
-      </div>
+
       {/* Modern Hero Section — Enhanced with better mobile responsiveness */}
   <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-20">
         {/* Enhanced Background slideshow with better mobile optimization */}
