@@ -30,6 +30,14 @@ import Link from "next/link";
 
 const contactMethods = [
   {
+    icon: MessageCircle,
+    title: "Immediate Assistance",
+    description: "24/7 help for bookings and late night check-ins",
+    contact: "+27 76 207 3299",
+    availability: "24 Hours Available",
+    link: "https://wa.me/27762073299"
+  },
+  {
     icon: Phone,
     title: "Direct Phone",
     description: "Speak directly with our hospitality team for immediate assistance",
@@ -39,10 +47,10 @@ const contactMethods = [
   {
     icon: MessageCircle,
     title: "WhatsApp",
-    description: "Quick messaging for reservations and instant support",
-    contact: "+27 82 123 4567",
+    description: "Quick reservations and massage bookings",
+    contact: "+27 60 311 4115",
     availability: "Quick Response",
-    link: "https://wa.me/27821234567"
+    link: "https://wa.me/27603114115"
   },
   {
     icon: Mail,
@@ -383,7 +391,7 @@ export default function ContactPage() {
                           )}
                         </Button>
                         
-                        <Link href="https://wa.me/27821234567?text=Hello, I'd like to inquire about your services" target="_blank">
+                        <Link href="https://wa.me/27603114115?text=Hello, I'd like to inquire about your services" target="_blank">
                           <Button type="button" variant="outline" className="border-emerald-500 text-emerald-400 hover:bg-emerald-500/10 px-6">
                             <MessageCircle className="w-4 h-4" />
                           </Button>
@@ -550,6 +558,167 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* Pricing Section */}
+      <section className="py-20 border-t border-zinc-700/50">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Our Pricing
+            </h2>
+            <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
+              Transparent and competitive rates for all our services and accommodations.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Room Rates */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-zinc-800/50 border-zinc-700 hover:bg-zinc-800/70 hover:border-emerald-500/50 transition-all duration-300 h-full">
+                <CardHeader>
+                  <CardTitle className="text-2xl font-bold text-white flex items-center">
+                    <Building2 className="w-6 h-6 mr-2 text-emerald-400" />
+                    Room Rates
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex justify-between items-center py-2 border-b border-zinc-700">
+                    <span className="text-zinc-300">Single Occupancy</span>
+                    <span className="text-emerald-400 font-bold">from R500</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-zinc-700">
+                    <span className="text-zinc-300">Sleeps 2</span>
+                    <span className="text-emerald-400 font-bold">from R600</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-zinc-700">
+                    <span className="text-zinc-300">Sleeps 3-4</span>
+                    <span className="text-emerald-400 font-bold">from R900</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-zinc-300">Group (10-50)</span>
+                    <span className="text-emerald-400 font-bold">R300 pp</span>
+                  </div>
+                  <div className="text-xs text-zinc-500 mt-4">
+                    * Per night, sharing room for group bookings
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Massage Services */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-zinc-800/50 border-zinc-700 hover:bg-zinc-800/70 hover:border-emerald-500/50 transition-all duration-300 h-full">
+                <CardHeader>
+                  <CardTitle className="text-2xl font-bold text-white flex items-center">
+                    <Heart className="w-6 h-6 mr-2 text-emerald-400" />
+                    Massage Services
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex justify-between items-center py-2 border-b border-zinc-700">
+                    <span className="text-zinc-300">Swedish</span>
+                    <span className="text-emerald-400 font-bold">R400/hr</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-zinc-700">
+                    <span className="text-zinc-300">Deep Tissue</span>
+                    <span className="text-emerald-400 font-bold">R450/hr</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-zinc-700">
+                    <span className="text-zinc-300">Aromatherapy</span>
+                    <span className="text-emerald-400 font-bold">R450/hr</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-zinc-700">
+                    <span className="text-zinc-300">Hot Stone</span>
+                    <span className="text-emerald-400 font-bold">R500/hr</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-zinc-300">Thai Massage</span>
+                    <span className="text-emerald-400 font-bold">R500/hr</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Special Packages */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-zinc-800/50 border-zinc-700 hover:bg-zinc-800/70 hover:border-emerald-500/50 transition-all duration-300 h-full">
+                <CardHeader>
+                  <CardTitle className="text-2xl font-bold text-white flex items-center">
+                    <Star className="w-6 h-6 mr-2 text-emerald-400" />
+                    Special Packages
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex justify-between items-center py-2 border-b border-zinc-700">
+                    <span className="text-zinc-300">Couples Package</span>
+                    <span className="text-emerald-400 font-bold">R1,254</span>
+                  </div>
+                  <div className="text-xs text-zinc-500 mb-3">Stay + 1hr Swedish massage</div>
+                  <div className="flex justify-between items-center py-2 border-b border-zinc-700">
+                    <span className="text-zinc-300">Romantic Package</span>
+                    <span className="text-emerald-400 font-bold">from R1,600</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-zinc-700">
+                    <span className="text-zinc-300">Anniversary Special</span>
+                    <span className="text-emerald-400 font-bold">from R2,000</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="text-zinc-300">Honeymoon Package</span>
+                    <span className="text-emerald-400 font-bold">from R2,500</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <p className="text-zinc-400 mb-6">
+              All prices are subject to availability and may vary during peak seasons.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20get%20a%20quote%20for%20my%20stay." target="_blank">
+                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white group">
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  Get Quote Now
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+              <Link href="/rooms">
+                <Button size="lg" variant="outline" className="border-emerald-500 text-emerald-400 hover:bg-emerald-500/10">
+                  <Calendar className="mr-2 h-5 w-5" />
+                  View Rooms
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 border-t border-zinc-700/50">
         <div className="max-w-4xl mx-auto px-4 text-center">
@@ -570,7 +739,7 @@ export default function ContactPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="https://wa.me/27821234567?text=I'd like to make a reservation at Glenanda Hotel" target="_blank">
+              <Link href="https://wa.me/27603114115?text=I'd like to make a reservation at Glenanda Hotel" target="_blank">
                 <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white group">
                   <MessageCircle className="mr-2 h-5 w-5" />
                   WhatsApp Booking

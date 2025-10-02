@@ -540,7 +540,7 @@ Please deliver to my room. Thank you!`;
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <a
-                  href={`https://wa.me/27762073299?text=${encodeURIComponent(getWhatsAppMessage())}`}
+                  href={`https://wa.me/27603114115?text=${encodeURIComponent(getWhatsAppMessage())}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

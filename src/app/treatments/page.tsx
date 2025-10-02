@@ -23,15 +23,15 @@ const spaPackages = [
   },
   {
     id: "couples-bliss",
-    title: "Couples Spa Experience",
-    subtitle: "Share moments of bliss",
-    duration: "2.5 hours",
-    price: "From R1 500 for two",
+    title: "Couples Package",
+    subtitle: "Stay + 1hr Swedish massage",
+    duration: "Overnight stay + 2 hours spa",
+    price: "R1,254 for two",
     popular: true,
     category: "couples",
     image: "/bath2.jpeg",
-    treatments: ["Side-by-side massages", "Couples facial", "Private relaxation suite", "Champagne & treats"],
-    description: "Reconnect and unwind together in our exclusive couples spa suite with synchronized treatments."
+    treatments: ["Comfortable room accommodation", "1-hour Swedish massage each", "Private relaxation suite", "Welcome refreshments"],
+    description: "Perfect couples getaway combining comfortable accommodation with relaxing Swedish massage treatments."
   },
   {
     id: "friends-getaway",
@@ -56,57 +56,105 @@ const spaPackages = [
     image: "/bathroom3.jpeg",
     treatments: ["Express massage", "Mini facial", "Scalp treatment", "Relaxation time"],
     description: "Perfect for busy schedules - get refreshed and revitalized in under 2 hours."
+  },
+  {
+    id: "romantic-package",
+    title: "Romantic Package",
+    subtitle: "Love & luxury combined",
+    duration: "Overnight stay + 3 hours spa",
+    price: "From R1,600",
+    popular: true,
+    category: "couples",
+    image: "/massage-spa2.jpeg",
+    treatments: ["Luxury room accommodation", "Couples massage session", "Romantic dinner setup", "Champagne & chocolate treats"],
+    description: "Create unforgettable romantic memories with luxury accommodation and intimate spa treatments."
+  },
+  {
+    id: "anniversary-special",
+    title: "Anniversary Special",
+    subtitle: "Celebrate your love",
+    duration: "2-day getaway + spa",
+    price: "From R2,000",
+    popular: true,
+    category: "couples",
+    image: "/massage-spa3.jpeg",
+    treatments: ["Premium suite accommodation", "Full spa day for two", "Anniversary dinner", "Special amenities & surprises"],
+    description: "Mark your special milestone with our comprehensive anniversary celebration package."
+  },
+  {
+    id: "honeymoon-package",
+    title: "Honeymoon Package",
+    subtitle: "Start your journey together",
+    duration: "3-day romantic escape",
+    price: "From R2,500",
+    popular: true,
+    category: "couples",
+    image: "/massage-spa4.jpeg",
+    treatments: ["Honeymoon suite", "Multiple spa treatments", "Romantic dining experiences", "Personalized concierge service"],
+    description: "Begin your married life with our ultimate honeymoon experience featuring luxury accommodation and exclusive treatments."
   }
 ];
 
 const treatments = [
   {
-    title: "Signature Deep Tissue Massage",
-    summary: "Therapeutic massage targeting deep muscle tension and stress relief for complete relaxation.",
+    title: "Swedish Massage",
+    summary: "Classic relaxation massage using smooth, flowing strokes to promote overall wellness and stress relief.",
+    bullets: [
+      "Full body relaxation technique",
+      "Improves circulation and flexibility",
+      "Reduces stress and muscle tension",
+      "Perfect for first-time spa visitors"
+    ],
+    duration: "60 minutes",
+    price: "R400 per hour"
+  },
+  {
+    title: "Deep Tissue Massage",
+    summary: "Therapeutic massage targeting deep muscle tension and chronic pain for complete muscle recovery.",
     bullets: [
       "Relieves chronic muscle tension",
-      "Improves circulation and flexibility",
-      "Reduces stress and promotes relaxation",
-      "Customized pressure levels"
+      "Targets specific problem areas",
+      "Improves range of motion",
+      "Ideal for athletes and active individuals"
     ],
-    duration: "60-90 minutes",
-    price: "R450 - R650"
+    duration: "60 minutes",
+    price: "R450 per hour"
   },
   {
-    title: "Rejuvenating Facial Treatment",
-    summary: "Advanced skincare treatment using premium products to cleanse, nourish, and revitalize your skin.",
+    title: "Aromatherapy Massage",
+    summary: "Holistic treatment combining essential oils with gentle massage techniques for mental and physical wellness.",
     bullets: [
-      "Deep cleansing and exfoliation",
-      "Hydrating mask application",
-      "Anti-aging and brightening benefits",
-      "Personalized for your skin type"
-    ],
-    duration: "75 minutes",
-    price: "R380 - R550"
-  },
-  {
-    title: "Aromatherapy Wellness Session",
-    summary: "Holistic treatment combining essential oils, gentle massage, and mindfulness techniques.",
-    bullets: [
+      "Custom essential oil blends",
       "Stress reduction and mental clarity",
-      "Improved sleep quality",
-      "Enhanced mood and energy",
-      "Custom essential oil blends"
+      "Enhanced mood and energy levels",
+      "Improves sleep quality"
     ],
-    duration: "90 minutes",
-    price: "R520 - R750"
+    duration: "60 minutes",
+    price: "R450 per hour"
   },
   {
-    title: "Hot Stone Therapy",
+    title: "Hot Stone Massage",
     summary: "Ancient healing technique using heated stones to melt away tension and promote deep relaxation.",
     bullets: [
-      "Deep muscle relaxation",
+      "Deep muscle relaxation with heated stones",
       "Improved blood circulation",
       "Stress and anxiety relief",
       "Chakra balancing benefits"
     ],
-    duration: "90 minutes",
-    price: "R580 - R850"
+    duration: "60 minutes",
+    price: "R500 per hour"
+  },
+  {
+    title: "Thai Massage",
+    summary: "Traditional Thai bodywork combining stretching, acupressure, and energy work for complete body alignment.",
+    bullets: [
+      "Traditional Thai stretching techniques",
+      "Improves flexibility and mobility",
+      "Balances energy flow",
+      "Clothed massage on floor mat"
+    ],
+    duration: "60 minutes",
+    price: "R500 per hour"
   }
 ];
 
@@ -467,7 +515,7 @@ export default function TreatmentsPage() {
                         asChild
                       >
                         <a 
-                          href={`https://wa.me/27762073299?text=${encodeURIComponent(`Hi Glenanda Hotel, I&apos;d like to book the ${pkg.title} spa package.`)}`}
+                          href={`https://wa.me/27603114115?text=${encodeURIComponent(`Hi Glenanda Hotel, I&apos;d like to book the ${pkg.title} spa package.`)}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -730,7 +778,7 @@ export default function TreatmentsPage() {
               asChild
             >
               <a 
-                href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I&apos;d%20like%20to%20book%20a%20spa%20treatment."
+                href="https://wa.me/27603114115?text=Hi%20Glenanda%20Hotel%2C%20I&apos;d%20like%20to%20book%20a%20spa%20treatment."
                 target="_blank"
                 rel="noopener noreferrer"
               >

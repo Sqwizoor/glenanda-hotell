@@ -884,7 +884,7 @@ export default function HomePage() {
                       >
                         <Button asChild className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 group shadow-lg hover:shadow-xl transition-all duration-300">
                           <a
-                            href={`https://wa.me/27762073299?text=${encodeURIComponent(`Hi Glenanda Hotel, I&apos;d like to enquire about the ${service.title}.`)}`}
+                            href={`https://wa.me/27603114115?text=${encodeURIComponent(`Hi Glenanda Hotel, I&apos;d like to enquire about the ${service.title}.`)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -1279,7 +1279,7 @@ export default function HomePage() {
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-12 py-6 rounded-full text-lg">
                       <a
-                        href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20spa%20treatment."
+                        href="https://wa.me/27603114115?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20spa%20treatment."
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -1434,7 +1434,7 @@ export default function HomePage() {
                       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                         <Button asChild className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300">
                           <a
-                            href={`https://wa.me/27762073299?text=${encodeURIComponent(`Hi Glenanda Hotel, I'd like to order ${item.name} for room service delivery.`)}`}
+                            href={`https://wa.me/27603114115?text=${encodeURIComponent(`Hi Glenanda Hotel, I'd like to order ${item.name} for room service delivery.`)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -1511,7 +1511,7 @@ export default function HomePage() {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-4 rounded-full">
                     <a
-                      href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20see%20your%20room%20service%20menu."
+                      href="https://wa.me/27603114115?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20see%20your%20room%20service%20menu."
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -1940,7 +1940,7 @@ export default function HomePage() {
               Our event specialists are ready to help you create an unforgettable experience. Get in touch to discuss your requirements and receive a custom quote.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20enquire%20about%20event%20facilities." target="_blank" className="group relative">
+              <Link href="https://wa.me/27603114115?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20enquire%20about%20event%20facilities." target="_blank" className="group relative">
                 <Button size="lg" className="rounded-full px-10 py-6 bg-indigo-600 hover:bg-indigo-500 text-white text-base shadow-lg shadow-indigo-900/30">
                   Request Event Quote
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -2008,7 +2008,7 @@ export default function HomePage() {
             </motion.div>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-      <Link href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20stay." target="_blank">
+      <Link href="https://wa.me/27603114115?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20stay." target="_blank">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
       <Button size="lg" className="bg-white text-emerald-600 hover:bg-gray-50 text-lg px-12 py-6 rounded-full group shadow-2xl">
         <Calendar className="mr-2 h-5 w-5" />

@@ -516,7 +516,7 @@ export default function GalleryPage() {
                 className="bg-white text-emerald-600 hover:bg-gray-100 px-8 py-4 rounded-full font-semibold"
                 asChild
               >
-                <a href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20group%20stay." target="_blank">
+                <a href="https://wa.me/27603114115?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20group%20stay." target="_blank">
                   Book Group Stay
                 </a>
               </Button>

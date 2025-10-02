@@ -46,183 +46,153 @@ const scaleIn: Variants = {
 const roomTypes = [
   {
     id: 1,
-    name: "Group Deluxe Rooms",
-    price: 1150,
-    originalPrice: 1300,
-    image: "/group14.jpeg",
-    category: "Group",
-    size: "35 m²",
-    guests: 4,
-    beds: 2,
-    groupCapacity: "2-8 rooms available",
-    description: "Perfect for team bookings with multiple adjoining rooms available. Each room features modern amenities and comfortable twin or double bed configurations.",
-    features: [
-      "Adjoining room options available",
-      "Shared common area access",
-      "Group breakfast packages",
-      "Team meeting space",
-      "Complimentary WiFi",
-      "24/7 room service"
-    ],
-    amenities: [
-      { icon: Wifi, name: "High-Speed WiFi" },
-      { icon: Monitor, name: "Smart TV" },
-      { icon: Users, name: "Group-Friendly" },
-      { icon: Star, name: "Premium Service" }
-    ],
-    rating: 4.7,
-    reviews: 324,
-    groupBenefits: "10% discount on 5+ rooms"
-  },
-  {
-    id: 2,
-    name: "Family & Corporate Suites",
-    price: 2200,
-    originalPrice: 2600,
-    image: "/group11.jpeg",
-    category: "Suite",
-    size: "65 m²",
-    guests: 6,
-    beds: 3,
-    groupCapacity: "Up to 4 suites",
-    description: "Spacious suites ideal for families or small corporate groups. Features separate living areas, kitchenette, and flexible sleeping arrangements.",
-    features: [
-      "Separate living and sleeping areas",
-      "Mini kitchen with refrigerator",
-      "Multiple bathroom facilities",
-      "Conference table for meetings",
-      "Premium bedding and linens",
-      "Concierge service included"
-    ],
-    amenities: [
-      { icon: Wifi, name: "Business WiFi" },
-      { icon: Monitor, name: "Multiple Screens" },
-      { icon: Users, name: "Family-Friendly" },
-      { icon: Star, name: "Luxury Service" }
-    ],
-    rating: 4.8,
-    reviews: 156,
-    groupBenefits: "Meeting room included with 2+ suites"
-  },
-  {
-    id: 3,
-    name: "Executive Business Rooms",
-    price: 1580,
-    originalPrice: 1800,
-    image: "/group2.jpeg",
-    category: "Business",
-    size: "42 m²",
-    guests: 2,
-    beds: 1,
-    groupCapacity: "Up to 15 rooms",
-    description: "Professional accommodations designed for business travelers and corporate groups. Enhanced with work-friendly amenities and services.",
-    features: [
-      "Dedicated workspace area",
-      "Business center access",
-      "Executive lounge privileges",
-      "Express check-in/out",
-      "Complimentary newspapers",
-      "Shoe shine service"
-    ],
-    amenities: [
-      { icon: Wifi, name: "Business Network" },
-      { icon: Monitor, name: "Large Work Display" },
-      { icon: Bed, name: "Premium Mattress" },
-      { icon: Star, name: "Executive Service" }
-    ],
-    rating: 4.6,
-    reviews: 892,
-    groupBenefits: "Corporate rates for 5+ rooms"
-  },
-  {
-    id: 4,
-    name: "Standard Comfort Rooms",
-    price: 950,
-    originalPrice: 1100,
+    name: "Single Occupancy Room",
+    price: 500,
+    originalPrice: 600,
     image: "/room2.jpeg",
-    category: "Standard",
-    size: "28 m²",
-    guests: 2,
+    category: "Single",
+    size: "25 m²",
+    guests: 1,
     beds: 1,
     groupCapacity: "Up to 20 rooms",
-    description: "Comfortable and well-appointed rooms perfect for budget-conscious groups without compromising on quality and service.",
+    description: "Comfortable single rooms perfect for solo travelers and business guests. Modern amenities with quality service at an affordable rate.",
     features: [
-      "Contemporary furnishing",
-      "Efficient climate control",
+      "Single comfortable bed",
+      "Work desk and chair",
       "Modern bathroom facilities",
       "Complimentary toiletries",
       "Safe deposit box",
       "Daily housekeeping"
     ],
     amenities: [
-      { icon: Wifi, name: "Standard WiFi" },
-      { icon: Monitor, name: "Cable TV" },
-      { icon: Bed, name: "Comfortable Bed" },
-      { icon: Star, name: "Quality Service" }
+      { icon: Wifi, name: "High-Speed WiFi" },
+      { icon: Monitor, name: "Smart TV" },
+      { icon: Bed, name: "Quality Bed" },
+      { icon: Star, name: "Professional Service" }
     ],
-    rating: 4.4,
-    reviews: 1547,
-    groupBenefits: "Best value for large groups"
+    rating: 4.5,
+    reviews: 892,
+    groupBenefits: "Best rates for single occupancy"
   },
   {
-    id: 5,
-    name: "Premium Double Rooms",
-    price: 1350,
-    originalPrice: 1550,
+    id: 2,
+    name: "Double Occupancy Room",
+    price: 600,
+    originalPrice: 750,
     image: "/room4.jpeg",
-    category: "Premium",
-    size: "38 m²",
+    category: "Double",
+    size: "30 m²",
     guests: 2,
     beds: 1,
-    groupCapacity: "Up to 12 rooms",
-    description: "Enhanced comfort with premium amenities, perfect for groups seeking a balance of luxury and value for corporate or leisure travel.",
+    groupCapacity: "Up to 15 rooms",
+    description: "Spacious rooms designed for couples or two guests sharing. Features a comfortable double bed and modern amenities.",
     features: [
-      "Premium bedding and pillows",
-      "Marble bathroom with bathtub",
+      "Queen or twin bed options",
+      "Seating area",
+      "Modern bathroom with shower",
       "Mini-bar and coffee station",
-      "Seating area with sofa",
-      "Upgraded bathroom amenities",
-      "Nightly turndown service"
+      "Complimentary WiFi",
+      "24/7 room service"
     ],
     amenities: [
       { icon: Wifi, name: "Premium WiFi" },
       { icon: Monitor, name: "Smart Entertainment" },
-      { icon: Bed, name: "Luxury Bedding" },
+      { icon: Users, name: "Couple-Friendly" },
+      { icon: Star, name: "Quality Service" }
+    ],
+    rating: 4.6,
+    reviews: 1245,
+    groupBenefits: "Perfect for couples and business partners"
+  },
+  {
+    id: 3,
+    name: "Family Room (Sleeps 3-4)",
+    price: 900,
+    originalPrice: 1100,
+    image: "/group11.jpeg",
+    category: "Family",
+    size: "45 m²",
+    guests: 4,
+    beds: 2,
+    groupCapacity: "Up to 10 rooms",
+    description: "Spacious family rooms accommodating 3-4 guests comfortably. Ideal for families, small groups, or business teams traveling together.",
+    features: [
+      "Multiple bed configurations",
+      "Separate seating area",
+      "Large bathroom facilities",
+      "Mini kitchen facilities",
+      "Group breakfast packages",
+      "Family-friendly amenities"
+    ],
+    amenities: [
+      { icon: Wifi, name: "Family WiFi" },
+      { icon: Monitor, name: "Multiple Screens" },
+      { icon: Users, name: "Family-Friendly" },
       { icon: Star, name: "Premium Service" }
     ],
     rating: 4.7,
     reviews: 678,
-    groupBenefits: "Complimentary upgrades available"
+    groupBenefits: "Ideal for small families and teams"
   },
   {
-    id: 6,
-    name: "VIP Presidential Suite",
-    price: 3500,
-    originalPrice: 4200,
-    image: "/group3.jpeg",
-    category: "VIP",
-    size: "120 m²",
-    guests: 4,
-    beds: 2,
-    groupCapacity: "Exclusive booking",
-    description: "Ultimate luxury accommodation for VIP guests and high-profile group events. Features panoramic views and exclusive services.",
+    id: 4,
+    name: "Group Accommodation (10-50 People)",
+    price: 300,
+    originalPrice: 400,
+    image: "/group14.jpeg",
+    category: "Group",
+    size: "Various sizes",
+    guests: 50,
+    beds: "Multiple",
+    groupCapacity: "10-50 people",
+    description: "Special group rates for large bookings. Multiple room configurations available with shared facilities and group amenities.",
     features: [
-      "Panoramic city views",
-      "Private dining area",
-      "Jacuzzi and premium bathroom",
-      "Butler service included",
-      "Private entrance available",
-      "Champagne welcome amenities"
+      "Multiple adjoining rooms",
+      "Shared common areas",
+      "Group dining facilities",
+      "Meeting/conference space",
+      "Group coordinator service",
+      "Flexible check-in/out times"
     ],
     amenities: [
-      { icon: Wifi, name: "VIP Network Access" },
-      { icon: Monitor, name: "Entertainment System" },
-      { icon: Users, name: "VIP Concierge" },
-      { icon: Star, name: "5-Star Service" }
+      { icon: Wifi, name: "Group WiFi" },
+      { icon: Monitor, name: "Conference Setup" },
+      { icon: Users, name: "Large Groups" },
+      { icon: Star, name: "Group Services" }
     ],
-    rating: 5.0,
-    reviews: 89,
-    groupBenefits: "Exclusive event hosting available"
+    rating: 4.8,
+    reviews: 324,
+    groupBenefits: "R300 per person sharing room - Best group rates!"
+  },
+  {
+    id: 5,
+    name: "Premium Suites",
+    price: 1200,
+    originalPrice: 1500,
+    image: "/group2.jpeg",
+    category: "Suite",
+    size: "60 m²",
+    guests: 4,
+    beds: 2,
+    groupCapacity: "Up to 8 suites",
+    description: "Luxury suites with premium amenities, separate living areas, and enhanced services. Perfect for VIP guests and special occasions.",
+    features: [
+      "Separate living and bedroom",
+      "Premium bedding and linens",
+      "Marble bathroom with bathtub",
+      "Mini kitchen with refrigerator",
+      "Concierge service included",
+      "Nightly turndown service"
+    ],
+    amenities: [
+      { icon: Wifi, name: "Premium WiFi" },
+      { icon: Monitor, name: "Entertainment System" },
+      { icon: Bed, name: "Luxury Bedding" },
+      { icon: Star, name: "VIP Service" }
+    ],
+    rating: 4.9,
+    reviews: 156,
+    groupBenefits: "Luxury experience with group discounts"
   }
 ];
 
@@ -445,7 +415,7 @@ export default function RoomsPage() {
                           {room.guests} Guests
                         </span>
                         <span className="px-2 py-1 rounded-full bg-black/70 backdrop-blur text-white text-xs font-medium">
-                          {room.beds} Bed{room.beds > 1 ? 's' : ''}
+                          {room.beds} Bed{Number(room.beds) > 1 ? 's' : ''}
                         </span>
                       </div>
                       
@@ -543,7 +513,7 @@ export default function RoomsPage() {
                         asChild
                       >
                         <a 
-                          href={`https://wa.me/27762073299?text=${encodeURIComponent(`Hi Glenanda Hotel, I'd like to book the ${room.name}.`)}`}
+                          href={`https://wa.me/27603114115?text=${encodeURIComponent(`Hi Glenanda Hotel, I'd like to book the ${room.name}.`)}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -690,7 +660,7 @@ export default function RoomsPage() {
                 asChild
               >
                 <a 
-                  href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20enquire%20about%20group%20room%20bookings."
+                  href="https://wa.me/27603114115?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20enquire%20about%20group%20room%20bookings."
                   target="_blank"
                   rel="noopener noreferrer"
                 >
