@@ -166,16 +166,16 @@ const roomTypes = [
   },
   {
     id: 5,
-    name: "Premium Suites",
+    name: "Romantic Couples Suites",
     price: 1200,
     originalPrice: 1500,
-    image: "/group2.jpeg",
+    image: "/room14.jpeg",
     category: "Suite",
     size: "60 m²",
     guests: 4,
     beds: 2,
     groupCapacity: "Up to 8 suites",
-    description: "Luxury suites with premium amenities, separate living areas, and enhanced services. Perfect for VIP guests and special occasions.",
+    description: "Romantic luxury suites designed for couples and intimate getaways. Features separate living areas, premium amenities, and enhanced services for special occasions.",
     features: [
       "Separate living and bedroom",
       "Premium bedding and linens",
@@ -420,18 +420,18 @@ export default function RoomsPage() {
                       </div>
                       
                       {/* Price overlay at bottom */}
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between bg-black/60 backdrop-blur-sm px-4 py-3 rounded-lg">
                         <div className="text-left">
-                          <div className="text-emerald-400 text-lg sm:text-xl font-bold">
+                          <div className="text-emerald-400 text-xl sm:text-2xl font-bold">
                             R{room.price}
                           </div>
-                          <div className="text-white/70 text-xs line-through">
+                          <div className="text-white/70 text-sm line-through">
                             R{room.originalPrice}
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="text-white/90 text-xs">per night</div>
-                          <div className="text-emerald-400 text-xs font-medium">Save R{room.originalPrice - room.price}</div>
+                          <div className="text-white/90 text-sm">per night</div>
+                          <div className="text-emerald-400 text-sm font-medium">Save R{room.originalPrice - room.price}</div>
                         </div>
                       </div>
                     </div>
