@@ -63,7 +63,7 @@ const contactMethods = [
     icon: Building2,
     title: "In-Person",
     description: "Visit our front desk for personal consultation and tours",
-    contact: "123 Glenanda Avenue, Johannesburg",
+    contact: "39 vorster AVE glenanda",
     availability: "8:00 AM - 10:00 PM"
   }
 ];
@@ -545,7 +545,7 @@ export default function ContactPage() {
                 <CardContent>
                   <div className="space-y-3">
                     <p className="text-white">Glenanda Hotel</p>
-                    <p className="text-zinc-300">123 Glenanda Avenue<br />Johannesburg, 2001<br />South Africa</p>
+                    <p className="text-zinc-300">39 vorster AVE glenanda<br />South Africa</p>
                     <div className="flex items-center gap-2 text-sm text-zinc-400">
                       <Car className="w-4 h-4" />
                       Free parking available on-site
