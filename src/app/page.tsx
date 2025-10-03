@@ -845,10 +845,10 @@ export default function HomePage() {
                               <span className="text-sm font-medium">{service.duration}</span>
                             </motion.div>
                             <motion.div 
-                              className="flex items-center bg-emerald-500/80 px-2 py-1 rounded-full backdrop-blur-sm"
+                              className="flex items-center bg-emerald-500/80 px-3 py-1.5 rounded-lg backdrop-blur-sm"
                               whileHover={{ scale: 1.1 }}
                             >
-                              <span className="text-sm font-bold">{service.price}</span>
+                              <span className="text-sm font-bold whitespace-nowrap">{service.price}</span>
                             </motion.div>
                           </div>
                         </div>
