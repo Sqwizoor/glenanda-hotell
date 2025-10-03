@@ -41,7 +41,7 @@ const contactMethods = [
     icon: Phone,
     title: "Direct Phone",
     description: "Speak directly with our hospitality team for immediate assistance",
-    contact: "+27 11 234 5678",
+    contact: "+27 60 311 4115",
     availability: "24/7 Reception"
   },
   {
@@ -87,15 +87,13 @@ const departments = [
     name: "Business Services",
     description: "Solo business travel, meeting rooms, and corporate packages",
     icon: Briefcase,
-    contact: "business@glenandahotel.co.za",
-    phone: "+27 11 234 5681"
+    contact: "business@glenandahotel.co.za"
   },
   {
     name: "Guest Relations",
     description: "General inquiries, feedback, and personalized guest assistance",
     icon: Heart,
-    contact: "guest@glenandahotel.co.za",
-    phone: "+27 11 234 5678"
+    contact: "guest@glenandahotel.co.za"
   }
 ];
 
@@ -714,6 +712,128 @@ export default function ContactPage() {
                   View Rooms
                 </Button>
               </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Upcoming Events Section */}
+      <section className="py-20 border-t border-zinc-700/50">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Upcoming Events
+            </h2>
+            <p className="text-xl text-zinc-300 max-w-3xl mx-auto">
+              Host your special occasions at Glenanda Hotel with our exceptional event facilities
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Birthday Parties */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-zinc-800/50 border-zinc-700 hover:bg-zinc-800/70 hover:border-emerald-500/50 transition-all duration-300 h-full">
+                <CardHeader>
+                  <CardTitle className="text-2xl font-bold text-white flex items-center">
+                    🎂 Birthday Parties
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-zinc-300">
+                    Celebrate your special day with us! Our dedicated team will help you create unforgettable birthday memories with customized decorations, catering, and entertainment options.
+                  </p>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-zinc-400">
+                      <Users className="w-4 h-4" />
+                      Suitable for all group sizes
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-zinc-400">
+                      <PartyPopper className="w-4 h-4" />
+                      Custom decoration packages available
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-zinc-400">
+                      <Coffee className="w-4 h-4" />
+                      Catering and cake services
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Conference Room Booking */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-zinc-800/50 border-zinc-700 hover:bg-zinc-800/70 hover:border-emerald-500/50 transition-all duration-300 h-full">
+                <CardHeader>
+                  <CardTitle className="text-2xl font-bold text-white flex items-center">
+                    <Building2 className="w-6 h-6 mr-2 text-emerald-400" />
+                    Conference Room Booking
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-zinc-300">
+                    Professional meeting spaces equipped with modern amenities for your business needs. Perfect for corporate meetings, seminars, and business conferences.
+                  </p>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-zinc-400">
+                      <Wifi className="w-4 h-4" />
+                      High-speed internet and AV equipment
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-zinc-400">
+                      <Users className="w-4 h-4" />
+                      Flexible seating arrangements
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-zinc-400">
+                      <Coffee className="w-4 h-4" />
+                      Refreshment services available
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
+          {/* Contact Information for Events */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <div className="bg-zinc-800/30 rounded-xl p-8 border border-zinc-700/50">
+              <h3 className="text-2xl font-bold text-white mb-4">Ready to Plan Your Event?</h3>
+              <p className="text-zinc-300 mb-6">
+                Contact our events team to discuss your requirements and get a personalized quote
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <div className="flex items-center gap-2 text-emerald-400">
+                  <Mail className="w-5 h-5" />
+                  <a href="mailto:reservations@glenanda.co.za" className="hover:text-emerald-300 transition-colors">
+                    reservations@glenanda.co.za
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 text-emerald-400">
+                  <Phone className="w-5 h-5" />
+                  <a href="tel:+27603114115" className="hover:text-emerald-300 transition-colors">
+                    +27 60 311 4115
+                  </a>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
