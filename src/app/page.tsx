@@ -248,48 +248,48 @@ function GalleryCarousel() {
 
 const homeServices = [
   {
-    id: "business-executive",
-    title: "Executive Business Rooms",
-    subtitle: "Perfect for solo business travelers",
+    id: "single-occupancy",
+    title: "Single Occupancy Rooms",
+    subtitle: "Perfect for solo travelers",
     duration: "Single occupancy",
-    price: "From R950 / night",
+    price: "from R500 / night",
     popular: true,
     groupFriendly: false,
     image: "/group5.jpeg",
-    description: "Premium single rooms with work desk, high-speed WiFi, and business center access - ideal for the executive traveler."
+    description: "Comfortable single rooms with modern amenities, work desk, and quality service - ideal for individual travelers."
   },
   {
-    id: "couples-romantic",
-    title: "Romantic Couples Suites",
-    subtitle: "Intimate getaway accommodations",
+    id: "sleeps-two",
+    title: "Double Occupancy Rooms",
+    subtitle: "Ideal for couples and friends",
     duration: "Sleeps 2 people",
-    price: "From R1 800 / night",
+    price: "from R600 / night",
     popular: true,
     groupFriendly: false,
     image: "/group13.jpeg",
-    description: "Elegant suites with private balcony, king-size bed, and romantic amenities - perfect for anniversaries and honeymoons."
+    description: "Spacious rooms with comfortable beds and modern amenities - perfect for couples and two guests sharing."
   },
   {
-    id: "family-suites",
-    title: "Family & Group Suites",
+    id: "sleeps-three-four",
+    title: "Family Rooms",
     subtitle: "Spacious family accommodations",
-    duration: "Sleeps 4-8 people",
-    price: "From R2 200 / night",
+    duration: "Sleeps 3-4 people",
+    price: "from R900 / night",
     popular: true,
     groupFriendly: true,
     image: "/group16.jpeg",
-    description: "Extra-large suites with multiple bedrooms, living areas, and kitchenettes - perfect for families and small groups."
+    description: "Extra-large rooms with multiple beds and family-friendly amenities - perfect for families and small groups."
   },
   {
-    id: "corporate-package",
-    title: "Corporate Events & Groups",
-    subtitle: "All-inclusive business solutions",
-    duration: "10-200 participants",
-    price: "From R850 / person / night",
+    id: "group-accommodation",
+    title: "Group Accommodation",
+    subtitle: "Special rates for large groups",
+    duration: "10-50 participants",
+    price: "R300 per person sharing room",
     popular: false,
     groupFriendly: true,
     image: "/group11.jpeg",
-    description: "Comprehensive packages including accommodation, meeting rooms, catering, and event coordination for corporate groups."
+    description: "Best group rates for large bookings with shared accommodations and group amenities - perfect for corporate groups and events."
   }
 ];
 

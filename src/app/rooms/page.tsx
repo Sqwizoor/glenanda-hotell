@@ -48,7 +48,7 @@ const roomTypes = [
     id: 1,
     name: "Single Occupancy Room",
     price: 500,
-    originalPrice: 600,
+    originalPrice: 650,
     image: "/room2.jpeg",
     category: "Single",
     size: "25 m²",
@@ -72,11 +72,11 @@ const roomTypes = [
     ],
     rating: 4.5,
     reviews: 892,
-    groupBenefits: "Best rates for single occupancy"
+    groupBenefits: "from R500 - Best rates for single occupancy"
   },
   {
     id: 2,
-    name: "Double Occupancy Room",
+    name: "Double Occupancy Room (Sleeps 2)",
     price: 600,
     originalPrice: 750,
     image: "/room4.jpeg",
@@ -102,7 +102,7 @@ const roomTypes = [
     ],
     rating: 4.6,
     reviews: 1245,
-    groupBenefits: "Perfect for couples and business partners"
+    groupBenefits: "from R600 - Perfect for couples and business partners"
   },
   {
     id: 3,
@@ -132,7 +132,7 @@ const roomTypes = [
     ],
     rating: 4.7,
     reviews: 678,
-    groupBenefits: "Ideal for small families and teams"
+    groupBenefits: "from R900 - Ideal for small families and teams"
   },
   {
     id: 4,
