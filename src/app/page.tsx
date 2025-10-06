@@ -288,7 +288,7 @@ const homeServices = [
     price: "R300 per person sharing room",
     popular: false,
     groupFriendly: true,
-    image: "/group11.jpeg",
+    image: "/soccer3.jpeg",
     description: "Best group rates for large bookings with shared accommodations and group amenities - perfect for corporate groups and events."
   }
 ];
@@ -302,21 +302,57 @@ type MediaItem =
   | { type: "video"; src: string; alt: string; poster?: string };
 
 const resultsMedia: MediaItem[] = [
+  // Spa & Wellness
   { type: "image", src: "/spa.jpeg", alt: "Serene spa treatment room with calming ambiance" },
   { type: "image", src: "/spa2.jpeg", alt: "Luxury spa facilities for ultimate relaxation" },
-  { type: "image", src: "/group11.jpeg", alt: "Large group enjoying hotel amenities together" },
-  { type: "image", src: "/group12.jpeg", alt: "Corporate team meeting in our conference facilities" },
+  { type: "image", src: "/massage-spa.jpeg", alt: "Professional massage therapy services" },
+  { type: "image", src: "/massage-spa3.jpeg", alt: "Tranquil spa environment with natural elements" },
+  
+  // Accommodations
   { type: "image", src: "/room14.jpeg", alt: "Presidential suite for VIP group stays" },
   { type: "image", src: "/room6.jpeg", alt: "Executive rooms perfect for business groups" },
-  { type: "image", src: "/group13.jpeg", alt: "Family celebration in our event space" },
   { type: "image", src: "/room11.jpeg", alt: "Connecting rooms for families and teams" },
-  { type: "image", src: "/dining2.jpeg", alt: "Group dining setup for special occasions" },
-  { type: "image", src: "/group14.jpeg", alt: "Wedding party in our elegant dining room" },
   { type: "image", src: "/room12.jpeg", alt: "Spacious suites accommodating larger groups" },
-  { type: "image", src: "/group16.jpeg", alt: "Business retreat participants networking" },
   { type: "image", src: "/niceview.jpeg", alt: "Panoramic views enjoyed by all our guests" },
+  
+  // Sports Teams & Soccer Events
+  { type: "image", src: "/soccer3.jpeg", alt: "Soccer team accommodation - team bonding and training stays" },
+  { type: "image", src: "/soccer4.jpeg", alt: "Professional soccer team group accommodation facilities" },
+  { type: "image", src: "/soccer5.jpeg", alt: "Sports team relaxation areas and common spaces" },
+  { type: "image", src: "/soccer6.jpeg", alt: "Soccer team members enjoying hotel amenities" },
+  { type: "image", src: "/soccer7.jpeg", alt: "Team gathering space for sports groups" },
+  { type: "image", src: "/soccer8.jpeg", alt: "Soccer team accommodation setup" },
+  { type: "image", src: "/soccer10.jpeg", alt: "Sports event participants in hotel facilities" },
+  { type: "image", src: "/soccer11.jpeg", alt: "Soccer team enjoying hospitality services" },
+  { type: "image", src: "/soccer12.jpeg", alt: "Professional sports team accommodation" },
+  { type: "image", src: "/soccer13.jpeg", alt: "Team sports event hosting facilities" },
+  { type: "image", src: "/soccer14.jpeg", alt: "Soccer team group photo at hotel" },
+  { type: "image", src: "/soccer-new.jpeg", alt: "Modern facilities for sports team accommodation" },
+  
+  // Sports Team Dining
+  { type: "image", src: "/soccer-dining.jpeg", alt: "Soccer team group dining setup" },
+  { type: "image", src: "/soccer-dining2.jpeg", alt: "Sports team meal service with nutritious options" },
+  { type: "image", src: "/soccer-dining-3.jpeg", alt: "Team dining facilities for sports groups" },
+  { type: "image", src: "/soccer-dining4.jpeg", alt: "Large group dining for soccer teams" },
+  { type: "image", src: "/soccer-dining5.jpeg", alt: "Professional catering for sports events" },
+  { type: "image", src: "/soccer-dining6.jpeg", alt: "Team meal times at hotel dining area" },
+  { type: "image", src: "/soccer-dining7.jpeg", alt: "Soccer team breakfast and dining services" },
+  { type: "image", src: "/soccer-dining8.jpeg", alt: "Group dining setup for athletic teams" },
+  { type: "image", src: "/soccer-dining9.jpeg", alt: "Sports nutrition and team dining" },
+  { type: "image", src: "/soccer-dining10.jpeg", alt: "Team celebration dining experience" },
+  { type: "image", src: "/soccer-dining11.jpeg", alt: "Professional sports team catering services" },
+  
+  // Transportation for Teams
+  { type: "image", src: "/soccer-bus.jpeg", alt: "Team transportation services and shuttle bus" },
+  { type: "image", src: "/soccer-bus2.jpeg", alt: "Group transportation for sports teams and events" },
+  
+  // General Group Events
+  { type: "image", src: "/group11.jpeg", alt: "Large group enjoying hotel amenities together" },
+  { type: "image", src: "/group12.jpeg", alt: "Corporate team meeting in our conference facilities" },
+  { type: "image", src: "/group13.jpeg", alt: "Family celebration in our event space" },
+  { type: "image", src: "/group14.jpeg", alt: "Wedding party in our elegant dining room" },
+  { type: "image", src: "/group16.jpeg", alt: "Business retreat participants networking" },
   { type: "image", src: "/group17.jpeg", alt: "Multi-generational family reunion gathering" },
-  { type: "image", src: "/guests2.jpeg", alt: "Relaxed social atmosphere in guest areas" },
   { type: "image", src: "/group18.jpeg", alt: "Social club event with group dining" },
   { type: "image", src: "/group2.jpeg", alt: "Corporate conference with full group accommodation" },
   { type: "image", src: "/group3.jpeg", alt: "Birthday celebration party setup" },
@@ -324,6 +360,12 @@ const resultsMedia: MediaItem[] = [
   { type: "image", src: "/group5.jpeg", alt: "Anniversary dinner with extended family" },
   { type: "image", src: "/group8.jpeg", alt: "Executive retreat with group accommodation" },
   { type: "image", src: "/group9.jpeg", alt: "Social gathering in our spacious lounge" },
+  
+  // Dining Facilities
+  { type: "image", src: "/dining.jpeg", alt: "Fine dining restaurant services" },
+  { type: "image", src: "/dining2.jpeg", alt: "Group dining setup for special occasions" },
+  { type: "image", src: "/dining4.jpeg", alt: "Elegant dining experience for guests" },
+  { type: "image", src: "/guests2.jpeg", alt: "Relaxed social atmosphere in guest areas" },
 ];
 
 // Lightweight lazy video that only loads when near viewport
@@ -459,7 +501,7 @@ export default function HomePage() {
       {/* Modern Hero Section — Enhanced with better mobile responsiveness */}
   <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-20">
         {/* Enhanced Background slideshow with better mobile optimization */}
-        <Slideshow images={["/room14.jpeg","/room6.jpeg","/niceview.jpeg","/room11.jpeg"]} />
+        <Slideshow images={["/room14.jpeg","/soccer3.jpeg","/room6.jpeg","/soccer-dining.jpeg","/niceview.jpeg","/soccer11.jpeg","/room11.jpeg","/soccer-dining4.jpeg"]} />
         
         {/* Enhanced overlay with better gradients */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/60" />
@@ -512,7 +554,7 @@ export default function HomePage() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 0.8 }}
               >
-                Solo travelers, couples, families & corporate groups
+                Solo travelers, couples, families, sports teams & corporate groups
               </motion.span>
             </motion.h1>
             
@@ -525,7 +567,7 @@ export default function HomePage() {
               style={{ fontSize: 'clamp(0.8rem, 2vw, 1.1rem)' }}
             >
               Premium accommodations in South Johannesburg&apos;s finest location • Fiber Wi‑Fi • 24/7 Support • 
-              Secure Parking • Perfect for solo business trips, romantic getaways, family vacations, and corporate events.
+              Secure Parking • Team Transportation • Perfect for solo business trips, romantic getaways, family vacations, sports teams, and corporate events.
             </motion.p>
             <motion.div
               initial={{ opacity:0, y:20 }}
@@ -562,11 +604,12 @@ export default function HomePage() {
               initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:1.4 }}
-              className="mt-3 sm:mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-2 sm:gap-4 max-w-2xl mx-auto"
+              className="mt-3 sm:mt-6 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-4 max-w-4xl mx-auto"
             >
               {[
                 {label:'Accommodations', value:'50+ Rooms', icon: '🏨'},
                 {label:'All Guest Types', value:'1-200 People', icon: '👥'},
+                {label:'Sports Teams', value:'⚽ Welcome', icon: '🏆'},
                 {label:'Support', value:'24/7 Service', icon: '🔧'}
               ].map((stat, index) => (
                 <motion.div 
@@ -639,7 +682,7 @@ export default function HomePage() {
               variants={itemFadeUp} 
               className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto"
             >
-              Whether you&apos;re traveling solo on business, planning a romantic getaway, enjoying a family reunion, or organizing a corporate retreat, we provide personalized service and exclusive amenities for every type of stay.
+              Whether you&apos;re traveling solo on business, planning a romantic getaway, enjoying a family reunion, hosting a sports team, or organizing a corporate retreat, we provide personalized service and exclusive amenities for every type of stay.
             </motion.p>
           </motion.div>
 
@@ -831,22 +874,19 @@ export default function HomePage() {
 
                       <motion.div 
                         className="absolute bottom-4 left-4 right-4"
-                        initial={{ y: 20, opacity: 0 }}
-                        whileHover={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.3 }}
+                        initial={{ y: 0, opacity: 1 }}
+                        animate={{ y: 0, opacity: 1 }}
                       >
                         <div className="flex justify-between items-center text-white drop-shadow-lg">
                           <div className="flex items-center space-x-4">
                             <motion.div 
-                              className="flex items-center bg-black/20 px-2 py-1 rounded-full backdrop-blur-sm"
-                              whileHover={{ scale: 1.1 }}
+                              className="flex items-center bg-black/40 px-3 py-1.5 rounded-lg backdrop-blur-md"
                             >
                               <Clock className="w-4 h-4 mr-1" />
                               <span className="text-sm font-medium">{service.duration}</span>
                             </motion.div>
                             <motion.div 
-                              className="flex items-center bg-emerald-500/80 px-3 py-1.5 rounded-lg backdrop-blur-sm"
-                              whileHover={{ scale: 1.1 }}
+                              className="flex items-center bg-emerald-600 px-3 py-1.5 rounded-lg backdrop-blur-md shadow-lg"
                             >
                               <span className="text-sm font-bold whitespace-nowrap">{service.price}</span>
                             </motion.div>
@@ -876,6 +916,17 @@ export default function HomePage() {
                       >
                         {service.description}
                       </motion.p>
+
+                      {/* Price and Duration - Always Visible */}
+                      <div className="flex items-center justify-between py-2 border-t border-gray-200 dark:border-gray-700">
+                        <div className="flex items-center text-gray-600 dark:text-gray-400 text-sm">
+                          <Clock className="w-4 h-4 mr-1" />
+                          <span>{service.duration}</span>
+                        </div>
+                        <div className="text-emerald-600 dark:text-emerald-400 font-bold text-lg">
+                          {service.price}
+                        </div>
+                      </div>
 
                       <motion.div 
                         className="pt-2"
@@ -1299,237 +1350,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Room Service Menu Section */}
-      <section className="section-padding bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 dark:from-gray-900 dark:via-orange-900/10 dark:to-gray-900">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            variants={containerStagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            className="text-center mb-16"
-          >
-            <motion.div
-              variants={itemFadeUp}
-              className="inline-block px-4 py-2 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-sm font-medium mb-4"
-            >
-              <UtensilsCrossed className="inline-block w-4 h-4 mr-2" />
-              Room Service Available 24/7
-            </motion.div>
-            <motion.h2 
-              variants={itemFadeUp} 
-              className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6"
-            >
-              Delicious Room Service Menu
-            </motion.h2>
-            <motion.p 
-              variants={itemFadeUp} 
-              className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto"
-            >
-              Enjoy fresh, delicious meals delivered directly to your room. From crispy chicken wings to traditional South African favorites with our signature hotel gravy.
-            </motion.p>
-          </motion.div>
-
-          {/* Featured Menu Items Grid */}
-          <motion.div
-            variants={containerStagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
-          >
-            {[
-              {
-                name: "Wings with Chips",
-                description: "Crispy golden chicken wings served with fresh-cut seasoned chips",
-                price: "From R65",
-                category: "Most Popular",
-                image: "/dining.jpeg",
-                prepTime: "15-20 min",
-                sizes: "4, 6, 8 or 12 pieces"
-              },
-              {
-                name: "Wings with Pap & Gravy",
-                description: "Tender wings with traditional pap and our hotel gravy prepared by professional chefs",
-                price: "From R50",
-                category: "Chef's Special", 
-                image: "/dining2.jpeg",
-                prepTime: "15-25 min",
-                sizes: "4, 6, 8 or 12 pieces"
-              },
-              {
-                name: "House Special Samosas",
-                description: "12 crispy samosas with signature spice blend - Glen Special, Sweetcorn & Cheese, or Mince",
-                price: "R99 (12 pieces)",
-                category: "Snacks & Sides",
-                image: "/dining4.jpeg",
-                prepTime: "15-20 min",
-                sizes: "12 pieces per order"
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={item.name}
-                variants={itemFadeUp}
-                className="group"
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <Card className="h-full bg-white border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
-                  <CardContent className="p-0">
-                    <div className="relative h-48 overflow-hidden">
-                      <motion.div 
-                        whileHover={{ scale: 1.08 }} 
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="w-full h-full"
-                      >
-                        <SmartImage
-                          src={item.image}
-                          alt={item.name}
-                          fill
-                          sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
-                          className="object-cover w-full h-full"
-                          priority={index < 2}
-                          asMotion={false}
-                        />
-                      </motion.div>
-                      
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      
-                      {/* Category Badge */}
-                      <div className="absolute top-4 left-4">
-                        <Badge className="bg-orange-500 text-white shadow-lg">
-                          {item.category}
-                        </Badge>
-                      </div>
-                      
-                      {/* Price Badge */}
-                      <div className="absolute bottom-4 right-4">
-                        <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                          <span className="font-bold text-orange-600">{item.price}</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
-                        {item.name}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
-                        {item.description}
-                      </p>
-                      
-                      {/* Details */}
-                      <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
-                        <div className="flex items-center">
-                          <Clock className="w-4 h-4 mr-1" />
-                          {item.prepTime}
-                        </div>
-                        <div className="text-right">
-                          <span className="font-medium">{item.sizes}</span>
-                        </div>
-                      </div>
-                      
-                      {/* Order Button */}
-                      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                        <Button asChild className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300">
-                          <a
-                            href={`https://wa.me/27603114115?text=${encodeURIComponent(`Hi Glenanda Hotel, I'd like to order ${item.name} for room service delivery.`)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Order Now
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                          </a>
-                        </Button>
-                      </motion.div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Fresh Juices Section */}
-          <motion.div
-            variants={containerStagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
-            className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl mb-12"
-          >
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Fresh Tropical Juices</h3>
-              <p className="text-gray-600 dark:text-gray-400">Freshly squeezed daily • Perfect refreshment for any time</p>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                { name: "Fresh Mango Juice", price: "R30", icon: "🥭" },
-                { name: "Fruit Cocktail", price: "R30", icon: "🍸" },
-                { name: "Passion Fruit Juice", price: "R30", icon: "🧡" }
-              ].map((juice, index) => (
-                <motion.div
-                  key={juice.name}
-                  variants={itemFadeUp}
-                  className="text-center p-6 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/30 dark:to-amber-900/30 rounded-2xl hover:shadow-lg transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="text-3xl mb-3">{juice.icon}</div>
-                  <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">{juice.name}</h4>
-                  <p className="text-orange-600 dark:text-orange-400 font-bold text-lg">{juice.price}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Service Info & CTA */}
-          <motion.div
-            variants={itemFadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-3xl p-8 text-white shadow-2xl">
-              <h3 className="text-3xl font-bold mb-4">24/7 Room Service Available</h3>
-              <p className="text-lg mb-6 text-white/90">
-                Professional chefs • Free delivery to your room • Call or WhatsApp anytime
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button asChild size="lg" className="bg-white text-orange-600 hover:bg-gray-50 px-8 py-4 rounded-full shadow-lg">
-                    <Link href="/menu">
-                      <UtensilsCrossed className="mr-2 h-5 w-5" />
-                      View Full Menu
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
-                </motion.div>
-                
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-4 rounded-full">
-                    <a
-                      href="https://wa.me/27603114115?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20see%20your%20room%20service%20menu."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      📱 WhatsApp Order
-                    </a>
-                  </Button>
-                </motion.div>
-              </div>
-
-              <div className="text-center text-white/90">
-                <p className="font-semibold">📞 +27 60 311 4115</p>
-                <p className="text-sm">Available 24 hours a day, 7 days a week</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Treatment Process */}
       <section className="section-padding skincare-gradient dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="max-w-7xl mx-auto">
@@ -1725,6 +1545,372 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Sports Teams & Athletic Events Section */}
+      <section className="section-padding bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-gray-900 dark:via-green-900/10 dark:to-gray-900 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-20 w-40 h-40 bg-green-400 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-20 right-20 w-60 h-60 bg-emerald-400 rounded-full blur-3xl animate-pulse delay-1000" />
+          <div className="absolute top-1/2 left-1/3 w-32 h-32 bg-teal-400 rounded-full blur-2xl animate-pulse delay-2000" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header Section */}
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            className="text-center mb-20"
+          >
+            <motion.div
+              variants={itemFadeUp}
+              className="inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 rounded-full text-green-700 dark:text-green-300 text-sm font-medium mb-6 shadow-lg"
+            >
+              <Award className="w-5 h-5 animate-pulse" />
+              <span className="tracking-wide">PREMIER SPORTS TEAM ACCOMMODATION</span>
+              <Users className="w-5 h-5 animate-pulse" />
+            </motion.div>
+            
+            <motion.h2 
+              variants={itemFadeUp} 
+              className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 dark:from-green-400 dark:via-emerald-400 dark:to-teal-400 bg-clip-text text-transparent mb-8"
+              style={{ lineHeight: '1.1' }}
+            >
+              Official Host for Sports Teams & Athletic Events
+            </motion.h2>
+            
+            <motion.p 
+              variants={itemFadeUp} 
+              className="text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed"
+            >
+              We specialize in hosting professional soccer teams, sports clubs, and athletic groups. With dedicated facilities, nutritious team dining, secure accommodation, and transportation services, we ensure your team performs at their best.
+            </motion.p>
+          </motion.div>
+
+          {/* Featured Sports Images Carousel */}
+          <motion.div
+            variants={itemFadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="mb-20"
+          >
+            <div className="relative h-96 md:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+              <motion.div
+                className="flex h-full"
+                animate={{ x: [0, -100, -200, -300, -400, -500, -600, -700, 0] }}
+                transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
+              >
+                {[
+                  { src: "/soccer3.jpeg", alt: "Soccer team enjoying premium hotel accommodation" },
+                  { src: "/soccer-dining.jpeg", alt: "Professional team dining with nutritious meal options" },
+                  { src: "/soccer6.jpeg", alt: "Team bonding and relaxation in comfort" },
+                  { src: "/soccer-dining4.jpeg", alt: "Group dining setup for sports teams" },
+                  { src: "/soccer11.jpeg", alt: "Athletes enjoying world-class hospitality" },
+                  { src: "/soccer-bus.jpeg", alt: "Dedicated team transportation services" },
+                  { src: "/soccer-dining7.jpeg", alt: "Nutritious breakfast for athletic performance" },
+                  { src: "/soccer14.jpeg", alt: "Team gathering at hotel facilities" },
+                ].map((image, index) => (
+                  <motion.div
+                    key={index}
+                    className="min-w-full h-full relative"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="100vw"
+                      className="object-cover"
+                      priority={index < 3}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className="absolute bottom-8 left-8 right-8">
+                      <p className="text-white text-lg font-medium drop-shadow-lg">
+                        {image.alt}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+              
+              {/* Overlay with gradient */}
+              <div className="absolute inset-0 bg-gradient-to-r from-green-600/20 via-transparent to-emerald-600/20 pointer-events-none" />
+            </div>
+          </motion.div>
+
+          {/* Services for Sports Teams Grid */}
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
+          >
+            {[
+              {
+                icon: "⚽",
+                title: "Team Accommodation",
+                description: "Dedicated floors for teams with connecting rooms and secure access for privacy and focus",
+                services: ["20-50 Players", "Coaching Staff Rooms", "Medical Staff Access", "24/7 Security"],
+                image: "/soccer4.jpeg"
+              },
+              {
+                icon: "🍽️",
+                title: "Sports Nutrition Dining",
+                description: "Professional catering with sports nutrition menu, pre-game meals, and dietary customization",
+                services: ["Performance Meals", "Dietary Plans", "Hydration Stations", "Private Dining"],
+                image: "/soccer-dining2.jpeg"
+              },
+              {
+                icon: "🚌",
+                title: "Team Transportation",
+                description: "Dedicated shuttle services for training venues, matches, and airport transfers",
+                services: ["Coach Bus", "Airport Transfers", "Training Venue", "Match Day Service"],
+                image: "/soccer-bus2.jpeg"
+              },
+              {
+                icon: "🏋️",
+                title: "Recovery & Wellness",
+                description: "Access to spa facilities, massage therapy, and relaxation areas for optimal recovery",
+                services: ["Sports Massage", "Ice Baths", "Sauna Access", "Physio Support"],
+                image: "/massage-spa2.jpeg"
+              }
+            ].map((service, index) => (
+              <motion.div
+                key={service.title}
+                variants={itemFadeUp}
+                className="group"
+                whileHover={{ y: -12, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <Card className="h-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border-0 shadow-xl hover:shadow-2xl dark:hover:shadow-2xl transition-all duration-500 overflow-hidden relative">
+                  {/* Background Image */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  
+                  <CardContent className="p-8 relative z-10">
+                    {/* Icon */}
+                    <motion.div
+                      className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300"
+                      whileHover={{ rotate: [0, -10, 10, 0] }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {service.icon}
+                    </motion.div>
+                    
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+                      {service.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                      {service.description}
+                    </p>
+                    
+                    {/* Services List */}
+                    <div className="space-y-2 mb-8">
+                      {service.services.map((item, idx) => (
+                        <motion.div
+                          key={idx}
+                          className="flex items-center text-sm text-gray-700 dark:text-gray-300"
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: idx * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="w-2 h-2 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mr-3 flex-shrink-0" />
+                          {item}
+                        </motion.div>
+                      ))}
+                    </div>
+                    
+                    {/* Book Button */}
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                      <Button className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+                        Request Team Quote
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </motion.div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Teams We've Hosted Section */}
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl p-12 shadow-2xl mb-20"
+          >
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Why Sports Teams Choose Us</h3>
+              <p className="text-lg text-gray-600 dark:text-gray-400">Proven track record with professional and amateur teams</p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-8">
+              {[
+                { icon: "🏆", title: "100+ Teams", subtitle: "Hosted Annually" },
+                { icon: "⚽", title: "Soccer Clubs", subtitle: "Primary Focus" },
+                { icon: "🎯", title: "Match Day", subtitle: "Support Services" },
+                { icon: "🍴", title: "Sports Nutrition", subtitle: "Expert Menus" },
+                { icon: "🛡️", title: "Private Floors", subtitle: "Team Security" },
+                { icon: "🚌", title: "Transport", subtitle: "Included" }
+              ].map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  variants={itemFadeUp}
+                  className="text-center group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <motion.div
+                    className="text-3xl mb-3 group-hover:animate-bounce"
+                    whileHover={{ rotateY: 180 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    {feature.icon}
+                  </motion.div>
+                  <h4 className="font-bold text-gray-900 dark:text-gray-100 mb-1">{feature.title}</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{feature.subtitle}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Image Showcase Grid - Team Experiences */}
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="mb-20"
+          >
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Team Experiences at Glenanda</h3>
+              <p className="text-lg text-gray-600 dark:text-gray-400">See how we support teams throughout their stay</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { src: "/soccer-dining5.jpeg", title: "Team Dining", subtitle: "Nutritious Meals" },
+                { src: "/soccer7.jpeg", title: "Team Bonding", subtitle: "Common Areas" },
+                { src: "/soccer-dining9.jpeg", title: "Pre-Match Meals", subtitle: "Performance Focus" },
+                { src: "/soccer12.jpeg", title: "Comfortable Stay", subtitle: "Rest & Recovery" }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemFadeUp}
+                  className="group relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg"
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6 text-white">
+                    <h4 className="font-bold text-lg mb-1">{item.title}</h4>
+                    <p className="text-sm opacity-90">{item.subtitle}</p>
+                  </div>
+                  
+                  {/* Hover Overlay */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-green-600/80 to-emerald-600/80 dark:from-green-700/80 dark:to-emerald-700/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                    whileHover={{ scale: 1 }}
+                  >
+                    <div className="text-white text-center">
+                      <Eye className="w-8 h-8 mx-auto mb-2" />
+                      <p className="font-semibold">View Full Gallery</p>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Call to Action for Teams */}
+          <motion.div
+            variants={itemFadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 rounded-3xl p-12 text-white shadow-2xl relative overflow-hidden">
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-8 left-8 w-20 h-20 border border-white rounded-full" />
+                <div className="absolute bottom-8 right-8 w-32 h-32 border border-white rounded-full" />
+                <div className="absolute top-1/2 left-1/3 w-16 h-16 border border-white rounded-full" />
+              </div>
+              
+              <div className="relative z-10">
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    rotate: [0, 2, -2, 0]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                  className="text-6xl mb-6"
+                >
+                  ⚽🏆
+                </motion.div>
+                
+                <h3 className="text-4xl font-bold mb-6">Ready to Book Your Team&apos;s Stay?</h3>
+                <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
+                  Let us handle all aspects of your team&apos;s accommodation. From nutrition to transportation, we ensure your athletes can focus on performance.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button asChild size="lg" className="bg-white text-green-600 hover:bg-gray-50 px-12 py-6 rounded-full shadow-lg text-lg">
+                      <a
+                        href="https://wa.me/27603114115?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20enquire%20about%20sports%20team%20accommodation."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Users className="mr-2 h-5 w-5" />
+                        Get Team Quote
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </a>
+                    </Button>
+                  </motion.div>
+                  
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-12 py-6 rounded-full text-lg">
+                      <Link href="/contact">
+                        📞 Call Our Team Coordinator
+                      </Link>
+                    </Button>
+                  </motion.div>
+                </div>
+
+                <div className="mt-8 text-white/90">
+                  <p className="font-semibold text-lg">📞 +27 60 311 4115</p>
+                  <p>Dedicated sports team coordinator available 24/7</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Event & Conference Facilities Section */}
       <section className="section-padding bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-indigo-900/10 dark:to-gray-900">
         <div className="max-w-7xl mx-auto">
@@ -1761,7 +1947,7 @@ export default function HomePage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
+            className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16"
           >
             {[
               {
@@ -1777,6 +1963,13 @@ export default function HomePage() {
                 features: ["Theater-style seating", "Stage platform", "Live streaming"],
                 image: "/group14.jpeg", 
                 icon: "🎤"
+              },
+              {
+                title: "Sports Team Venue",
+                capacity: "20-50 athletes",
+                features: ["Team briefing rooms", "Coach facilities", "Equipment storage"],
+                image: "/soccer6.jpeg",
+                icon: "⚽"
               },
               {
                 title: "Grand Banquet Hall",
@@ -1890,12 +2083,17 @@ export default function HomePage() {
               <p className="text-lg text-gray-600">We&apos;ve successfully hosted a wide variety of events for groups of all sizes</p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
               {[
                 {
                   category: "Corporate Events",
                   events: ["Board meetings", "Product launches", "Team retreats", "Annual conferences"],
                   color: "bg-blue-100 text-blue-800"
+                },
+                {
+                  category: "Sports Teams",
+                  events: ["Soccer teams", "Training camps", "Match day stays", "Team tournaments"],
+                  color: "bg-green-100 text-green-800"
                 },
                 {
                   category: "Social Celebrations",

@@ -29,6 +29,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Offset for fixed navigation */
 }
 
 body {
@@ -39,6 +40,8 @@ body {
   min-height: 100vh;
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .font-orbitron {
