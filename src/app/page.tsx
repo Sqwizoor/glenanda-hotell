@@ -487,7 +487,7 @@ function Slideshow({ images, interval = 6000 }: { images: string[]; interval?: n
           />
         </motion.div>
       ))}
-  <div className="absolute inset-0 bg-white/55 dark:bg-black/40" />
+  <div className="absolute inset-0 bg-black/45 dark:bg-black/65" />
     </div>
   );
 }
@@ -519,8 +519,8 @@ export default function HomePage() {
         <Slideshow images={["/room14.jpeg","/soccer3.jpeg","/brai2.jpeg","/room6.jpeg","/soccer-dining.jpeg","/niceview.jpeg","/brai4.jpeg","/soccer11.jpeg","/room11.jpeg","/soccer-dining4.jpeg"]} />
         
         {/* Enhanced overlay with better gradients */}
-  <div className="absolute inset-0 bg-gradient-to-br from-white/85 via-white/55 to-slate-100/60 dark:from-slate-950/90 dark:via-slate-900/70 dark:to-slate-950/80" />
-  <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/40 dark:from-slate-950/90 dark:via-transparent dark:to-slate-900/40" />
+  <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/25 dark:from-slate-950/90 dark:via-slate-900/70 dark:to-slate-950/80" />
+  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25 dark:from-slate-950/85 dark:via-transparent dark:to-slate-900/45" />
         
         {/* Dynamic floating elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -539,7 +539,7 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto text-center">
             {/* Enhanced Badge with animation */}
             <motion.div
-              className="inline-flex items-center space-x-2 sm:space-x-3 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-white/85 dark:bg-black/20 backdrop-blur-xl border border-emerald-100 dark:border-white/10 text-emerald-700 dark:text-white/90 mb-2 sm:mb-4 shadow-lg"
+              className="inline-flex items-center space-x-2 sm:space-x-3 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-black/35 dark:bg-black/20 backdrop-blur-xl border border-white/10 text-emerald-100 dark:text-white/90 mb-2 sm:mb-4 shadow-lg"
               initial={{ opacity:0, y:20, scale: 0.9 }}
               animate={{ opacity:1, y:0, scale: 1 }}
               transition={{ delay:0.3, duration:0.8, ease:[0.22, 1, 0.36, 1] }}
@@ -554,7 +554,7 @@ export default function HomePage() {
               initial={{ opacity:0, y:30 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:0.5, duration:1, ease:[0.22, 1, 0.36, 1] }}
-              className="font-bold leading-[0.95] text-slate-900 dark:text-white mb-2 sm:mb-3"
+              className="font-bold leading-[0.95] text-white dark:text-white mb-2 sm:mb-3 drop-shadow-lg"
               style={{
                 fontSize: 'clamp(1.5rem, 6vw, 3.5rem)',
                 lineHeight: 'clamp(1.7rem, 6.5vw, 3.8rem)'
@@ -578,7 +578,7 @@ export default function HomePage() {
               initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:0.8, duration:0.8 }}
-              className="mt-2 sm:mt-3 text-slate-600 dark:text-slate-200/90 max-w-3xl mx-auto leading-relaxed"
+              className="mt-2 sm:mt-3 text-white/85 dark:text-slate-200/90 max-w-3xl mx-auto leading-relaxed"
               style={{ fontSize: 'clamp(0.8rem, 2vw, 1.1rem)' }}
             >
               Premium accommodation in South Johannesburg with fibre Wi‑Fi, on-site security, executive transport and a concierge team who tailor every stay for business travellers, couples, families, sports teams and corporate groups.
@@ -604,7 +604,7 @@ export default function HomePage() {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full sm:w-auto rounded-full px-4 sm:px-8 py-2.5 sm:py-4 border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:border-emerald-300 dark:border-white/40 dark:text-white dark:hover:bg-white/10 dark:hover:border-white/60 backdrop-blur-sm font-semibold transition-all duration-300"
+                  className="w-full sm:w-auto rounded-full px-4 sm:px-8 py-2.5 sm:py-4 border-2 border-white/60 text-white hover:bg-white/10 hover:border-white dark:border-white/40 dark:text-white dark:hover:bg-white/10 dark:hover:border-white/60 backdrop-blur-sm font-semibold transition-all duration-300"
                   style={{ fontSize: 'clamp(0.8rem, 1.6vw, 1rem)' }}
                 >
                   <Users className="mr-2 w-4 h-4" />
