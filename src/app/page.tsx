@@ -1287,7 +1287,7 @@ export default function HomePage() {
               </h3>
               
               <p className="text-xl text-slate-600 dark:text-slate-200/90 mb-10 max-w-2xl mx-auto">
-                Book your spa treatment today and discover why we're rated as one of the finest wellness destinations
+                Book your spa treatment today and discover why we&apos;re rated as one of the finest wellness destinations
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
