@@ -223,9 +223,9 @@ export default function RoomsPage() {
   ), [selectedFilter]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900">
+    <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-slate-100 transition-colors">
       {/* Modern Hero Section */}
-      <section ref={heroRef} className="relative py-32 overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900">
+      <section ref={heroRef} className="relative py-32 overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900">
         {/* Modern Background with Parallax */}
         <motion.div 
           style={{ y }}
@@ -235,11 +235,11 @@ export default function RoomsPage() {
             src="/group14.jpeg"
             alt="Modern hotel group accommodation"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-40"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/80 via-zinc-900/60 to-teal-900/80" />
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 via-transparent to-zinc-900/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/60 to-emerald-100/50 dark:from-emerald-900/80 dark:via-zinc-900/60 dark:to-teal-900/80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-white/30 dark:from-zinc-900/90 dark:via-transparent dark:to-zinc-900/20" />
         </motion.div>
 
         {/* Floating Elements */}
@@ -258,7 +258,7 @@ export default function RoomsPage() {
             {/* Modern Badge */}
             <motion.div
               variants={fadeUp}
-              className="inline-flex items-center px-6 py-3 rounded-full bg-emerald-500/20 backdrop-blur-lg border border-emerald-400/30 text-emerald-300"
+              className="inline-flex items-center px-6 py-3 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200 backdrop-blur-lg dark:bg-emerald-500/20 dark:border-emerald-400/30 dark:text-emerald-300"
             >
               <Sparkles className="w-5 h-5 mr-3 animate-pulse" />
               <span className="text-sm font-medium tracking-wide">PREMIUM GROUP ACCOMMODATIONS</span>
@@ -267,13 +267,13 @@ export default function RoomsPage() {
             {/* Modern Typography */}
             <motion.div variants={fadeUp} className="space-y-6">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold">
-                <span className="block text-white">Rooms & Suites for</span>
-                <span className="block bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 bg-clip-text text-transparent">
+                <span className="block text-slate-900 dark:text-white">Rooms & Suites for</span>
+                <span className="block bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-500 bg-clip-text text-transparent dark:from-emerald-400 dark:via-teal-300 dark:to-emerald-500">
                   Every Guest
                 </span>
               </h1>
               
-              <p className="text-xl md:text-2xl text-zinc-300 max-w-4xl mx-auto leading-relaxed font-light">
+              <p className="text-xl md:text-2xl text-slate-600 dark:text-zinc-300 max-w-4xl mx-auto leading-relaxed font-light">
                 Experience thoughtfully designed accommodations that seamlessly blend comfort with sophistication. 
                 From solo business travelers and romantic couples to families and large corporate groups, every stay is crafted to exceed expectations.
               </p>
@@ -290,11 +290,11 @@ export default function RoomsPage() {
                 <motion.div 
                   key={stat.label} 
                   variants={scaleIn}
-                  className="group text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-emerald-500/30 transition-all duration-300"
+                  className="group text-center p-6 rounded-2xl bg-white/90 backdrop-blur-sm border border-emerald-100 hover:bg-emerald-50 hover:border-emerald-300 transition-all duration-300 dark:bg-white/5 dark:border-white/10 dark:hover:bg-white/10 dark:hover:border-emerald-500/30"
                 >
                   <stat.icon className="w-8 h-8 text-emerald-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                  <div className="text-3xl font-bold text-white mb-2">{stat.number}</div>
-                  <div className="text-zinc-400 text-sm font-medium">{stat.label}</div>
+                  <div className="text-3xl font-bold text-emerald-700 dark:text-white mb-2">{stat.number}</div>
+                  <div className="text-slate-600 dark:text-zinc-400 text-sm font-medium">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -303,7 +303,7 @@ export default function RoomsPage() {
             <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
               <Button 
                 size="lg" 
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
               >
                 <Eye className="w-5 h-5 mr-2" />
                 Explore Rooms
@@ -313,7 +313,7 @@ export default function RoomsPage() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-emerald-400/50 text-emerald-300 hover:bg-emerald-500/10 px-8 py-4 rounded-full backdrop-blur-sm"
+                className="border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 rounded-full px-8 py-4 backdrop-blur-sm dark:border-emerald-400/50 dark:text-emerald-300 dark:hover:bg-emerald-500/10"
               >
                 <Calendar className="w-5 h-5 mr-2" />
                 Group Booking
@@ -324,7 +324,7 @@ export default function RoomsPage() {
       </section>
 
       {/* Filter Section */}
-      <section className="py-16 bg-zinc-800/50 backdrop-blur-sm border-y border-zinc-700/50">
+  <section className="py-16 bg-white/80 backdrop-blur-sm border-y border-emerald-100 dark:bg-zinc-800/50 dark:border-zinc-700/50">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             variants={staggerContainer}
@@ -333,8 +333,8 @@ export default function RoomsPage() {
             viewport={{ once: true, amount: 0.3 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-white mb-4">Find Your Perfect Accommodation</h2>
-            <p className="text-zinc-400 max-w-2xl mx-auto text-lg">Filter by room type to discover the ideal space for your individual stay or group booking</p>
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Find Your Perfect Accommodation</h2>
+            <p className="text-slate-600 dark:text-zinc-400 max-w-2xl mx-auto text-lg">Filter by room type to discover the ideal space for your individual stay or group booking</p>
           </motion.div>
           
           <motion.div
@@ -352,7 +352,7 @@ export default function RoomsPage() {
                   className={`rounded-full px-8 py-3 transition-all duration-300 ${
                     selectedFilter === option.value 
                       ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-500/25" 
-                      : "border-zinc-600 text-zinc-300 hover:border-emerald-400 hover:text-emerald-400 bg-zinc-800/50"
+                      : "border-emerald-200 text-emerald-700 hover:border-emerald-300 hover:text-emerald-600 bg-white dark:border-zinc-600 dark:text-zinc-300 dark:hover:border-emerald-400 dark:hover:text-emerald-400 dark:bg-zinc-800/50"
                   }`}
                 >
                   <span>{option.label}</span>
@@ -364,7 +364,7 @@ export default function RoomsPage() {
       </section>
 
       {/* Rooms Grid */}
-      <section className="py-20 bg-gradient-to-b from-zinc-900 to-zinc-800">
+  <section className="py-20 bg-gradient-to-b from-white via-slate-50 to-slate-100 dark:from-zinc-900 dark:to-zinc-800">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             variants={staggerContainer}
@@ -385,7 +385,7 @@ export default function RoomsPage() {
                 onHoverEnd={() => setHoveredRoom(null)}
                 className="group relative"
               >
-                <Card className="bg-zinc-800/50 border border-zinc-700/50 shadow-2xl hover:shadow-emerald-500/10 hover:border-emerald-500/30 backdrop-blur-sm transition-all duration-500 overflow-hidden h-full group-hover:transform group-hover:scale-[1.02]">
+                <Card className="bg-white border border-emerald-100 shadow-xl hover:shadow-emerald-500/10 hover:border-emerald-500/30 backdrop-blur-sm transition-all duration-500 overflow-hidden h-full group-hover:transform group-hover:scale-[1.02] dark:bg-zinc-800/50 dark:border-zinc-700/50">
                   {/* Room Image */}
                   <div className="relative h-64 overflow-hidden">
                     <motion.div 
@@ -459,14 +459,14 @@ export default function RoomsPage() {
 
                   <CardHeader className="pb-4">
                     <div className="space-y-3">
-                      <h3 className="text-xl font-bold text-white">{room.name}</h3>
+                      <h3 className="text-xl font-bold text-zinc-900 dark:text-white">{room.name}</h3>
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2 text-sm text-zinc-400">
+                        <div className="flex items-center space-x-2 text-sm text-zinc-500 dark:text-zinc-400">
                           <Star className="w-4 h-4 text-yellow-400 fill-current" />
                           <span>{room.rating}</span>
                           <span>({room.reviews} reviews)</span>
                         </div>
-                        <div className="text-sm text-emerald-400 font-medium">
+                        <div className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">
                           {room.groupBenefits}
                         </div>
                       </div>
@@ -474,15 +474,15 @@ export default function RoomsPage() {
                   </CardHeader>
 
                   <CardContent className="space-y-6 flex-1">
-                    <p className="text-zinc-300 leading-relaxed">
+                    <p className="text-zinc-600 dark:text-zinc-300 leading-relaxed">
                       {room.description}
                     </p>
 
                     {/* Amenities */}
                     <div className="grid grid-cols-2 gap-3">
                       {room.amenities.map((amenity, i) => (
-                        <div key={i} className="flex items-center space-x-2 text-sm text-zinc-400">
-                          <amenity.icon className="w-4 h-4 text-emerald-400" />
+                        <div key={i} className="flex items-center space-x-2 text-sm text-zinc-500 dark:text-zinc-400">
+                          <amenity.icon className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                           <span>{amenity.name}</span>
                         </div>
                       ))}
@@ -490,16 +490,16 @@ export default function RoomsPage() {
 
                     {/* Key Features */}
                     <div className="space-y-2">
-                      <h4 className="text-sm font-semibold text-white">Key Features:</h4>
+                      <h4 className="text-sm font-semibold text-zinc-900 dark:text-white">Key Features:</h4>
                       <div className="space-y-1">
                         {room.features.slice(0, 3).map((feature, i) => (
-                          <div key={i} className="flex items-center space-x-2 text-sm text-zinc-300">
-                            <Check className="w-3 h-3 text-emerald-400 flex-shrink-0" />
+                          <div key={i} className="flex items-center space-x-2 text-sm text-zinc-600 dark:text-zinc-300">
+                            <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                             <span>{feature}</span>
                           </div>
                         ))}
                         {room.features.length > 3 && (
-                          <div className="text-xs text-emerald-400">
+                          <div className="text-xs text-emerald-600 dark:text-emerald-400">
                             +{room.features.length - 3} more features
                           </div>
                         )}
@@ -507,9 +507,9 @@ export default function RoomsPage() {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex space-x-3 pt-4 border-t border-zinc-700">
+                    <div className="flex space-x-3 pt-4 border-t border-zinc-200 dark:border-zinc-700">
                       <Button 
-                        className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full"
+                        className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white dark:bg-emerald-600 dark:hover:bg-emerald-500 rounded-full"
                         asChild
                       >
                         <a 
@@ -521,7 +521,7 @@ export default function RoomsPage() {
                           Book Room
                         </a>
                       </Button>
-                      <Button variant="outline" className="rounded-full border-zinc-600 text-zinc-300 hover:bg-zinc-700 hover:border-emerald-400 hover:text-emerald-400 transition-all duration-300">
+                      <Button variant="outline" className="rounded-full border-zinc-300 text-zinc-600 hover:border-emerald-500 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-300 dark:border-zinc-600 dark:text-zinc-300 dark:hover:bg-zinc-700 dark:hover:text-emerald-400">
                         <Eye className="w-4 h-4 mr-1" />
                         Details
                       </Button>
@@ -535,7 +535,7 @@ export default function RoomsPage() {
       </section>
 
       {/* Group Booking Benefits Section */}
-      <section className="py-16 bg-gradient-to-br from-zinc-800 via-zinc-900 to-zinc-800">
+      <section className="py-16 bg-gradient-to-br from-emerald-50 via-white to-emerald-100 dark:from-zinc-800 dark:via-zinc-900 dark:to-zinc-800">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -543,10 +543,10 @@ export default function RoomsPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-white mb-6">
+            <h2 className="text-4xl font-bold text-zinc-900 dark:text-white mb-6">
               Special Benefits for Group Bookings
             </h2>
-            <p className="text-xl text-zinc-300 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-zinc-600 dark:text-zinc-300 max-w-3xl mx-auto mb-8">
               The more rooms you book, the more you save. Enjoy exclusive perks and personalized service for your group stay.
             </p>
           </motion.div>
@@ -579,15 +579,15 @@ export default function RoomsPage() {
                 transition={{ delay: index * 0.2 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5, scale: 1.02 }}
-                className="bg-zinc-800/50 border border-zinc-600/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300"
+                className="bg-white/90 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-600/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-emerald-200/60 dark:hover:shadow-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300"
               >
                 <div className="text-4xl mb-4 text-center">{benefit.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-3 text-center">{benefit.title}</h3>
-                <p className="text-zinc-300 mb-6 text-center">{benefit.description}</p>
+                <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3 text-center">{benefit.title}</h3>
+                <p className="text-zinc-600 dark:text-zinc-300 mb-6 text-center">{benefit.description}</p>
                 <ul className="space-y-2">
                   {benefit.benefits.map((item) => (
-                    <li key={item} className="flex items-center text-sm text-zinc-400">
-                      <Check className="w-4 h-4 text-emerald-400 mr-3 flex-shrink-0" />
+                    <li key={item} className="flex items-center text-sm text-zinc-500 dark:text-zinc-400">
+                      <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mr-3 flex-shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -601,9 +601,9 @@ export default function RoomsPage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-zinc-800/80 backdrop-blur-lg border border-zinc-600/50 rounded-3xl p-8 shadow-xl"
+            className="bg-white/90 dark:bg-zinc-800/80 backdrop-blur-lg border border-zinc-200 dark:border-zinc-600/50 rounded-3xl p-8 shadow-xl"
           >
-            <h3 className="text-2xl font-bold text-white mb-8 text-center">
+            <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-8 text-center">
               Additional Hotel Services
             </h3>
             
@@ -636,11 +636,11 @@ export default function RoomsPage() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="text-center p-6 border border-zinc-600/50 bg-zinc-700/50 backdrop-blur-sm rounded-xl hover:border-emerald-500/50 hover:shadow-emerald-500/20 hover:shadow-md transition-all duration-300"
+                  className="text-center p-6 border border-zinc-200 dark:border-zinc-600/50 bg-white/80 dark:bg-zinc-700/50 backdrop-blur-sm rounded-xl hover:border-emerald-500/60 hover:shadow-emerald-200/60 dark:hover:shadow-emerald-500/20 hover:shadow-md transition-all duration-300"
                 >
-                  <h4 className="font-bold text-lg text-white mb-2">{service.title}</h4>
-                  <p className="text-zinc-300 text-sm mb-4">{service.description}</p>
-                  <div className="text-emerald-400 font-semibold text-sm">{service.price}</div>
+                  <h4 className="font-bold text-lg text-zinc-900 dark:text-white mb-2">{service.title}</h4>
+                  <p className="text-zinc-600 dark:text-zinc-300 text-sm mb-4">{service.description}</p>
+                  <div className="text-emerald-600 dark:text-emerald-400 font-semibold text-sm">{service.price}</div>
                 </motion.div>
               ))}
             </div>
@@ -672,7 +672,7 @@ export default function RoomsPage() {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-emerald-400 text-emerald-300 hover:bg-emerald-500/20 hover:border-emerald-300 px-8 py-4 rounded-full font-semibold backdrop-blur-sm"
+                className="border-emerald-500 text-emerald-600 hover:bg-emerald-100 hover:border-emerald-600 px-8 py-4 rounded-full font-semibold backdrop-blur-sm dark:border-emerald-400 dark:text-emerald-300 dark:hover:bg-emerald-500/20 dark:hover:border-emerald-300"
                 asChild
               >
                 <Link href="/contact">

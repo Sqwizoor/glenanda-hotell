@@ -112,7 +112,7 @@ const journey = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-100 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900">
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
         <motion.div 
@@ -125,13 +125,13 @@ export default function ServicesPage() {
             <Sparkles className="w-5 h-5" />
             <span className="text-sm font-medium tracking-wider uppercase">Premium Hotel Services</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-zinc-900 dark:text-white mb-6">
             Exceptional Services
             <span className="block bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
               For Every Guest
             </span>
           </h1>
-          <p className="text-zinc-400 text-lg max-w-3xl mx-auto leading-relaxed">
+          <p className="text-zinc-600 dark:text-zinc-400 text-lg max-w-3xl mx-auto leading-relaxed">
             From solo business travelers and romantic couples to families and large corporate groups, our comprehensive services ensure every guest experience exceeds expectations.
           </p>
         </motion.div>
@@ -144,10 +144,10 @@ export default function ServicesPage() {
           className="mb-20"
         >
           <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white mb-4">
               Comprehensive Hotel Solutions
             </h2>
-            <p className="text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
               Whether you&apos;re traveling alone, as a couple, with family, or with a large group, we have specialized services to make your stay exceptional.</p>
           </div>
           
@@ -161,7 +161,7 @@ export default function ServicesPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="bg-zinc-800/50 border-zinc-700 hover:bg-zinc-800/70 transition-all duration-300 group overflow-hidden">
+                  <Card className="bg-white/90 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 hover:shadow-lg dark:hover:bg-zinc-800/70 transition-all duration-300 group overflow-hidden">
                     <CardContent className="p-0">
                       <div className="relative h-48 overflow-hidden">
                         <Image
@@ -171,29 +171,29 @@ export default function ServicesPage() {
                           className="object-cover group-hover:scale-110 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/80 to-transparent" />
-                        <div className="absolute top-4 right-4 bg-emerald-500 p-2 rounded-full">
-                          <Icon className="w-5 h-5 text-white" />
+                        <div className="absolute top-4 right-4 bg-white/90 dark:bg-emerald-500 p-2 rounded-full shadow-md">
+                          <Icon className="w-5 h-5 text-emerald-600 dark:text-white" />
                         </div>
-                        <div className="absolute bottom-4 left-4 text-emerald-400 font-semibold">
+                        <div className="absolute bottom-4 left-4 text-emerald-500 dark:text-emerald-400 font-semibold">
                           {service.capacity}
                         </div>
                       </div>
                       
                       <div className="p-6">
-                        <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-                        <p className="text-zinc-400 mb-4">{service.description}</p>
+                        <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">{service.title}</h3>
+                        <p className="text-zinc-600 dark:text-zinc-400 mb-4">{service.description}</p>
                         
                         <div className="grid grid-cols-2 gap-2 mb-6">
                           {service.features.map((feature, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-sm text-zinc-300">
-                              <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                            <div key={idx} className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300">
+                              <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                               {feature}
                             </div>
                           ))}
                         </div>
                         
                         <Link href={`https://wa.me/27123456789?text=I&apos;m interested in ${service.title} services`} target="_blank">
-                          <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white group">
+                          <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white group">
                             Inquire Now
                             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                           </Button>
@@ -215,10 +215,10 @@ export default function ServicesPage() {
           className="mb-20"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white mb-4">
               Core Hotel Amenities
             </h2>
-            <p className="text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
               Essential services and facilities designed to enhance every group member&apos;s stay.
             </p>
           </div>
@@ -233,26 +233,26 @@ export default function ServicesPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="bg-zinc-800/30 border-zinc-700 hover:bg-zinc-800/50 transition-all duration-300 h-full">
+                  <Card className="bg-white/80 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-700 hover:shadow-lg dark:hover:bg-zinc-800/50 transition-all duration-300 h-full">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4 mb-4">
-                        <div className="bg-emerald-500/20 p-3 rounded-xl">
-                          <Icon className="w-6 h-6 text-emerald-400" />
+                        <div className="bg-emerald-500/15 dark:bg-emerald-500/20 p-3 rounded-xl">
+                          <Icon className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                         </div>
                         {amenity.groupFriendly && (
-                          <div className="bg-blue-500/20 px-2 py-1 rounded-full">
-                            <Users className="w-4 h-4 text-blue-400" />
+                          <div className="bg-blue-500/15 dark:bg-blue-500/20 px-2 py-1 rounded-full">
+                            <Users className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                           </div>
                         )}
                       </div>
                       
-                      <h3 className="text-xl font-bold text-white mb-3">{amenity.title}</h3>
-                      <p className="text-zinc-400 mb-4">{amenity.description}</p>
+                      <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">{amenity.title}</h3>
+                      <p className="text-zinc-600 dark:text-zinc-400 mb-4">{amenity.description}</p>
                       
                       <div className="space-y-2">
                         {amenity.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-sm text-zinc-300">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <div key={idx} className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300">
+                            <div className="w-1.5 h-1.5 bg-emerald-500 dark:bg-emerald-400 rounded-full flex-shrink-0" />
                             {feature}
                           </div>
                         ))}
@@ -273,10 +273,10 @@ export default function ServicesPage() {
           className="mb-20"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white mb-4">
               Additional Support Services
             </h2>
-            <p className="text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
               Comprehensive support to ensure your group experience is seamless from start to finish.
             </p>
           </div>
@@ -292,12 +292,12 @@ export default function ServicesPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="text-center"
                 >
-                  <div className="bg-zinc-800/50 rounded-2xl p-6 border border-zinc-700 hover:border-emerald-500/50 transition-all duration-300">
-                    <div className="inline-flex items-center justify-center w-12 h-12 bg-emerald-500/20 rounded-xl mb-4">
-                      <Icon className="w-6 h-6 text-emerald-400" />
+                  <div className="bg-white/85 dark:bg-zinc-800/50 rounded-2xl p-6 border border-zinc-200 dark:border-zinc-700 hover:border-emerald-500/50 transition-all duration-300 shadow-sm">
+                    <div className="inline-flex items-center justify-center w-12 h-12 bg-emerald-500/15 dark:bg-emerald-500/20 rounded-xl mb-4">
+                      <Icon className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                     </div>
-                    <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                    <p className="text-zinc-400 text-sm">{item.text}</p>
+                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">{item.title}</h3>
+                    <p className="text-zinc-600 dark:text-zinc-400 text-sm">{item.text}</p>
                   </div>
                 </motion.div>
               );
@@ -313,10 +313,10 @@ export default function ServicesPage() {
           className="mb-20"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white mb-4">
               Your Group Service Journey
             </h2>
-            <p className="text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
               From initial inquiry to post-event follow-up, we guide you through every step.
             </p>
           </div>
@@ -332,15 +332,15 @@ export default function ServicesPage() {
                   className="relative"
                 >
                   <div className="text-center">
-                    <div className="inline-flex items-center justify-center w-12 h-12 bg-emerald-500 rounded-xl mb-4 font-bold text-white">
+                    <div className="inline-flex items-center justify-center w-12 h-12 bg-emerald-500/90 rounded-xl mb-4 font-bold text-white shadow">
                       {item.step}
                     </div>
-                    <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                    <p className="text-zinc-400 text-sm">{item.desc}</p>
+                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">{item.title}</h3>
+                    <p className="text-zinc-600 dark:text-zinc-400 text-sm">{item.desc}</p>
                   </div>
                   
                   {index < journey.length - 1 && (
-                    <div className="hidden md:block absolute top-6 left-full w-full h-0.5 bg-gradient-to-r from-emerald-500/50 to-zinc-600 transform -translate-y-1/2" />
+                    <div className="hidden md:block absolute top-6 left-full w-full h-0.5 bg-gradient-to-r from-emerald-500/60 to-zinc-300 dark:to-zinc-600 transform -translate-y-1/2" />
                   )}
                 </motion.div>
               ))}
@@ -355,24 +355,24 @@ export default function ServicesPage() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center"
         >
-          <Card className="bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border-emerald-500/30">
+          <Card className="bg-white/90 dark:bg-gradient-to-r dark:from-emerald-500/20 dark:to-teal-500/20 border border-emerald-200 dark:border-emerald-500/30 shadow-xl">
             <CardContent className="p-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              <h3 className="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white mb-4">
                 Ready To Plan Your Group Experience?
               </h3>
-              <p className="text-zinc-300 mb-6 max-w-2xl mx-auto">
+              <p className="text-zinc-600 dark:text-zinc-300 mb-6 max-w-2xl mx-auto">
                 Contact our group services team to discuss your requirements and receive a customized proposal.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href={`https://wa.me/27123456789?text=I&apos;d like to inquire about group services and availability`} target="_blank">
-                  <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white group">
+                  <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white group">
                     <MessageCircle className="w-5 h-5 mr-2" />
                     WhatsApp Inquiry
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
                 <Link href="/contact">
-                  <Button size="lg" variant="outline" className="border-emerald-500 text-emerald-400 hover:bg-emerald-500/10">
+                  <Button size="lg" variant="outline" className="border-emerald-500 text-emerald-600 hover:bg-emerald-100 dark:text-emerald-400 dark:hover:bg-emerald-500/10">
                     <Calendar className="w-5 h-5 mr-2" />
                     Schedule Consultation
                   </Button>

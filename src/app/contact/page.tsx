@@ -138,7 +138,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-100 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900">
       {/* Hero Section */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -156,7 +156,7 @@ export default function ContactPage() {
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent mb-6">
               Contact Glenanda Hotel
             </h1>
-            <p className="text-xl md:text-2xl text-zinc-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-zinc-600 dark:text-zinc-300 max-w-4xl mx-auto leading-relaxed">
               Ready to plan your stay? Whether you&apos;re traveling solo, as a couple, with family, or organizing a group event, 
               our dedicated team is here to help make your experience exceptional.
             </p>
@@ -165,7 +165,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Methods */}
-      <section className="py-20 border-b border-zinc-700/50">
+  <section className="py-20 border-b border-emerald-100 dark:border-zinc-700/50">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -173,10 +173,10 @@ export default function ContactPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white mb-4">
               Get In Touch
             </h2>
-            <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
+            <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto">
               Multiple ways to connect with our hospitality team for all your needs.
             </p>
           </motion.div>
@@ -191,30 +191,30 @@ export default function ContactPage() {
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.02 }}
               >
-                <Card className="bg-zinc-800/50 border-zinc-700 hover:bg-zinc-800/70 hover:border-emerald-500/50 transition-all duration-300 h-full">
+                <Card className="bg-white/90 dark:bg-zinc-800/50 border border-emerald-100 dark:border-zinc-700 hover:shadow-lg hover:border-emerald-400/60 transition-all duration-300 h-full">
                   <CardContent className="p-6 text-center space-y-4">
-                    <div className="w-12 h-12 mx-auto rounded-full bg-emerald-500/20 flex items-center justify-center">
-                      <method.icon className="w-6 h-6 text-emerald-400" />
+                    <div className="w-12 h-12 mx-auto rounded-full bg-emerald-500/15 dark:bg-emerald-500/20 flex items-center justify-center">
+                      <method.icon className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                     </div>
-                    <h3 className="text-xl font-bold text-white">
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-white">
                       {method.title}
                     </h3>
-                    <p className="text-zinc-400 text-sm">
+                    <p className="text-zinc-600 dark:text-zinc-400 text-sm">
                       {method.description}
                     </p>
                     <div className="space-y-2">
                       {method.link ? (
-                        <Link href={method.link} target="_blank" className="text-emerald-400 hover:text-emerald-300 transition-colors font-semibold block">
+                        <Link href={method.link} target="_blank" className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 transition-colors font-semibold block">
                           {method.contact}
                         </Link>
                       ) : (
-                        <div className="text-emerald-400 font-semibold">{method.contact}</div>
+                        <div className="text-emerald-600 dark:text-emerald-400 font-semibold">{method.contact}</div>
                       )}
-                      <div className="text-zinc-500 text-xs">{method.availability}</div>
+                      <div className="text-zinc-500 text-xs dark:text-zinc-500">{method.availability}</div>
                     </div>
                     {method.link && (
                       <Link href={method.link} target="_blank">
-                        <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white w-full">
+                        <Button size="sm" className="bg-emerald-600 hover:bg-emerald-500 text-white w-full dark:hover:bg-emerald-700">
                           Contact Now
                         </Button>
                       </Link>
@@ -237,12 +237,12 @@ export default function ContactPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-zinc-800/50 border-zinc-700">
+              <Card className="bg-white/95 dark:bg-zinc-800/50 border border-emerald-100 dark:border-zinc-700 shadow-xl">
                 <CardHeader>
-                  <CardTitle className="text-3xl font-bold text-white text-center">
+                  <CardTitle className="text-3xl font-bold text-zinc-900 dark:text-white text-center">
                     Send Us a Message
                   </CardTitle>
-                  <p className="text-zinc-400 text-center">
+                  <p className="text-zinc-600 dark:text-zinc-400 text-center">
                     Fill out the form below and we&apos;ll get back to you promptly
                   </p>
                 </CardHeader>
@@ -251,7 +251,7 @@ export default function ContactPage() {
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-zinc-300 text-sm font-medium mb-2">
+                          <label className="block text-zinc-700 dark:text-zinc-300 text-sm font-medium mb-2">
                             Name *
                           </label>
                           <Input
@@ -259,12 +259,12 @@ export default function ContactPage() {
                             value={formData.name}
                             onChange={handleInputChange}
                             placeholder="Your full name"
-                            className="bg-zinc-900/50 border-zinc-600 text-white placeholder:text-zinc-500"
+                            className="bg-white/80 dark:bg-zinc-900/50 border border-emerald-100 dark:border-zinc-600 text-zinc-800 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
                             required
                           />
                         </div>
                         <div>
-                          <label className="block text-zinc-300 text-sm font-medium mb-2">
+                          <label className="block text-zinc-700 dark:text-zinc-300 text-sm font-medium mb-2">
                             Email *
                           </label>
                           <Input
@@ -273,7 +273,7 @@ export default function ContactPage() {
                             value={formData.email}
                             onChange={handleInputChange}
                             placeholder="your@email.com"
-                            className="bg-zinc-900/50 border-zinc-600 text-white placeholder:text-zinc-500"
+                            className="bg-white/80 dark:bg-zinc-900/50 border border-emerald-100 dark:border-zinc-600 text-zinc-800 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
                             required
                           />
                         </div>
@@ -281,7 +281,7 @@ export default function ContactPage() {
 
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-zinc-300 text-sm font-medium mb-2">
+                          <label className="block text-zinc-700 dark:text-zinc-300 text-sm font-medium mb-2">
                             Phone
                           </label>
                           <Input
@@ -289,18 +289,18 @@ export default function ContactPage() {
                             value={formData.phone}
                             onChange={handleInputChange}
                             placeholder="+27 XX XXX XXXX"
-                            className="bg-zinc-900/50 border-zinc-600 text-white placeholder:text-zinc-500"
+                            className="bg-white/80 dark:bg-zinc-900/50 border border-emerald-100 dark:border-zinc-600 text-zinc-800 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
                           />
                         </div>
                         <div>
-                          <label className="block text-zinc-300 text-sm font-medium mb-2">
+                          <label className="block text-zinc-700 dark:text-zinc-300 text-sm font-medium mb-2">
                             Inquiry Type
                           </label>
                           <select
                             name="inquiryType"
                             value={formData.inquiryType}
                             onChange={handleInputChange}
-                            className="w-full h-9 rounded-md border border-zinc-600 bg-zinc-900/50 px-3 py-1 text-white text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                            className="w-full h-11 rounded-xl border border-emerald-100 dark:border-zinc-600 bg-white/80 dark:bg-zinc-900/50 px-3 py-2 text-zinc-800 dark:text-white text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-400/60"
                           >
                             <option value="general">General Inquiry</option>
                             <option value="group">Group Booking</option>
@@ -314,7 +314,7 @@ export default function ContactPage() {
                       {(formData.inquiryType === 'group' || formData.inquiryType === 'event') && (
                         <div className="grid md:grid-cols-2 gap-6">
                           <div>
-                            <label className="block text-zinc-300 text-sm font-medium mb-2">
+                            <label className="block text-zinc-700 dark:text-zinc-300 text-sm font-medium mb-2">
                               Group Size
                             </label>
                             <Input
@@ -322,11 +322,11 @@ export default function ContactPage() {
                               value={formData.groupSize}
                               onChange={handleInputChange}
                               placeholder="Number of guests"
-                              className="bg-zinc-900/50 border-zinc-600 text-white placeholder:text-zinc-500"
+                              className="bg-white/80 dark:bg-zinc-900/50 border border-emerald-100 dark:border-zinc-600 text-zinc-800 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
                             />
                           </div>
                           <div>
-                            <label className="block text-zinc-300 text-sm font-medium mb-2">
+                            <label className="block text-zinc-700 dark:text-zinc-300 text-sm font-medium mb-2">
                               Event Date
                             </label>
                             <Input
@@ -334,14 +334,14 @@ export default function ContactPage() {
                               type="date"
                               value={formData.eventDate}
                               onChange={handleInputChange}
-                              className="bg-zinc-900/50 border-zinc-600 text-white"
+                              className="bg-white/80 dark:bg-zinc-900/50 border border-emerald-100 dark:border-zinc-600 text-zinc-800 dark:text-white"
                             />
                           </div>
                         </div>
                       )}
 
                       <div>
-                        <label className="block text-zinc-300 text-sm font-medium mb-2">
+                        <label className="block text-zinc-700 dark:text-zinc-300 text-sm font-medium mb-2">
                           Subject *
                         </label>
                         <Input
@@ -349,13 +349,13 @@ export default function ContactPage() {
                           value={formData.subject}
                           onChange={handleInputChange}
                           placeholder="Brief subject line"
-                          className="bg-zinc-900/50 border-zinc-600 text-white placeholder:text-zinc-500"
+                          className="bg-white/80 dark:bg-zinc-900/50 border border-emerald-100 dark:border-zinc-600 text-zinc-800 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500"
                           required
                         />
                       </div>
 
                       <div>
-                        <label className="block text-zinc-300 text-sm font-medium mb-2">
+                        <label className="block text-zinc-700 dark:text-zinc-300 text-sm font-medium mb-2">
                           Message *
                         </label>
                         <textarea
@@ -364,7 +364,7 @@ export default function ContactPage() {
                           onChange={handleInputChange}
                           placeholder="Tell us about your requirements..."
                           rows={6}
-                          className="w-full rounded-md border border-zinc-600 bg-zinc-900/50 px-3 py-2 text-white text-sm transition-colors placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-emerald-400 resize-none"
+                          className="w-full rounded-xl border border-emerald-100 dark:border-zinc-600 bg-white/80 dark:bg-zinc-900/50 px-4 py-3 text-zinc-800 dark:text-white text-sm transition-colors placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-400/60 resize-none"
                           required
                         />
                       </div>
@@ -373,7 +373,7 @@ export default function ContactPage() {
                         <Button
                           type="submit"
                           disabled={isSubmitting}
-                          className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-3 group"
+                          className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white py-3 group"
                         >
                           {isSubmitting ? (
                             <>
@@ -390,7 +390,7 @@ export default function ContactPage() {
                         </Button>
                         
                         <Link href="https://wa.me/27603114115?text=Hello, I'd like to inquire about your services" target="_blank">
-                          <Button type="button" variant="outline" className="border-emerald-500 text-emerald-400 hover:bg-emerald-500/10 px-6">
+                          <Button type="button" variant="outline" className="border-emerald-500 text-emerald-600 hover:bg-emerald-100 px-6 dark:text-emerald-400 dark:hover:bg-emerald-500/10">
                             <MessageCircle className="w-4 h-4" />
                           </Button>
                         </Link>

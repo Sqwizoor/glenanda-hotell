@@ -17,7 +17,7 @@ const spaPackages = [
     price: "From R850 per person",
     popular: true,
     category: "individual",
-    image: "/bath.jpeg",
+  image: "/new-massages2.jpeg",
     treatments: ["Full body massage", "Facial treatment", "Aromatherapy session", "Refreshment included"],
     description: "Escape into tranquility with our personalized spa experience designed for ultimate relaxation and rejuvenation."
   },
@@ -29,7 +29,7 @@ const spaPackages = [
     price: "R1,254 for two",
     popular: true,
     category: "couples",
-    image: "/bath2.jpeg",
+  image: "/new-massages3.jpeg",
     treatments: ["Comfortable room accommodation", "1-hour Swedish massage each", "Private relaxation suite", "Welcome refreshments"],
     description: "Perfect couples getaway combining comfortable accommodation with relaxing Swedish massage treatments."
   },
@@ -41,7 +41,7 @@ const spaPackages = [
     price: "From R650 per person",
     popular: false,
     category: "group",
-    image: "/group12.jpeg",
+  image: "/new-massages4.jpeg",
     treatments: ["Group massage session", "Mini facials", "Manicure & pedicure", "Healthy spa lunch"],
     description: "Celebrate friendship with a fun and relaxing spa day designed for groups of 3-6 people."
   },
@@ -53,7 +53,7 @@ const spaPackages = [
     price: "From R450 per person",
     popular: false,
     category: "individual",
-    image: "/bathroom3.jpeg",
+  image: "/new-massages5.jpeg",
     treatments: ["Express massage", "Mini facial", "Scalp treatment", "Relaxation time"],
     description: "Perfect for busy schedules - get refreshed and revitalized in under 2 hours."
   },
@@ -65,7 +65,7 @@ const spaPackages = [
     price: "From R1,600",
     popular: true,
     category: "couples",
-    image: "/massage-spa2.jpeg",
+  image: "/new-massages6.jpeg",
     treatments: ["Luxury room accommodation", "Couples massage session", "Romantic dinner setup", "Champagne & chocolate treats"],
     description: "Create unforgettable romantic memories with luxury accommodation and intimate spa treatments."
   },
@@ -77,7 +77,7 @@ const spaPackages = [
     price: "From R2,000",
     popular: true,
     category: "couples",
-    image: "/massage-spa3.jpeg",
+  image: "/new-massages7.jpeg",
     treatments: ["Premium suite accommodation", "Full spa day for two", "Anniversary dinner", "Special amenities & surprises"],
     description: "Mark your special milestone with our comprehensive anniversary celebration package."
   },
@@ -89,7 +89,7 @@ const spaPackages = [
     price: "From R2,500",
     popular: true,
     category: "couples",
-    image: "/massage-spa4.jpeg",
+  image: "/new-massages8.jpeg",
     treatments: ["Honeymoon suite", "Multiple spa treatments", "Romantic dining experiences", "Personalized concierge service"],
     description: "Begin your married life with our ultimate honeymoon experience featuring luxury accommodation and exclusive treatments."
   }
@@ -207,7 +207,7 @@ export default function TreatmentsPage() {
         {/* Parallax Background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/bath2.jpeg"
+            src="/new-massages10.jpeg"
             alt="Luxury spa experience"
             fill
             className="object-cover"
@@ -610,12 +610,12 @@ export default function TreatmentsPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { image: "/bath.jpeg", title: "Relaxation Suites", description: "Private treatment rooms with ambient lighting" },
-              { image: "/bath2.jpeg", title: "Couples Sanctuary", description: "Shared wellness experiences in luxury" },
-              { image: "/group11.jpeg", title: "Group Wellness Areas", description: "Spacious areas for small group treatments" },
-              { image: "/bathroom3.jpeg", title: "Premium Facilities", description: "State-of-the-art wellness amenities" },
-              { image: "/gesta.jpeg", title: "Peaceful Ambiance", description: "Serene environment for ultimate relaxation" },
-              { image: "/niceview.jpeg", title: "Scenic Views", description: "Beautiful vistas to enhance your experience" }
+              { image: "/new-massages.jpeg", title: "Relaxation Suites", description: "Private treatment rooms with ambient lighting" },
+              { image: "/new-massages3.jpeg", title: "Couples Sanctuary", description: "Shared wellness experiences in luxury" },
+              { image: "/new-massages4.jpeg", title: "Group Wellness Areas", description: "Spacious areas for small group treatments" },
+              { image: "/new-massages6.jpeg", title: "Premium Facilities", description: "State-of-the-art wellness amenities" },
+              { image: "/new-massages8.jpeg", title: "Peaceful Ambiance", description: "Serene environment for ultimate relaxation" },
+              { image: "/new-massages9.jpeg", title: "Scenic Views", description: "Beautiful vistas to enhance your experience" }
             ].map((item, i) => (
               <motion.div
                 key={i}

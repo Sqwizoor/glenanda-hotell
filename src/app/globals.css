@@ -1,26 +1,48 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fefefe;
-  --foreground: #1a1a1a;
-  --card: #ffffff;
-  --card-foreground: #1a1a1a;
-  --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --primary: #10b981;
-  --primary-foreground: #ffffff;
-  --secondary: #f8fafc;
-  --secondary-foreground: #475569;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #ecfdf5;
-  --accent-foreground: #065f46;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #f1f5f9;
-  --ring: #10b981;
+  --background: 210 40% 98%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --primary: 172 70% 46%;
+  --primary-foreground: 222 47% 11%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 173 80% 40%;
+  --accent-foreground: 185 96% 95%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 172 70% 46%;
   --radius: 12px;
+}
+
+.dark {
+  --background: 222 63% 10%;
+  --foreground: 210 40% 96%;
+  --card: 222 47% 13%;
+  --card-foreground: 210 40% 96%;
+  --popover: 222 47% 13%;
+  --popover-foreground: 210 40% 96%;
+  --primary: 172 70% 46%;
+  --primary-foreground: 222 47% 10%;
+  --secondary: 222 47% 16%;
+  --secondary-foreground: 215 20% 72%;
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 72%;
+  --accent: 174 80% 32%;
+  --accent-foreground: 185 96% 95%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 217 33% 17%;
+  --input: 217 33% 17%;
+  --ring: 172 70% 46%;
 }
 
 * {
@@ -33,8 +55,8 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
   font-family: var(--font-exo2, 'Inter', system-ui, sans-serif);
   font-feature-settings: "rlig" 1, "calt" 1;
   min-height: 100vh;
@@ -57,10 +79,10 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.05) 0%, transparent 50%);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(20, 184, 166, 0.15) 0%, transparent 55%),
+    radial-gradient(circle at 80% 25%, rgba(56, 189, 248, 0.1) 0%, transparent 55%),
+    radial-gradient(circle at 50% 80%, rgba(15, 118, 110, 0.08) 0%, transparent 60%);
   pointer-events: none;
   z-index: -1;
 }
@@ -162,7 +184,11 @@ body::before {
 
 /* Modern skincare aesthetic */
 .skincare-gradient {
-  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 50%, #fefefe 100%);
+  background: linear-gradient(140deg, rgba(19, 78, 74, 0.1) 0%, rgba(34, 211, 238, 0.12) 45%, rgba(241, 245, 249, 0.95) 100%);
+}
+
+.dark .skincare-gradient {
+  background: linear-gradient(140deg, rgba(15, 118, 110, 0.12) 0%, rgba(30, 64, 175, 0.12) 50%, rgba(11, 17, 32, 0.92) 100%);
 }
 
 .video-container {
