@@ -514,135 +514,127 @@ export default function HomePage() {
     <div className="overflow-hidden">
 
       {/* Modern Hero Section — Enhanced with better mobile responsiveness */}
-  <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-20">
-        {/* Enhanced Background slideshow with better mobile optimization */}
-        <Slideshow images={["/room14.jpeg","/soccer3.jpeg","/brai2.jpeg","/room6.jpeg","/soccer-dining.jpeg","/niceview.jpeg","/brai4.jpeg","/soccer11.jpeg","/room11.jpeg","/soccer-dining4.jpeg"]} />
-        
-        {/* Enhanced overlay with better gradients */}
-  <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/25 dark:from-slate-950/90 dark:via-slate-900/70 dark:to-slate-950/80" />
-  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25 dark:from-slate-950/85 dark:via-transparent dark:to-slate-900/45" />
+      {/* Modern Hero Section — Enhanced with Video Background & Mother's Day Promotion */}
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-20">
+        {/* Video Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/massage-spa.jpeg"
+            className="absolute inset-0 w-full h-full object-cover scale-[1.02]"
+          >
+            <source src="/video.mp4" type="video/mp4" />
+          </video>
+          {/* Enhanced overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50 dark:bg-black/70 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
+        </div>
         
         {/* Dynamic floating elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/6 w-64 h-64 bg-emerald-500/12 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-cyan-500/12 rounded-full blur-3xl animate-pulse delay-1000" />
-          <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-sky-400/10 rounded-full blur-3xl animate-pulse delay-2000" />
+          <div className="absolute top-1/4 left-1/6 w-64 h-64 bg-rose-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
         </div>
         
-        {/* Enhanced Content with better responsive design */}
+        {/* Enhanced Content with Mother's Day Special */}
         <motion.div
           initial={{ opacity:0, y:40 }}
           animate={{ opacity:1, y:0 }}
           transition={{ duration:1.2, ease:[0.16,1,0.3,1] }}
-          className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
+          className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-12"
         >
-          <div className="max-w-6xl mx-auto text-center">
-            {/* Enhanced Badge with animation */}
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Special Event Badge */}
             <motion.div
-              className="inline-flex items-center space-x-2 sm:space-x-3 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-black/35 dark:bg-black/20 backdrop-blur-xl border border-white/10 text-emerald-100 dark:text-white/90 mb-2 sm:mb-4 shadow-lg"
+              className="inline-flex items-center space-x-2 px-6 py-2.5 rounded-full bg-rose-500/20 backdrop-blur-xl border border-rose-400/30 text-rose-100 mb-6 shadow-xl"
               initial={{ opacity:0, y:20, scale: 0.9 }}
               animate={{ opacity:1, y:0, scale: 1 }}
-              transition={{ delay:0.3, duration:0.8, ease:[0.22, 1, 0.36, 1] }}
-              whileHover={{ scale: 1.05 }}
+              transition={{ delay:0.3, duration:0.8 }}
             >
-              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-300 dark:text-emerald-400 animate-pulse" />
-              <span className="text-xs sm:text-sm tracking-[0.15em] font-semibold">GLENANDA LUXURY HOTEL</span>
+              <Heart className="w-4 h-4 text-rose-300 animate-pulse" />
+              <span className="text-xs sm:text-sm tracking-[0.2em] font-bold uppercase">Mother&apos;s Day Special</span>
             </motion.div>
             
-            {/* Enhanced Main Heading with better typography */}
+            {/* Main Heading */}
             <motion.h1
               initial={{ opacity:0, y:30 }}
               animate={{ opacity:1, y:0 }}
-              transition={{ delay:0.5, duration:1, ease:[0.22, 1, 0.36, 1] }}
-              className="font-bold leading-[0.95] text-white dark:text-white mb-2 sm:mb-3 drop-shadow-lg"
+              transition={{ delay:0.5, duration:1 }}
+              className="font-serif font-bold text-white mb-6 drop-shadow-2xl"
               style={{
-                fontSize: 'clamp(1.5rem, 6vw, 3.5rem)',
-                lineHeight: 'clamp(1.7rem, 6.5vw, 3.8rem)'
+                fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
+                lineHeight: '1.1'
               }}
             >
-              <span className="block">Unforgettable Experiences</span>
-              <span className="block">for Every Guest</span>
-              <motion.span 
-                className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-cyan-500 to-teal-500 dark:from-emerald-300 dark:via-cyan-200 dark:to-emerald-100 font-light tracking-wide"
-                style={{ fontSize: 'clamp(0.875rem, 3vw, 1.5rem)' }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 0.8 }}
-              >
-                Solo travelers, couples, families, sports teams & corporate groups
-              </motion.span>
+              Come & Celebrate <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-200 via-rose-100 to-white">Mother&apos;s Day With Us</span>
             </motion.h1>
             
-            {/* Enhanced description */}
-            <motion.p
+            {/* Promotion Details Grid */}
+            <motion.div 
               initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
-              transition={{ delay:0.8, duration:0.8 }}
-              className="mt-2 sm:mt-3 text-white/85 dark:text-slate-200/90 max-w-3xl mx-auto leading-relaxed"
-              style={{ fontSize: 'clamp(0.8rem, 2vw, 1.1rem)' }}
+              transition={{ delay:0.7, duration:0.8 }}
+              className="mb-10 inline-block text-left"
             >
-              Premium accommodation in South Johannesburg with fibre Wi‑Fi, on-site security, executive transport and a concierge team who tailor every stay for business travellers, couples, families, sports teams and corporate groups.
-            </motion.p>
-            <motion.div
-              initial={{ opacity:0, y:20 }}
-              animate={{ opacity:1, y:0 }}
-              transition={{ delay:1.1, duration:0.7 }}
-              className="mt-3 sm:mt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
-            >
-              <Link href="/rooms" className="group relative w-full sm:w-auto">
-                <Button 
-                  size="lg" 
-                  className="w-full sm:w-auto rounded-full px-4 sm:px-8 py-2.5 sm:py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-xl shadow-emerald-900/15 dark:shadow-emerald-900/40 hover:shadow-emerald-500/30 transform hover:scale-105 transition-all duration-300"
-                  style={{ fontSize: 'clamp(0.8rem, 1.6vw, 1rem)' }}
-                >
-                  <Eye className="mr-2 w-4 h-4" />
-                  Explore Rooms
-                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
-              <Link href="/contact" className="w-full sm:w-auto">
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="w-full sm:w-auto rounded-full px-4 sm:px-8 py-2.5 sm:py-4 border-2 border-white/60 text-white hover:bg-white/10 hover:border-white dark:border-white/40 dark:text-white dark:hover:bg-white/10 dark:hover:border-white/60 backdrop-blur-sm font-semibold transition-all duration-300"
-                  style={{ fontSize: 'clamp(0.8rem, 1.6vw, 1rem)' }}
-                >
-                  <Users className="mr-2 w-4 h-4" />
-                  Book Your Stay
-                </Button>
-              </Link>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-4 text-white/90">
+                <div className="flex items-center space-x-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-rose-400" />
+                  <span className="text-lg font-medium">60m Full Body Massage + Hot Stones</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-rose-400" />
+                  <span className="text-lg font-medium">45m Foot Soak, Filing & Scrub</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-rose-400" />
+                  <span className="text-lg font-medium">Bottle of Premium Wine</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-rose-400" />
+                  <span className="text-lg font-medium">Gourmet Light Snacks</span>
+                </div>
+              </div>
             </motion.div>
-            
-            {/* Enhanced Stats Grid with better mobile responsive design */}
+
+            {/* Price & CTA */}
             <motion.div
               initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
-              transition={{ delay:1.4 }}
-              className="mt-3 sm:mt-6 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-4 max-w-4xl mx-auto"
+              transition={{ delay:0.9, duration:0.7 }}
+              className="flex flex-col items-center space-y-8"
             >
-              {[
-                {label:'Accommodations', value:'50+ Rooms', icon: '🏨'},
-                {label:'All Guest Types', value:'1-200 People', icon: '👥'},
-                {label:'Sports Teams', value:'⚽ Welcome', icon: '🏆'},
-                {label:'Support', value:'24/7 Service', icon: '🔧'}
-              ].map((stat, index) => (
-                <motion.div 
-                  key={stat.label} 
-                  className="text-center p-2 sm:p-3 rounded-xl bg-white/85 dark:bg-white/5 backdrop-blur-lg border border-emerald-100 dark:border-white/10 hover:bg-emerald-50 dark:hover:bg-white/10 hover:border-emerald-300 dark:hover:border-emerald-400/30 transition-all duration-300 group"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1.4 + index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="text-lg sm:text-2xl mb-1 group-hover:scale-110 transition-transform">{stat.icon}</div>
-                  <div className="font-bold text-emerald-700 dark:text-white mb-1" style={{ fontSize: 'clamp(0.8rem, 2vw, 1.1rem)' }}>
-                    {stat.value}
-                  </div>
-                  <div className="text-slate-600 dark:text-white/60 font-medium" style={{ fontSize: 'clamp(0.65rem, 1.6vw, 0.8rem)' }}>
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
+              <div className="relative">
+                <div className="absolute -inset-4 bg-white/10 blur-xl rounded-full" />
+                <div className="relative text-4xl sm:text-5xl font-bold text-white tracking-tight">
+                  <span className="text-rose-300 mr-2 text-2xl font-normal tracking-wide">R</span>
+                  1,450 <span className="text-xl font-normal text-white/70">for two people</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+                <Link href="/contact" className="w-full sm:w-auto group">
+                  <Button 
+                    size="lg" 
+                    className="w-full sm:w-auto rounded-full px-12 py-7 bg-rose-500 hover:bg-rose-600 text-white font-bold shadow-2xl shadow-rose-900/40 transform hover:scale-105 transition-all duration-300 text-lg"
+                  >
+                    <Calendar className="mr-3 w-5 h-5" />
+                    Book Experience
+                  </Button>
+                </Link>
+                <Link href="/rooms" className="w-full sm:w-auto">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="w-full sm:w-auto rounded-full px-10 py-7 border-2 border-white/40 text-white hover:bg-white/10 backdrop-blur-md font-semibold transition-all duration-300 text-lg"
+                  >
+                    View Packages
+                  </Button>
+                </Link>
+              </div>
             </motion.div>
           </div>
         </motion.div>
