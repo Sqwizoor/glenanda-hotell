@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { 
   Wifi, 
-  Zap, 
   Star, 
   Users, 
   Bed, 
@@ -208,7 +207,7 @@ const filterOptions = [
 
 export default function RoomsPage() {
   const [selectedFilter, setSelectedFilter] = useState("all");
-  const [hoveredRoom, setHoveredRoom] = useState<number | null>(null);
+  const [hoveredRoom, setHoveredRoom] = useState<number | null>(null); // eslint-disable-line no-unused-vars
   const heroRef = useRef(null);
   
   const { scrollYProgress } = useScroll({

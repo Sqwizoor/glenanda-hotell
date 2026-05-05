@@ -11,7 +11,6 @@ import {
   Calendar,
   ArrowRight,
   Shield,
-  Zap,
   CheckCircle,
   Leaf,
   Beaker,
