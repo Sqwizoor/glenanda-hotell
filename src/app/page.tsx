@@ -457,40 +457,7 @@ function LazyVideo({
   );
 }
 
-// Simple crossfade slideshow background component
-function Slideshow({ images, interval = 6000 }: { images: string[]; interval?: number }) {
-  const [index, setIndex] = React.useState(0);
-  React.useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % images.length);
-    }, interval);
-    return () => clearInterval(id);
-  }, [images.length, interval]);
-  return (
-    <div className="absolute inset-0">
-      {images.map((src, i) => (
-        <motion.div
-          key={src + i}
-          className="absolute inset-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: i === index ? 1 : 0 }}
-          transition={{ duration: 1.4, ease: 'easeInOut' }}
-          style={{ pointerEvents: 'none' }}
-        >
-          <Image
-            src={src}
-            alt="Hero background"
-            fill
-            priority={i === 0}
-            sizes="100vw"
-            className="object-cover object-center will-change-transform"
-          />
-        </motion.div>
-      ))}
-  <div className="absolute inset-0 bg-black/45 dark:bg-black/65" />
-    </div>
-  );
-}
+
 
 export default function HomePage() {
   const heroRef = useRef(null);
@@ -1715,7 +1682,7 @@ export default function HomePage() {
                 services: ["Sports Massage", "Ice Baths", "Sauna Access", "Physio Support"],
                 image: "/new-massages8.jpeg"
               }
-            ].map((service, index) => (
+            ].map((service) => (
               <motion.div
                 key={service.title}
                 variants={itemFadeUp}
@@ -1805,7 +1772,7 @@ export default function HomePage() {
                 { icon: "🍴", title: "Sports Nutrition", subtitle: "Expert Menus" },
                 { icon: "🛡️", title: "Private Floors", subtitle: "Team Security" },
                 { icon: "🚌", title: "Transport", subtitle: "Included" }
-              ].map((feature, index) => (
+              ].map((feature) => (
                 <motion.div
                   key={feature.title}
                   variants={itemFadeUp}

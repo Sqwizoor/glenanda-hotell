@@ -17,10 +17,7 @@ import {
   MapPin,
   Coffee,
   Wifi,
-  BedDouble,
-  Clock,
-  UtensilsCrossed,
-  Trees
+  BedDouble
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
