@@ -660,6 +660,101 @@ export default function HomePage() {
           </motion.div>
         </motion.div>
       </section>
+      
+      {/* Signature Massage Treatments Section */}
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0">
+          <Image 
+            src="/massage-spa6.jpeg" 
+            alt="Spa Background" 
+            fill 
+            className="object-cover scale-105"
+          />
+          <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950" />
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-bold tracking-widest uppercase mb-4">
+              Pure Relaxation
+            </span>
+            <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6">
+              Signature Massage <span className="text-emerald-400">Treatments</span>
+            </h2>
+            <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full" />
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: "Full Body Massage", duration: "60 Minutes", price: "600", icon: Heart },
+              { title: "Full Body Massage", duration: "90 Minutes", price: "700", icon: Sparkles },
+              { title: "Hot Stone Massage", duration: "60 Minutes", price: "650", icon: Award },
+              { title: "Hot Stone Massage", duration: "90 Minutes", price: "750", icon: Crown },
+              { title: "Back & Indian Head", duration: "30 Minutes", price: "400", icon: Shield },
+              { title: "Foot Filling & Reflexology", duration: "45 Minutes", price: "350", icon: Sparkles },
+            ].map((service, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                whileHover={{ y: -5 }}
+                className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-emerald-500/50 transition-all duration-300"
+              >
+                <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <service.icon className="w-16 h-16 text-white" />
+                </div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-10 h-10 rounded-2xl bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
+                      <service.icon className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    <span className="text-emerald-400/80 text-sm font-medium flex items-center">
+                      <Clock className="w-3.5 h-3.5 mr-1.5" />
+                      {service.duration}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-white mb-6 group-hover:text-emerald-300 transition-colors">
+                    {service.title}
+                  </h3>
+                  
+                  <div className="flex items-baseline space-x-1">
+                    <span className="text-emerald-400 text-sm font-medium">R</span>
+                    <span className="text-3xl font-bold text-white">{service.price}</span>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.8 }}
+            className="mt-16 text-center"
+          >
+            <Link href="/contact">
+              <Button className="rounded-full px-10 py-6 bg-white text-slate-950 hover:bg-emerald-50 font-bold transition-all hover:scale-105 shadow-xl shadow-white/5">
+                Book Your Treatment
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Accommodation Packages Section */}
       <section className="section-padding bg-slate-50 dark:bg-slate-950">
