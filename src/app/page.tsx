@@ -20,9 +20,10 @@ import {
   UtensilsCrossed,
   Dumbbell,
   Eye,
-  Phone
+  Phone,
+  BedDouble
 } from "lucide-react";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
@@ -122,11 +123,40 @@ const LightboxProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// Carousel component for gallery
+// Interactive category filter tabs for Hotel Gallery & Experiences
+const galleryCategories = [
+  { id: 'all', label: 'All Experiences', icon: Sparkles },
+  { id: 'dining', label: 'Dining & Catering', icon: UtensilsCrossed },
+  { id: 'groups', label: 'Group Events & Social', icon: Users },
+  { id: 'rooms', label: 'Rooms & Suites', icon: BedDouble },
+  { id: 'wellness', label: 'Spa & Wellness', icon: Heart },
+] as const;
+
+type GalleryCategory = typeof galleryCategories[number]['id'];
+
+// Cool, modern Hotel Gallery & Experiences Carousel with interactive filters
 function GalleryCarousel() {
+  const [activeCategory, setActiveCategory] = useState<GalleryCategory>('all');
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start', dragFree: false });
   const { open } = useLightbox();
   const [selected, setSelected] = useState(0);
+
+  // Map each item to include its original index in resultsMedia for perfect lightbox sync
+  const itemsWithIndex = useMemo(() => {
+    return resultsMedia.map((item, originalIndex) => ({
+      ...item,
+      originalIndex,
+      category: item.src.includes('spa') || item.src.includes('massage') ? 'wellness' :
+                (item.src.includes('dining') || item.src.includes('breakfast') || item.src.includes('catering') || item.src.includes('kitchen')) ? 'dining' :
+                (item.src.includes('group') || item.src.includes('lounge') || item.src.includes('conference') || item.src.includes('soccer')) ? 'groups' :
+                item.src.includes('room') ? 'rooms' : 'all'
+    }));
+  }, []);
+
+  const filteredItems = useMemo(() => {
+    if (activeCategory === 'all') return itemsWithIndex;
+    return itemsWithIndex.filter(item => item.category === activeCategory);
+  }, [activeCategory, itemsWithIndex]);
 
   const scrollTo = useCallback((i: number) => emblaApi && emblaApi.scrollTo(i), [emblaApi]);
 
@@ -141,107 +171,167 @@ function GalleryCarousel() {
     onSelect();
   }, [emblaApi, onSelect]);
 
+  // Reset carousel position when category changes
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.scrollTo(0);
+      setSelected(0);
+    }
+  }, [activeCategory, emblaApi]);
+
   return (
     <div className="relative" aria-label="Hotel Gallery carousel">
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-6">
-          {resultsMedia.map((item, idx) => {
-            // Determine content type for badge
-            const contentType = item.src.includes('spa') ? 'Spa & Wellness' :
-                               (item.src.includes('group') || item.src.includes('lounge') || item.src.includes('conference')) ? 'Group Events' :
-                               item.src.includes('room') ? 'Accommodations' :
-                               (item.src.includes('dining') || item.src.includes('breakfast') || item.src.includes('catering') || item.src.includes('kitchen')) ? 'Dining' :
-                               'Hotel Amenities';
-            
-            const badgeColor = item.src.includes('spa') ? 'bg-emerald-500' :
-                              (item.src.includes('group') || item.src.includes('lounge') || item.src.includes('conference')) ? 'bg-purple-500' :
-                              item.src.includes('room') ? 'bg-blue-500' :
-                              (item.src.includes('dining') || item.src.includes('breakfast') || item.src.includes('catering') || item.src.includes('kitchen')) ? 'bg-amber-500' :
-                              'bg-gray-500';
-            
-            return (
-              <motion.div
-                key={item.src}
-                className="relative min-w-[80%] sm:min-w-[55%] md:min-w-[40%] lg:min-w-[30%] aspect-[4/3] overflow-hidden rounded-2xl shadow-lg group cursor-pointer"
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                onClick={() => open(idx)}
-              >
-                {item.type === 'image' ? (
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    fill
-                    sizes="(max-width:640px) 80vw, (max-width:768px) 55vw, (max-width:1024px) 40vw, 30vw"
-                    className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
-                    priority={idx < 2}
-                  />
-                ) : (
-                  <LazyVideo src={item.src} className="w-full h-full object-cover" />
-                )}
-                
-                {/* Enhanced overlay with gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
-                
-                {/* Content type badge */}
-                <div className="absolute top-3 left-3">
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium text-white ${badgeColor} backdrop-blur-sm shadow-lg opacity-90 group-hover:opacity-100 transition-opacity`}>
-                    {contentType}
-                  </span>
-                </div>
-                
-                {/* View icon on hover */}
-                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
+      {/* Cool Modern Category Filter Pills */}
+      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+        {galleryCategories.map((cat) => {
+          const Icon = cat.icon;
+          const isActive = activeCategory === cat.id;
+          return (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`group flex items-center space-x-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${
+                isActive
+                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-600/25 scale-105 ring-2 ring-emerald-400/30'
+                  : 'bg-white/80 dark:bg-slate-800/80 backdrop-blur-md text-slate-700 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/60 hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-emerald-300 dark:hover:border-emerald-500/40'
+              }`}
+            >
+              <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-emerald-500 group-hover:scale-110'} transition-transform`} />
+              <span>{cat.label}</span>
+              {isActive && (
+                <span className="ml-1.5 px-1.5 py-0.2 rounded-full bg-white/20 text-[10px] font-bold">
+                  {filteredItems.length}
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Carousel Container with Glass Nav */}
+      <div className="relative">
+        <div className="overflow-hidden rounded-3xl p-1" ref={emblaRef}>
+          <div className="flex gap-5 sm:gap-6">
+            {filteredItems.map((item, idx) => {
+              const contentType = item.src.includes('spa') || item.src.includes('massage') ? 'Spa & Wellness' :
+                                 (item.src.includes('group') || item.src.includes('lounge') || item.src.includes('conference')) ? 'Group Events' :
+                                 item.src.includes('room') ? 'Accommodations' :
+                                 (item.src.includes('dining') || item.src.includes('breakfast') || item.src.includes('catering') || item.src.includes('kitchen')) ? 'Dining & Catering' :
+                                 'Hotel Amenities';
+              
+              const badgeColor = item.src.includes('spa') || item.src.includes('massage') ? 'bg-emerald-500/90 text-white border-emerald-300/30' :
+                                (item.src.includes('group') || item.src.includes('lounge') || item.src.includes('conference')) ? 'bg-purple-500/90 text-white border-purple-300/30' :
+                                item.src.includes('room') ? 'bg-blue-500/90 text-white border-blue-300/30' :
+                                (item.src.includes('dining') || item.src.includes('breakfast') || item.src.includes('catering') || item.src.includes('kitchen')) ? 'bg-amber-500/90 text-white border-amber-300/30' :
+                                'bg-teal-600/90 text-white border-teal-300/30';
+              
+              return (
+                <motion.div
+                  key={item.src + idx}
+                  className="relative min-w-[85%] sm:min-w-[55%] md:min-w-[38%] lg:min-w-[30%] aspect-[4/3] overflow-hidden rounded-2xl shadow-md hover:shadow-2xl group cursor-pointer border border-slate-200/50 dark:border-white/10 bg-slate-900"
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.35, ease: 'easeOut' }}
+                  onClick={() => open(item.originalIndex)}
+                >
+                  {item.type === 'image' ? (
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width:640px) 85vw, (max-width:768px) 55vw, (max-width:1024px) 38vw, 30vw"
+                      className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-105"
+                      priority={idx < 2}
+                    />
+                  ) : (
+                    <video src={item.src} className="w-full h-full object-cover" autoPlay muted loop playsInline />
+                  )}
+                  
+                  {/* Modern Dual Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-70 group-hover:opacity-60 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
+                  
+                  {/* Category Pill Tag */}
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold backdrop-blur-md shadow-lg border ${badgeColor}`}>
+                      {contentType}
+                    </span>
                   </div>
-                </div>
-                
-                {/* Enhanced description */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                  <p className="text-white text-sm font-medium leading-relaxed drop-shadow-lg">
-                    {item.alt}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
+                  
+                  {/* Quick Expand Icon on Hover */}
+                  <div className="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
+                    <div className="w-9 h-9 bg-white/25 backdrop-blur-md border border-white/40 text-white rounded-full flex items-center justify-center shadow-lg">
+                      <Eye className="w-4 h-4" />
+                    </div>
+                  </div>
+                  
+                  {/* Caption with subtle accent bar */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
+                    <div className="w-8 h-0.5 bg-emerald-400 mb-2 rounded-full transform origin-left group-hover:w-16 transition-all duration-300" />
+                    <p className="text-white text-xs sm:text-sm font-medium leading-snug drop-shadow line-clamp-2">
+                      {item.alt}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-      {/* Enhanced Prev/Next Buttons */}
-      <div className="absolute -top-16 right-0 flex items-center gap-3">
-        <button
-          onClick={() => emblaApi && emblaApi.scrollPrev()}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-          aria-label="Previous images"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          onClick={() => emblaApi && emblaApi.scrollNext()}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-          aria-label="Next images"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
-      {/* Dots */}
-      <div className="flex justify-center gap-2 mt-8">
-        {resultsMedia.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => scrollTo(i)}
-            className={`h-2.5 w-2.5 rounded-full ${i===selected?'bg-emerald-600':'bg-gray-300 hover:bg-gray-400'} transition-colors`}
-            aria-label={`Go to slide ${i+1}`}
-          />
-        ))}
+
+        {/* Floating Nav Controls */}
+        <div className="flex items-center justify-between mt-6 px-1">
+          <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">
+            Showing <span className="font-bold text-emerald-600 dark:text-emerald-400">{filteredItems.length}</span> experiences
+          </div>
+
+          <div className="flex items-center space-x-3">
+            <button
+              onClick={() => emblaApi && emblaApi.scrollPrev()}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-emerald-600 hover:border-emerald-600 dark:hover:bg-emerald-600 text-slate-700 dark:text-slate-200 hover:text-white shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              aria-label="Previous images"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={() => emblaApi && emblaApi.scrollNext()}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-emerald-600 hover:border-emerald-600 dark:hover:bg-emerald-600 text-slate-700 dark:text-slate-200 hover:text-white shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              aria-label="Next images"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Slide Progress Dots */}
+        <div className="flex justify-center gap-1.5 mt-4">
+          {filteredItems.slice(0, 15).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollTo(i)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === (selected % 15) ? 'w-6 bg-emerald-600' : 'w-2 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400'
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Explore Full Gallery Link Banner */}
+        <div className="mt-10 text-center">
+          <Link href="/gallery">
+            <Button
+              variant="outline"
+              size="lg"
+              className="rounded-full px-8 py-5 border-2 border-emerald-500/40 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 font-semibold shadow-sm hover:shadow-md transition-all hover:scale-105 text-sm"
+            >
+              <span>Explore Complete Hotel Gallery (40+ Photos)</span>
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
@@ -506,6 +596,17 @@ export default function HomePage() {
           className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-12"
         >
           <div className="max-w-4xl mx-auto text-center">
+            {/* Top Luxury Location & Rating Badge */}
+            <motion.div
+              className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white/90 text-xs sm:text-sm font-medium mb-4 shadow-lg"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.7 }}
+            >
+              <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+              <span>★ 4.8 Guest Experience • Glenanda, Johannesburg South</span>
+            </motion.div>
+
             {/* Special Event Badge */}
             <motion.div
               className="inline-flex items-center space-x-2 px-6 py-2.5 rounded-full bg-rose-500/20 backdrop-blur-xl border border-rose-400/30 text-rose-100 mb-6 shadow-xl"
@@ -594,6 +695,31 @@ export default function HomePage() {
                   </Button>
                 </Link>
               </div>
+
+              {/* Modern Trust & Hotel Perks Bar */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.1, duration: 0.8 }}
+                className="pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 text-xs sm:text-sm text-white/80 w-full max-w-3xl mx-auto"
+              >
+                <div className="flex items-center justify-center space-x-2 bg-black/20 backdrop-blur-sm py-2 px-3 rounded-full border border-white/10">
+                  <Shield className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                  <span className="truncate">24/7 Security & Parking</span>
+                </div>
+                <div className="flex items-center justify-center space-x-2 bg-black/20 backdrop-blur-sm py-2 px-3 rounded-full border border-white/10">
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                  <span className="truncate">Free Fast Wi-Fi</span>
+                </div>
+                <div className="flex items-center justify-center space-x-2 bg-black/20 backdrop-blur-sm py-2 px-3 rounded-full border border-white/10">
+                  <Users className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                  <span className="truncate">Groups from R300/p</span>
+                </div>
+                <div className="flex items-center justify-center space-x-2 bg-black/20 backdrop-blur-sm py-2 px-3 rounded-full border border-white/10">
+                  <UtensilsCrossed className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                  <span className="truncate">On-Site Dining & Braai</span>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </motion.div>
@@ -641,16 +767,17 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-bold tracking-widest uppercase mb-4">
-              Pure Relaxation
+            <span className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-4 shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Pure Relaxation</span>
             </span>
-            <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6">
-              Signature Massage <span className="text-emerald-400">Treatments</span>
+            <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 tracking-tight">
+              Signature Massage <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-emerald-400">Treatments</span>
             </h2>
-            <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full" />
+            <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-500 mx-auto rounded-full" />
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               { title: "Full Body Massage", duration: "60 Minutes", price: "600", icon: Heart },
               { title: "Full Body Massage", duration: "90 Minutes", price: "700", icon: Sparkles },
@@ -665,35 +792,48 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                whileHover={{ y: -5 }}
-                className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-emerald-500/50 transition-all duration-300"
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="group relative p-8 rounded-3xl bg-slate-900/60 backdrop-blur-xl border border-white/15 hover:border-emerald-400/50 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-emerald-950/60 flex flex-col justify-between overflow-hidden"
               >
+                {/* Ambient Card Background Glow on Hover */}
+                <div className="absolute -right-12 -top-12 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/25 transition-all duration-500 pointer-events-none" />
                 <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <service.icon className="w-16 h-16 text-white" />
+                  <service.icon className="w-20 h-20 text-white" />
                 </div>
                 
                 <div className="relative z-10">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 rounded-2xl bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
-                      <service.icon className="w-5 h-5 text-emerald-400" />
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 flex items-center justify-center border border-emerald-400/30 group-hover:bg-emerald-500/30 transition-colors duration-300">
+                      <service.icon className="w-6 h-6 text-emerald-300" />
                     </div>
-                    <span className="text-emerald-400/80 text-sm font-medium flex items-center">
-                      <Clock className="w-3.5 h-3.5 mr-1.5" />
+                    <span className="text-xs sm:text-sm font-medium px-3 py-1 rounded-full bg-white/10 text-emerald-200/90 backdrop-blur-sm border border-white/10 flex items-center">
+                      <Clock className="w-3.5 h-3.5 mr-1.5 text-emerald-400" />
                       {service.duration}
                     </span>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white mb-6 group-hover:text-emerald-300 transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-6 group-hover:text-emerald-300 transition-colors">
                     {service.title}
                   </h3>
-                  
-                  <div className="flex items-baseline space-x-1">
-                    <span className="text-emerald-400 text-sm font-medium">R</span>
-                    <span className="text-3xl font-bold text-white">{service.price}</span>
-                  </div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                <div className="relative z-10 pt-4 border-t border-white/10 flex items-center justify-between">
+                  <div className="flex items-baseline space-x-1">
+                    <span className="text-emerald-400 text-sm font-semibold">R</span>
+                    <span className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">{service.price}</span>
+                  </div>
+                  <a
+                    href={`https://wa.me/27817609224?text=${encodeURIComponent(`Hi Glenanda Spa, I'd like to book the ${service.title} (${service.duration} - R${service.price}).`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-full bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-slate-950 font-semibold text-xs sm:text-sm border border-emerald-400/30 hover:border-emerald-400 transition-all duration-300 shadow-sm"
+                  >
+                    <span>Book Now</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
               </motion.div>
             ))}
           </div>
@@ -706,7 +846,7 @@ export default function HomePage() {
             className="mt-16 text-center"
           >
             <Link href="/contact">
-              <Button className="rounded-full px-10 py-6 bg-white text-slate-950 hover:bg-emerald-50 font-bold transition-all hover:scale-105 shadow-xl shadow-white/5">
+              <Button className="rounded-full px-10 py-6 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-base transition-all hover:scale-105 shadow-xl shadow-emerald-500/25">
                 Book Your Treatment
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
@@ -727,20 +867,20 @@ export default function HomePage() {
           >
             <motion.div
               variants={itemFadeUp}
-              className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 bg-emerald-100 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-200 dark:border-emerald-500/20"
+              className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold mb-4 bg-emerald-100 text-emerald-800 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:border-emerald-500/20 shadow-sm"
             >
-              <Users className="inline-block w-4 h-4 mr-2" />
-              For Every Guest
+              <Users className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 mr-1.5" />
+              <span>For Every Guest</span>
             </motion.div>
             <motion.h2 
               variants={itemFadeUp} 
-              className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-slate-100 mb-6"
+              className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-slate-100 mb-6 tracking-tight"
             >
               Tailored Packages for Every Stay
             </motion.h2>
             <motion.p 
               variants={itemFadeUp} 
-              className="text-xl text-slate-600 dark:text-slate-300/90 max-w-3xl mx-auto"
+              className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed"
             >
               Whether you&apos;re traveling solo on business, planning a romantic getaway, enjoying a family reunion, hosting a sports team, or organizing a corporate retreat, we provide personalized service and exclusive amenities for every type of stay.
             </motion.p>
@@ -751,7 +891,7 @@ export default function HomePage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
           >
             {[
               {
@@ -775,16 +915,19 @@ export default function HomePage() {
                 description: "VIP treatment for all guests with welcome amenities and dedicated support.",
               },
             ].map((feature) => (
-              <motion.div key={feature.title} variants={itemFadeUp}>
-                <Card className="h-full text-center p-8 bg-white dark:bg-slate-900/70 border border-emerald-100 dark:border-white/5 shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 group">
-                  <div className="flex justify-center mb-6">
-                    <div className="w-16 h-16 rounded-full bg-emerald-50 dark:bg-emerald-500/15 flex items-center justify-center border border-emerald-200 dark:border-emerald-500/20">
-                      <feature.icon className="w-8 h-8 text-emerald-600 dark:text-emerald-200" />
+              <motion.div key={feature.title} variants={itemFadeUp} whileHover={{ y: -8 }} transition={{ duration: 0.3 }}>
+                <div className="h-full text-center p-8 bg-white dark:bg-slate-900/80 rounded-3xl border border-slate-200/80 dark:border-white/10 shadow-lg hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300 group relative flex flex-col justify-between overflow-hidden">
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div>
+                    <div className="flex justify-center mb-6">
+                      <div className="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-500/15 flex items-center justify-center border border-emerald-200/80 dark:border-emerald-500/20 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
+                        <feature.icon className="w-8 h-8 text-emerald-600 dark:text-emerald-300 group-hover:text-white transition-colors duration-300" />
+                      </div>
                     </div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">{feature.title}</h3>
+                    <p className="text-slate-600 dark:text-slate-300/90 text-sm leading-relaxed">{feature.description}</p>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-3">{feature.title}</h3>
-                  <p className="text-slate-600 dark:text-slate-300/90">{feature.description}</p>
-                </Card>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -793,18 +936,18 @@ export default function HomePage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            className="text-center mt-16"
+            className="text-center mt-14"
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="group relative">
-                <Button size="lg" className="rounded-full px-10 py-6 bg-emerald-500 hover:bg-emerald-600 text-white text-base font-semibold shadow-lg shadow-emerald-900/30">
-                  Book Your Perfect Stay
+                <Button size="lg" className="rounded-full px-10 py-6 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-base font-semibold shadow-lg shadow-emerald-600/25 transition-all hover:scale-105">
+                  <span>Book Your Perfect Stay</span>
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
               <Link href="/menu" className="group relative">
-                <Button size="lg" variant="outline" className="rounded-full px-10 py-6 border-emerald-200 text-emerald-600 hover:bg-emerald-50 dark:border-emerald-500 dark:text-emerald-200 dark:hover:bg-emerald-500/10 text-base shadow-lg shadow-emerald-900/10">
-                  View Room Service Menu
+                <Button size="lg" variant="outline" className="rounded-full px-10 py-6 border-2 border-emerald-300 dark:border-emerald-500/40 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-base font-semibold shadow-sm hover:scale-105 transition-all">
+                  <span>View Room Service Menu</span>
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
@@ -825,21 +968,22 @@ export default function HomePage() {
           >
             <motion.div
               variants={itemFadeUp}
-              className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 bg-emerald-100 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-200 dark:border-emerald-500/20"
+              className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold mb-4 bg-emerald-100 text-emerald-800 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:border-emerald-500/20 shadow-sm"
             >
-        ✨ Accommodation for Every Traveler
+              <BedDouble className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 mr-1.5" />
+              <span>✨ Accommodation for Every Traveler</span>
             </motion.div>
             <motion.h2 
               variants={itemFadeUp} 
-              className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-slate-100 mb-6"
+              className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-slate-100 mb-6 tracking-tight"
             >
-        Rooms & Suites for Individuals & Groups
+              Rooms & Suites for Individuals & Groups
             </motion.h2>
             <motion.p 
               variants={itemFadeUp} 
-              className="text-xl text-slate-600 dark:text-slate-300/90 max-w-3xl mx-auto"
+              className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed"
             >
-        Choose from a variety of thoughtfully designed spaces, from cozy rooms for solo travelers to spacious suites perfect for families and groups.
+              Choose from a variety of thoughtfully designed spaces, from cozy rooms for solo travelers to spacious suites perfect for families and groups.
             </motion.p>
           </motion.div>
 
@@ -848,7 +992,7 @@ export default function HomePage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
           >
             {homeServices.map((service, index) => (
               <motion.div 
@@ -856,9 +1000,8 @@ export default function HomePage() {
                 variants={itemFadeUp} 
                 className="group"
                 whileHover={{ 
-                  y: -12,
-                  rotateY: 5,
-                  scale: 1.02
+                  y: -10,
+                  scale: 1.015
                 }}
                 transition={{ 
                   type: "spring", 
@@ -867,16 +1010,13 @@ export default function HomePage() {
                   duration: 0.4 
                 }}
               >
-                <Card className="group h-full bg-white/90 dark:bg-slate-900/80 border border-emerald-100 dark:border-white/5 shadow-lg hover:shadow-emerald-500/10 transition-all duration-500 overflow-hidden relative">
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    initial={false}
-                  />
+                <div className="group h-full bg-white dark:bg-slate-900/90 rounded-3xl border border-slate-200/80 dark:border-white/10 shadow-lg hover:shadow-2xl hover:shadow-emerald-500/15 transition-all duration-500 overflow-hidden relative flex flex-col justify-between">
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" />
                   
-                  <CardContent className="p-0 relative z-10">
+                  <div>
                     {/* Service Image with Enhanced Effects */}
-                    <div className="relative h-56 overflow-hidden">
-                      <motion.div whileHover={{ scale: 1.08 }} transition={{ duration: 0.6, ease: "easeOut" }} className="w-full h-full">
+                    <div className="relative h-60 overflow-hidden">
+                      <div className="w-full h-full transform group-hover:scale-110 transition-transform duration-700 ease-out">
                         <SmartImage
                           src={service.image}
                           alt={service.title}
@@ -886,123 +1026,72 @@ export default function HomePage() {
                           priority={index < 2}
                           asMotion={false}
                         />
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </motion.div>
+                      </div>
 
-                      {/* Animated overlay */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
-                        initial={{ opacity: 0 }}
-                        whileHover={{ opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                      />
+                      {/* Dark gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
 
                       {service.popular && (
-                        <motion.div
-                          initial={{ scale: 0, rotate: -180 }}
-                          animate={{ scale: 1, rotate: 0 }}
-                          transition={{ delay: index * 0.1 + 0.5, type: "spring", stiffness: 200 }}
-                        >
-                          <Badge className="absolute top-4 right-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg">
+                        <div className="absolute top-3 right-3 z-10">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg backdrop-blur-md">
                             ⭐ Most Popular
-                          </Badge>
-                        </motion.div>
+                          </span>
+                        </div>
                       )}
                       {service.groupFriendly && (
-                        <motion.div
-                          initial={{ scale: 0, rotate: -180 }}
-                          animate={{ scale: 1, rotate: 0 }}
-                          transition={{ delay: index * 0.1 + 0.5, type: "spring", stiffness: 200 }}
-                        >
-                          <Badge className="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg">
+                        <div className="absolute top-3 left-3 z-10">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg backdrop-blur-md">
                             <Users className="w-3 h-3 mr-1" />
                             Group-Friendly
-                          </Badge>
-                        </motion.div>
+                          </span>
+                        </div>
                       )}
 
-                      <motion.div 
-                        className="absolute bottom-4 left-4 right-4"
-                        initial={{ y: 0, opacity: 1 }}
-                        animate={{ y: 0, opacity: 1 }}
-                      >
-                        <div className="flex justify-between items-center text-white drop-shadow-lg">
-                          <div className="flex items-center space-x-4">
-                            <motion.div 
-                              className="flex items-center bg-slate-950/60 px-3 py-1.5 rounded-lg backdrop-blur-md"
-                            >
-                              <Clock className="w-4 h-4 mr-1" />
-                              <span className="text-sm font-medium">{service.duration}</span>
-                            </motion.div>
-                            <motion.div 
-                              className="flex items-center bg-emerald-500 px-3 py-1.5 rounded-lg backdrop-blur-md shadow-lg"
-                            >
-                              <span className="text-sm font-bold whitespace-nowrap">{service.price}</span>
-                            </motion.div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </div>
-
-                    {/* Service Content with Enhanced Animations */}
-                    <div className="p-6 space-y-4">
-                      <motion.div
-                        whileHover={{ x: 5 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors duration-300">
-                          {service.title}
-                        </h3>
-                        <p className="text-emerald-600 dark:text-emerald-200 text-sm font-medium">
-                          {service.subtitle}
-                        </p>
-                      </motion.div>
-
-                      <motion.p 
-                        className="text-slate-600 dark:text-slate-300/90 text-sm leading-relaxed line-clamp-3"
-                        transition={{ duration: 0.2 }}
-                      >
-                        {service.description}
-                      </motion.p>
-
-                      {/* Price and Duration - Always Visible */}
-                      <div className="flex items-center justify-between py-2 border-t border-slate-200 dark:border-white/5">
-                        <div className="flex items-center text-slate-500 dark:text-slate-400 text-sm">
-                          <Clock className="w-4 h-4 mr-1" />
+                      <div className="absolute bottom-3 left-3 right-3 z-10 flex justify-between items-center text-white">
+                        <div className="flex items-center bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 text-xs font-medium text-emerald-200">
+                          <Clock className="w-3.5 h-3.5 mr-1 text-emerald-400" />
                           <span>{service.duration}</span>
                         </div>
-                        <div className="text-emerald-600 dark:text-emerald-200 font-bold text-lg">
+                        <div className="bg-emerald-500 text-slate-950 font-extrabold text-xs px-3 py-1 rounded-full shadow-md">
                           {service.price}
                         </div>
                       </div>
-
-                      <motion.div 
-                        className="pt-2"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <Button asChild className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 group shadow-lg shadow-emerald-900/30 hover:shadow-emerald-500/30 transition-all duration-300 text-slate-950 font-semibold">
-                          <a
-                            href={`https://wa.me/27603114115?text=${encodeURIComponent(`Hi Glenanda Hotel, I&apos;d like to enquire about the ${service.title}.`)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <span className="flex items-center justify-center">
-                              Book This Room
-                            </span>
-                            <motion.span
-                              animate={{ x: [0, 3, 0] }}
-                              transition={{ duration: 2, repeat: Infinity }}
-                              className="inline-flex ml-2"
-                            >
-                              <ArrowRight className="h-4 w-4" />
-                            </motion.span>
-                          </a>
-                        </Button>
-                      </motion.div>
                     </div>
-                  </CardContent>
-                </Card>
+
+                    {/* Service Content */}
+                    <div className="p-6">
+                      <div className="mb-3">
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
+                          {service.title}
+                        </h3>
+                        <p className="text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm font-semibold mt-1">
+                          {service.subtitle}
+                        </p>
+                      </div>
+
+                      <p className="text-slate-600 dark:text-slate-300/90 text-sm leading-relaxed line-clamp-3 mb-4">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Booking Action */}
+                  <div className="p-6 pt-0">
+                    <div className="pt-3 border-t border-slate-100 dark:border-white/10">
+                      <Button asChild className="w-full rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 shadow-md hover:shadow-xl hover:shadow-emerald-500/20 text-slate-950 font-bold transition-all duration-300 py-5">
+                        <a
+                          href={`https://wa.me/27603114115?text=${encodeURIComponent(`Hi Glenanda Hotel, I'd like to enquire about the ${service.title}.`)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center space-x-2"
+                        >
+                          <span>Book This Room</span>
+                          <ArrowRight className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -1010,20 +1099,30 @@ export default function HomePage() {
       </section>
 
       {/* Spaces & Atmosphere Section with Carousel & Lightbox */}
-      <section className="section-padding bg-white dark:bg-gray-900" id="spaces-atmosphere">
+      <section className="section-padding bg-gradient-to-b from-white via-slate-50 to-white dark:from-slate-900 dark:via-slate-950 dark:to-slate-900 relative overflow-hidden" id="spaces-atmosphere">
+        {/* Subtle Luxury Ambient Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
+
         <LightboxProvider>
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto relative z-10">
             <motion.div
               variants={containerStagger}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-80px" }}
-              className="text-center mb-16"
+              className="text-center mb-12 sm:mb-16"
             >
+              <motion.div
+                variants={itemFadeUp}
+                className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold mb-4 bg-emerald-100 text-emerald-800 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:border-emerald-500/20 shadow-sm"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                <span>Visual Journey</span>
+              </motion.div>
               <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6">
                 Hotel Gallery & Experiences
               </motion.h2>
-              <motion.p variants={itemFadeUp} className="text-xl text-gray-600 dark:text-gray-400">
+              <motion.p variants={itemFadeUp} className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 Discover our luxurious spaces - from serene spa facilities and elegant rooms to vibrant social areas and stunning views that create unforgettable moments.
               </motion.p>
             </motion.div>
@@ -1201,9 +1300,9 @@ export default function HomePage() {
                 className="group relative"
               >
                 {/* Glassmorphism Card */}
-                <div className="relative h-full bg-white/90 dark:bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-emerald-100 dark:border-white/20 shadow-xl">
-                  {/* Background Image */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+                <div className="relative h-full bg-white dark:bg-slate-900/90 backdrop-blur-xl rounded-3xl overflow-hidden border border-slate-200/80 dark:border-white/10 shadow-xl hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300">
+                  {/* Background Image subtle hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-500">
                     <Image
                       src={service.image}
                       alt={service.title}
@@ -1212,48 +1311,52 @@ export default function HomePage() {
                     />
                   </div>
 
-                  <div className="relative p-6 h-full flex flex-col">
-                    {/* Icon */}
-                    <motion.div
-                      className="text-5xl mb-4"
-                      whileHover={{ scale: 1.2, rotate: 10 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      {service.icon}
-                    </motion.div>
+                  <div className="relative p-7 h-full flex flex-col justify-between">
+                    <div>
+                      {/* Icon */}
+                      <motion.div
+                        className="text-5xl mb-4"
+                        whileHover={{ scale: 1.15, rotate: 6 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        {service.icon}
+                      </motion.div>
 
-                    {/* Title & Info */}
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{service.title}</h3>
-                    <div className="flex flex-col gap-2 mb-3">
-                      <span className="inline-flex items-center justify-center w-max px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 dark:bg-white/10 dark:text-slate-100 dark:border-white/20">
-                        Custom Packages Available
-                      </span>
-                      <span className="text-sm text-slate-600 dark:text-slate-200/90 leading-snug">
-                        {service.availability}
-                      </span>
-                    </div>
+                      {/* Title & Info */}
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">{service.title}</h3>
+                      <div className="flex flex-col gap-2 mb-3">
+                        <span className="inline-flex items-center justify-center w-max px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-300 dark:border-emerald-500/20">
+                          Custom Packages Available
+                        </span>
+                        <span className="text-sm text-slate-600 dark:text-slate-300/90 leading-snug">
+                          {service.availability}
+                        </span>
+                      </div>
 
-                    {/* Description */}
-                    <p className="text-slate-600 dark:text-slate-200/80 text-sm mb-4">{service.description}</p>
+                      {/* Description */}
+                      <p className="text-slate-600 dark:text-slate-300/80 text-sm mb-4">{service.description}</p>
 
-                    {/* Features */}
-                    <div className="space-y-2 mb-6">
-                      {service.features.map((feature, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-200/90">
-                          <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400" />
-                          {feature}
-                        </div>
-                      ))}
+                      {/* Features */}
+                      <div className="space-y-2 mb-6">
+                        {service.features.map((feature, i) => (
+                          <div key={i} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                            <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-400" />
+                            <span>{feature}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
 
                     {/* Book Button */}
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="mt-auto w-full py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-emerald-500/40"
+                    <a
+                      href={`https://wa.me/27817609224?text=${encodeURIComponent(`Hi Glenanda Spa, I'd like to book the ${service.title}.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold rounded-2xl transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-emerald-500/25 flex items-center justify-center space-x-2 text-sm"
                     >
-                      Book Now
-                    </motion.button>
+                      <span>Book Now</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
                   </div>
                 </div>
               </motion.div>
@@ -1268,11 +1371,11 @@ export default function HomePage() {
             className="mb-20"
           >
             <div className="text-center mb-12">
-              <h3 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">Why Choose Our Spa</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-lg">Exceptional service meets luxury amenities</p>
+              <h3 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">Why Choose Our Spa</h3>
+              <p className="text-slate-600 dark:text-slate-300 text-lg">Exceptional service meets luxury amenities</p>
             </div>
 
-            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
               {[
                 { icon: "🏆", title: "Award Winning", desc: "Certified Experts" },
                 { icon: "🌿", title: "Organic", desc: "Natural Products" },
@@ -1287,12 +1390,12 @@ export default function HomePage() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.05 }}
-                  whileHover={{ y: -5, scale: 1.05 }}
-                  className="bg-white rounded-xl p-6 text-center border border-emerald-100 shadow-md dark:bg-white/5 dark:border-white/10 dark:backdrop-blur-sm"
+                  whileHover={{ y: -6, scale: 1.03 }}
+                  className="bg-white dark:bg-slate-900/80 rounded-2xl p-6 text-center border border-slate-200/80 dark:border-white/10 shadow-md hover:shadow-xl hover:border-emerald-400/30 transition-all duration-300"
                 >
                   <div className="text-4xl mb-3">{item.icon}</div>
-                  <h4 className="font-bold text-slate-900 dark:text-white mb-1">{item.title}</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{item.desc}</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white mb-1 text-sm sm:text-base">{item.title}</h4>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -1303,7 +1406,7 @@ export default function HomePage() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative rounded-3xl overflow-hidden"
+            className="relative rounded-3xl overflow-hidden shadow-2xl border border-emerald-500/20"
           >
             {/* Background */}
             <div className="absolute inset-0">
@@ -1311,28 +1414,27 @@ export default function HomePage() {
                 src="/new-massages10.jpeg"
                 alt="Spa CTA Background"
                 fill
-                className="object-cover opacity-40"
+                className="object-cover opacity-35"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/75 to-emerald-100/60 dark:from-slate-950/95 dark:via-slate-900/85 dark:to-emerald-900/80" />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/90 to-emerald-950/90" />
             </div>
 
-            <div className="relative p-12 md:p-20 text-center">
+            <div className="relative p-10 sm:p-16 md:p-20 text-center">
               <motion.div
                 animate={{ 
-                  scale: [1, 1.1, 1],
-                  rotate: [0, 5, -5, 0]
+                  scale: [1, 1.08, 1],
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="text-7xl mb-6"
+                className="text-6xl sm:text-7xl mb-6"
               >
                 ✨💆‍♀️✨
               </motion.div>
 
-              <h3 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
                 Ready to Experience Bliss?
               </h3>
               
-              <p className="text-xl text-slate-600 dark:text-slate-200/90 mb-10 max-w-2xl mx-auto">
+              <p className="text-lg sm:text-xl text-slate-200/90 mb-10 max-w-2xl mx-auto leading-relaxed">
                 Book your spa treatment today and discover why we&apos;re rated as one of the finest wellness destinations
               </p>
 
@@ -1343,20 +1445,22 @@ export default function HomePage() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-white text-slate-900 font-semibold rounded-full shadow-2xl hover:shadow-emerald-500/30 transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold rounded-full shadow-2xl hover:shadow-emerald-500/40 transition-all duration-300"
                 >
                   <Phone className="w-5 h-5" />
-                  Book Treatment
+                  <span>Book Treatment</span>
                 </motion.a>
                 
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-emerald-50 text-emerald-700 font-semibold rounded-full border-2 border-emerald-200 hover:bg-emerald-100 transition-all duration-300 dark:bg-white/10 dark:text-slate-100 dark:border-white/20 dark:hover:bg-white/15"
-                >
-                  <Sparkles className="w-5 h-5" />
-                  View Packages
-                </motion.button>
+                <Link href="/services">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full border border-white/20 backdrop-blur-md transition-all duration-300"
+                  >
+                    <Sparkles className="w-5 h-5 text-emerald-400" />
+                    <span>View Packages</span>
+                  </motion.div>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -1382,23 +1486,23 @@ export default function HomePage() {
           >
             <motion.div
               variants={itemFadeUp}
-              className="inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-orange-100 to-amber-100 dark:from-orange-900/30 dark:to-amber-900/30 rounded-full text-orange-700 dark:text-orange-300 text-sm font-medium mb-6 shadow-lg"
+              className="inline-flex items-center space-x-2 px-5 py-2 bg-gradient-to-r from-orange-500/10 via-amber-500/10 to-orange-500/10 dark:from-orange-500/20 dark:to-amber-500/20 rounded-full text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-500/30 text-xs sm:text-sm font-bold tracking-wider uppercase mb-6 shadow-sm"
             >
-              <span className="text-2xl">🔥</span>
-              <span className="tracking-wide">AUTHENTIC SOUTH AFRICAN BRAAI EXPERIENCE</span>
-              <UtensilsCrossed className="w-5 h-5" />
+              <span>🔥</span>
+              <span>Authentic South African Braai Experience</span>
+              <UtensilsCrossed className="w-4 h-4 ml-1" />
             </motion.div>
             
             <motion.h2 
               variants={itemFadeUp} 
-              className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 dark:from-orange-400 dark:via-amber-400 dark:to-yellow-400 bg-clip-text text-transparent mb-6"
+              className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-slate-100 mb-6 tracking-tight"
             >
-              Braai & Outdoor Events
+              Braai &amp; Outdoor Events
             </motion.h2>
             
             <motion.p 
               variants={itemFadeUp} 
-              className="text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed"
+              className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed"
             >
               Experience the true South African tradition! Our outdoor braai facilities are perfect for family gatherings, corporate team building, birthday celebrations, and social events. Enjoy delicious grilled food in a festive garden atmosphere.
             </motion.p>
@@ -1410,7 +1514,7 @@ export default function HomePage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16"
           >
             {[
               {
@@ -1432,20 +1536,21 @@ export default function HomePage() {
               <motion.div
                 key={index}
                 variants={itemFadeUp}
-                className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg"
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.3 }}
+                className="group relative aspect-[4/3] overflow-hidden rounded-3xl shadow-xl border border-slate-200/80 dark:border-white/10 bg-slate-900 cursor-pointer"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
               >
                 <Image
                   src={item.src}
                   alt={item.title}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 text-white">
-                  <h4 className="font-bold text-xl mb-2">{item.title}</h4>
-                  <p className="text-sm opacity-90">{item.description}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 text-white z-10">
+                  <div className="w-8 h-1 bg-amber-400 mb-2 rounded-full group-hover:w-16 transition-all duration-300" />
+                  <h4 className="font-bold text-xl sm:text-2xl mb-1 text-white">{item.title}</h4>
+                  <p className="text-sm text-slate-200/90 font-medium">{item.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -1457,7 +1562,7 @@ export default function HomePage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
           >
             {[
               {
@@ -1484,12 +1589,14 @@ export default function HomePage() {
               <motion.div
                 key={index}
                 variants={itemFadeUp}
-                className="text-center p-6 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
+                className="text-center p-7 bg-white dark:bg-slate-900/80 rounded-3xl border border-slate-200/80 dark:border-white/10 shadow-lg hover:shadow-xl hover:border-amber-400/40 transition-all duration-300 group flex flex-col justify-between"
+                whileHover={{ y: -6, scale: 1.02 }}
               >
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h4 className="font-bold text-lg text-gray-900 dark:text-gray-100 mb-2">{feature.title}</h4>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">{feature.description}</p>
+                <div>
+                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
+                  <h4 className="font-bold text-lg text-slate-900 dark:text-slate-100 mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">{feature.title}</h4>
+                  <p className="text-slate-600 dark:text-slate-300/90 text-sm leading-relaxed">{feature.description}</p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -1502,39 +1609,41 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <div className="bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 rounded-3xl p-12 text-white shadow-2xl">
-              <h3 className="text-3xl font-bold mb-4">Book Your Braai Event Today!</h3>
-              <p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto">
+            <div className="bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600 dark:from-orange-700 dark:via-amber-700 dark:to-yellow-700 rounded-3xl p-10 sm:p-14 text-white shadow-2xl relative overflow-hidden border border-orange-400/20">
+              <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+              <h3 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">Book Your Braai Event Today!</h3>
+              <p className="text-lg text-white/95 mb-8 max-w-2xl mx-auto leading-relaxed">
                 Perfect for groups of 10-100 people. We provide everything you need for an unforgettable South African braai experience.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button asChild size="lg" className="bg-white text-orange-600 hover:bg-gray-50 px-12 py-6 rounded-full shadow-lg text-lg">
+                  <Button asChild size="lg" className="bg-white text-orange-700 hover:bg-orange-50 px-10 py-6 rounded-full shadow-xl font-bold text-base transition-all">
                     <a
                       href="https://wa.me/27603114115?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20braai%20event."
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="flex items-center space-x-2"
                     >
-                      <span className="text-2xl mr-2">🔥</span>
-                      Book Braai Event
-                      <ArrowRight className="ml-2 h-5 w-5" />
+                      <span className="text-xl">🔥</span>
+                      <span>Book Braai Event</span>
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </a>
                   </Button>
                 </motion.div>
                 
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-12 py-6 rounded-full text-lg">
+                  <Button asChild variant="outline" size="lg" className="border-2 border-white/80 text-white hover:bg-white/15 px-10 py-6 rounded-full font-bold text-base backdrop-blur-sm transition-all">
                     <Link href="/contact">
-                      📞 Get Custom Quote
+                      <span>📞 Get Custom Quote</span>
                     </Link>
                   </Button>
                 </motion.div>
               </div>
 
-              <div className="mt-8 text-white/90">
+              <div className="mt-8 text-white/90 text-sm sm:text-base">
                 <p className="font-semibold text-lg">📞 +27 60 311 4115</p>
-                <p>Available for bookings 7 days a week</p>
+                <p className="opacity-90">Available for bookings 7 days a week</p>
               </div>
             </div>
           </motion.div>
@@ -1679,12 +1788,12 @@ export default function HomePage() {
                 key={service.title}
                 variants={itemFadeUp}
                 className="group"
-                whileHover={{ y: -12, scale: 1.02 }}
+                whileHover={{ y: -8, scale: 1.015 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <Card className="h-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border-0 shadow-xl hover:shadow-2xl dark:hover:shadow-2xl transition-all duration-500 overflow-hidden relative">
-                  {/* Background Image */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500">
+                <div className="h-full bg-white dark:bg-slate-900/90 rounded-3xl border border-slate-200/80 dark:border-white/10 shadow-lg hover:shadow-2xl hover:border-emerald-500/30 transition-all duration-500 overflow-hidden relative flex flex-col justify-between">
+                  {/* Background Image on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-500">
                     <Image
                       src={service.image}
                       alt={service.title}
@@ -1693,52 +1802,51 @@ export default function HomePage() {
                     />
                   </div>
                   
-                  <CardContent className="p-8 relative z-10">
+                  <div className="p-7 relative z-10">
                     {/* Icon */}
-                    <motion.div
-                      className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300"
-                      whileHover={{ rotate: [0, -10, 10, 0] }}
-                      transition={{ duration: 0.5 }}
-                    >
+                    <div className="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-500/15 flex items-center justify-center border border-emerald-200/80 dark:border-emerald-500/20 text-3xl mb-5 group-hover:scale-110 transition-transform duration-300">
                       {service.icon}
-                    </motion.div>
+                    </div>
                     
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                       {service.title}
                     </h3>
                     
                     {/* Description */}
-                    <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                    <p className="text-slate-600 dark:text-slate-300/90 text-sm mb-6 leading-relaxed">
                       {service.description}
                     </p>
                     
                     {/* Services List */}
-                    <div className="space-y-2 mb-8">
+                    <div className="space-y-2 mb-6">
                       {service.services.map((item, idx) => (
-                        <motion.div
+                        <div
                           key={idx}
-                          className="flex items-center text-sm text-gray-700 dark:text-gray-300"
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: idx * 0.1 }}
-                          viewport={{ once: true }}
+                          className="flex items-center text-xs sm:text-sm text-slate-700 dark:text-slate-300"
                         >
-                          <div className="w-2 h-2 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mr-3 flex-shrink-0" />
-                          {item}
-                        </motion.div>
+                          <div className="w-2 h-2 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mr-2.5 flex-shrink-0" />
+                          <span>{item}</span>
+                        </div>
                       ))}
                     </div>
-                    
-                    {/* Book Button */}
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                      <Button className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300">
-                        Request Team Quote
+                  </div>
+                  
+                  {/* Book Button */}
+                  <div className="p-7 pt-0 relative z-10">
+                    <Button asChild className="w-full rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold shadow-md hover:shadow-xl hover:shadow-emerald-600/25 transition-all duration-300 py-5">
+                      <a
+                        href={`https://wa.me/27603114115?text=${encodeURIComponent(`Hi Glenanda Hotel, I'd like to request a quote for Sports Teams: ${service.title}.`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center space-x-2"
+                      >
+                        <span>Request Team Quote</span>
                         <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </motion.div>
-                  </CardContent>
-                </Card>
+                      </a>
+                    </Button>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -1749,14 +1857,14 @@ export default function HomePage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl p-12 shadow-2xl mb-20"
+            className="bg-white dark:bg-slate-900/90 rounded-3xl p-10 sm:p-14 shadow-xl border border-slate-200/80 dark:border-white/10 mb-20"
           >
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Why Sports Teams Choose Us</h3>
-              <p className="text-lg text-gray-600 dark:text-gray-400">Proven track record with professional and amateur teams</p>
+              <h3 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">Why Sports Teams Choose Us</h3>
+              <p className="text-lg text-slate-600 dark:text-slate-300">Proven track record with professional and amateur teams</p>
             </div>
             
-            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
               {[
                 { icon: "🏆", title: "100+ Teams", subtitle: "Hosted Annually" },
                 { icon: "⚽", title: "Soccer Clubs", subtitle: "Primary Focus" },
@@ -1768,19 +1876,15 @@ export default function HomePage() {
                 <motion.div
                   key={feature.title}
                   variants={itemFadeUp}
-                  className="text-center group"
-                  whileHover={{ scale: 1.1 }}
+                  className="text-center p-5 bg-slate-50 dark:bg-white/5 rounded-2xl border border-slate-200/60 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group"
+                  whileHover={{ y: -5, scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <motion.div
-                    className="text-3xl mb-3 group-hover:animate-bounce"
-                    whileHover={{ rotateY: 180 }}
-                    transition={{ duration: 0.6 }}
-                  >
+                  <div className="text-3xl sm:text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
                     {feature.icon}
-                  </motion.div>
-                  <h4 className="font-bold text-gray-900 dark:text-gray-100 mb-1">{feature.title}</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{feature.subtitle}</p>
+                  </div>
+                  <h4 className="font-bold text-slate-900 dark:text-white mb-1 text-sm sm:text-base group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">{feature.title}</h4>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">{feature.subtitle}</p>
                 </motion.div>
               ))}
             </div>
@@ -1795,11 +1899,11 @@ export default function HomePage() {
             className="mb-20"
           >
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Team Experiences at Glenanda</h3>
-              <p className="text-lg text-gray-600 dark:text-gray-400">See how we support teams throughout their stay</p>
+              <h3 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">Team Experiences at Glenanda</h3>
+              <p className="text-lg text-slate-600 dark:text-slate-300">See how we support teams throughout their stay</p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { src: "/soccer-dining5.jpeg", title: "Team Dining", subtitle: "Nutritious Meals" },
                 { src: "/soccer7.jpeg", title: "Team Bonding", subtitle: "Common Areas" },
@@ -1809,32 +1913,31 @@ export default function HomePage() {
                 <motion.div
                   key={index}
                   variants={itemFadeUp}
-                  className="group relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg"
-                  whileHover={{ y: -8 }}
+                  className="group relative aspect-[3/4] overflow-hidden rounded-3xl shadow-xl border border-slate-200/80 dark:border-white/10 bg-slate-900 cursor-pointer"
+                  whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Image
-                    src={item.src}
-                    alt={item.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <h4 className="font-bold text-lg mb-1">{item.title}</h4>
-                    <p className="text-sm opacity-90">{item.subtitle}</p>
-                  </div>
-                  
-                  {/* Hover Overlay */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-green-600/80 to-emerald-600/80 dark:from-green-700/80 dark:to-emerald-700/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-                    whileHover={{ scale: 1 }}
-                  >
-                    <div className="text-white text-center">
-                      <Eye className="w-8 h-8 mx-auto mb-2" />
-                      <p className="font-semibold">View Full Gallery</p>
+                  <Link href="/gallery">
+                    <Image
+                      src={item.src}
+                      alt={item.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                    <div className="absolute bottom-6 left-6 right-6 text-white z-10">
+                      <h4 className="font-bold text-xl mb-1">{item.title}</h4>
+                      <p className="text-sm opacity-90 font-medium">{item.subtitle}</p>
                     </div>
-                  </motion.div>
+                    
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/85 to-teal-700/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
+                      <div className="text-white text-center">
+                        <Eye className="w-8 h-8 mx-auto mb-2" />
+                        <p className="font-bold text-sm tracking-wide">View Full Gallery</p>
+                      </div>
+                    </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>
@@ -1879,7 +1982,7 @@ export default function HomePage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            className="grid gap-8 mb-16 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-6 sm:gap-8 mb-16 sm:grid-cols-2 lg:grid-cols-3"
           >
             {[
               {
@@ -1925,36 +2028,52 @@ export default function HomePage() {
                 icon: "🌳"
               }
             ].map((venue) => (
-              <motion.div key={venue.title} variants={itemFadeUp} className="group">
-                <Card className="h-full bg-white border border-emerald-100 shadow-lg hover:shadow-emerald-500/20 transition-all duration-500 overflow-hidden dark:bg-slate-900/80 dark:border-emerald-500/10">
-                  <CardContent className="p-0">
-                    <div className="relative h-48 overflow-hidden">
+              <motion.div key={venue.title} variants={itemFadeUp} className="group" whileHover={{ y: -8 }} transition={{ duration: 0.3 }}>
+                <div className="h-full bg-white dark:bg-slate-900/90 rounded-3xl border border-slate-200/80 dark:border-white/10 shadow-lg hover:shadow-2xl hover:border-emerald-500/30 transition-all duration-500 overflow-hidden flex flex-col justify-between">
+                  <div>
+                    <div className="relative h-52 overflow-hidden">
                       <Image
                         src={venue.image}
                         alt={venue.title}
                         fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
                       <div className="absolute top-4 left-4">
-                        <div className="w-12 h-12 bg-white text-emerald-600 border border-emerald-100 rounded-full flex items-center justify-center text-2xl shadow-md dark:bg-slate-950/80 dark:border-white/10 dark:text-emerald-300">
+                        <div className="w-12 h-12 bg-white/90 dark:bg-slate-900/90 text-emerald-600 dark:text-emerald-300 border border-white/20 rounded-2xl flex items-center justify-center text-2xl shadow-lg backdrop-blur-md">
                           {venue.icon}
                         </div>
                       </div>
+                      <div className="absolute bottom-3 right-4">
+                        <span className="px-3 py-1 rounded-full bg-emerald-600 text-white font-bold text-xs shadow-md">
+                          {venue.capacity}
+                        </span>
+                      </div>
                     </div>
-                      <div className="p-6">
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-2">{venue.title}</h3>
-                      <p className="text-emerald-600 dark:text-emerald-300 font-semibold mb-4">{venue.capacity}</p>
-                      <ul className="space-y-2">
+                    <div className="p-7">
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-4 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">{venue.title}</h3>
+                      <ul className="space-y-2.5">
                         {venue.features.map((feature) => (
                           <li key={feature} className="flex items-center text-sm text-slate-600 dark:text-slate-300">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-3"></div>
-                            {feature}
+                            <div className="w-2 h-2 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full mr-3 flex-shrink-0" />
+                            <span>{feature}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                  <div className="p-7 pt-0">
+                    <a
+                      href={`https://wa.me/27603114115?text=${encodeURIComponent(`Hi Glenanda Hotel, I'd like to enquire about booking the ${venue.title} (${venue.capacity}).`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3 rounded-2xl bg-slate-100 hover:bg-emerald-600 dark:bg-white/5 dark:hover:bg-emerald-600 text-slate-800 hover:text-white dark:text-slate-200 dark:hover:text-white font-semibold text-xs sm:text-sm flex items-center justify-center space-x-1.5 transition-all duration-300"
+                    >
+                      <span>Enquire About Venue</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -1965,7 +2084,7 @@ export default function HomePage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16"
           >
             {[
               {
@@ -1999,11 +2118,13 @@ export default function HomePage() {
                 description: "Special group rates and room block reservations for multi-day events."
               }
             ].map((service) => (
-              <motion.div key={service.title} variants={itemFadeUp}>
-                <div className="text-center p-8 bg-white rounded-2xl shadow-lg border border-emerald-100 hover:shadow-xl transition-all duration-300 dark:bg-white/10 dark:border-white/20 dark:backdrop-blur-sm">
-                  <div className="text-4xl mb-4">{service.icon}</div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">{service.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300">{service.description}</p>
+              <motion.div key={service.title} variants={itemFadeUp} whileHover={{ y: -6 }}>
+                <div className="text-center p-8 bg-white dark:bg-slate-900/80 rounded-3xl shadow-lg border border-slate-200/80 dark:border-white/10 hover:shadow-2xl hover:border-emerald-500/30 transition-all duration-300 h-full flex flex-col justify-between">
+                  <div>
+                    <div className="text-4xl mb-4">{service.icon}</div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-3">{service.title}</h3>
+                    <p className="text-slate-600 dark:text-slate-300/90 text-sm leading-relaxed">{service.description}</p>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -2015,54 +2136,56 @@ export default function HomePage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            className="bg-white rounded-3xl p-12 shadow-xl border border-emerald-100 dark:bg-white/10 dark:border-white/20 dark:backdrop-blur-sm"
+            className="bg-white dark:bg-slate-900/90 rounded-3xl p-10 sm:p-14 shadow-xl border border-slate-200/80 dark:border-white/10"
           >
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">Perfect Venue for Every Occasion</h3>
-              <p className="text-lg text-gray-600">We&apos;ve successfully hosted a wide variety of events for groups of all sizes</p>
+              <h3 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">Perfect Venue for Every Occasion</h3>
+              <p className="text-lg text-slate-600 dark:text-slate-300">We&apos;ve successfully hosted a wide variety of events for groups of all sizes</p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-6 gap-6">
               {[
                 {
                   category: "Corporate Events",
                   events: ["Board meetings", "Product launches", "Team retreats", "Annual conferences"],
-                  color: "bg-blue-100 text-blue-800"
+                  color: "bg-blue-500/10 text-blue-800 dark:text-blue-300 border border-blue-500/20"
                 },
                 {
                   category: "Sports Teams",
                   events: ["Soccer teams", "Training camps", "Match day stays", "Team tournaments"],
-                  color: "bg-green-100 text-green-800"
+                  color: "bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/20"
                 },
                 {
                   category: "Braai & Outdoor",
                   events: ["Braai parties", "Garden events", "Outdoor celebrations", "Family gatherings"],
-                  color: "bg-orange-100 text-orange-800"
+                  color: "bg-orange-500/10 text-orange-800 dark:text-orange-300 border border-orange-500/20"
                 },
                 {
                   category: "Social Celebrations",
                   events: ["Weddings", "Anniversaries", "Birthday parties", "Graduation celebrations"],
-                  color: "bg-pink-100 text-pink-800"
+                  color: "bg-pink-500/10 text-pink-800 dark:text-pink-300 border border-pink-500/20"
                 },
                 {
                   category: "Community Gatherings",
                   events: ["Charity galas", "Fundraising events", "Community meetings", "Award ceremonies"],
-                  color: "bg-emerald-100 text-emerald-800"
+                  color: "bg-teal-500/10 text-teal-800 dark:text-teal-300 border border-teal-500/20"
                 },
                 {
                   category: "Educational Events",
                   events: ["Workshops", "Seminars", "Training sessions", "Academic conferences"],
-                  color: "bg-purple-100 text-purple-800"
+                  color: "bg-purple-500/10 text-purple-800 dark:text-purple-300 border border-purple-500/20"
                 }
               ].map((category) => (
-                <motion.div key={category.category} variants={itemFadeUp}>
-                  <div className={`${category.color} rounded-2xl p-6`}>
-                    <h4 className="font-bold text-lg mb-4">{category.category}</h4>
-                    <ul className="space-y-2">
-                      {category.events.map((event) => (
-                        <li key={event} className="text-sm">• {event}</li>
-                      ))}
-                    </ul>
+                <motion.div key={category.category} variants={itemFadeUp} whileHover={{ y: -5 }}>
+                  <div className={`${category.color} rounded-2xl p-6 h-full flex flex-col justify-between shadow-sm`}>
+                    <div>
+                      <h4 className="font-bold text-base sm:text-lg mb-3">{category.category}</h4>
+                      <ul className="space-y-1.5">
+                        {category.events.map((event) => (
+                          <li key={event} className="text-xs sm:text-sm opacity-90 leading-snug">• {event}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -2077,20 +2200,20 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mt-16"
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Ready to Plan Your Event?</h3>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">Ready to Plan Your Event?</h3>
+            <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
               Our event specialists are ready to help you create an unforgettable experience. Get in touch to discuss your requirements and receive a custom quote.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="https://wa.me/27603114115?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20enquire%20about%20event%20facilities." target="_blank" className="group relative">
-                <Button size="lg" className="rounded-full px-10 py-6 bg-indigo-600 hover:bg-indigo-500 text-white text-base shadow-lg shadow-indigo-900/30">
-                  Request Event Quote
+                <Button size="lg" className="rounded-full px-10 py-6 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-base font-bold shadow-lg shadow-emerald-600/25 transition-all hover:scale-105">
+                  <span>Request Event Quote</span>
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button variant="outline" size="lg" className="rounded-full px-10 py-6 border-indigo-300 text-indigo-700 hover:bg-indigo-50">
-                  Schedule Site Visit
+                <Button variant="outline" size="lg" className="rounded-full px-10 py-6 border-2 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-base transition-all hover:scale-105">
+                  <span>Schedule Site Visit</span>
                 </Button>
               </Link>
             </div>
@@ -2115,68 +2238,68 @@ export default function HomePage() {
             className="space-y-8"
           >
             <motion.h2 
-              className="text-4xl md:text-6xl font-bold text-white mb-8"
+              className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight drop-shadow-sm"
               animate={{ textShadow: ["0 0 18px rgba(255,255,255,0.4)", "0 0 36px rgba(255,255,255,0.7)", "0 0 18px rgba(255,255,255,0.4)"] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               Ready to Book Your Stay?
             </motion.h2>
             
-            <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-emerald-50 mb-10 max-w-2xl mx-auto leading-relaxed">
               Reserve directly for the best flexibility. Instant assistance via WhatsApp for special requests, group enquiries or extended stays.
             </p>
 
             <motion.div 
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-8 inline-block"
-              whileHover={{ scale: 1.05 }}
+              className="bg-black/25 backdrop-blur-md border border-white/20 rounded-3xl p-6 sm:p-8 mb-10 inline-block shadow-2xl"
+              whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="flex items-center justify-center space-x-8 text-white">
+              <div className="flex items-center justify-center space-x-6 sm:space-x-12 text-white">
                 <div className="text-center">
-                  <div className="text-2xl font-bold">4 Types</div>
-                  <div className="text-sm opacity-80">Room Options</div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-white">4 Types</div>
+                  <div className="text-xs sm:text-sm text-emerald-200 font-medium">Room Options</div>
                 </div>
-                <div className="w-px h-8 bg-white/30"></div>
+                <div className="w-px h-10 bg-white/25"></div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold">Fast</div>
-                  <div className="text-sm opacity-80">Check-In</div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-white">Fast</div>
+                  <div className="text-xs sm:text-sm text-emerald-200 font-medium">Check-In</div>
                 </div>
-                <div className="w-px h-8 bg-white/30"></div>
+                <div className="w-px h-10 bg-white/25"></div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold">24/7</div>
-                  <div className="text-sm opacity-80">Support</div>
+                  <div className="text-2xl sm:text-3xl font-extrabold text-white">24/7</div>
+                  <div className="text-xs sm:text-sm text-emerald-200 font-medium">Support</div>
                 </div>
               </div>
             </motion.div>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-      <Link href="https://wa.me/27603114115?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20stay." target="_blank">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="https://wa.me/27603114115?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20stay." target="_blank">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-      <Button size="lg" className="bg-white text-emerald-600 hover:bg-gray-50 text-lg px-12 py-6 rounded-full group shadow-2xl">
-        <Calendar className="mr-2 h-5 w-5" />
-        WhatsApp Reservation
-                    <motion.div
-                      className="ml-2"
-                      animate={{ x: [0, 5, 0] }}
+                  <Button size="lg" className="bg-white text-slate-950 hover:bg-emerald-50 text-base sm:text-lg px-10 py-6 rounded-full group shadow-2xl font-bold transition-all">
+                    <Calendar className="mr-2 h-5 w-5 text-emerald-600" />
+                    <span>WhatsApp Reservation</span>
+                    <motion.span
+                      className="ml-2 inline-block"
+                      animate={{ x: [0, 4, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
                     >
-                      <span className="inline-block w-5">→</span>
-                    </motion.div>
+                      →
+                    </motion.span>
                   </Button>
                 </motion.div>
               </Link>
               
-      <Link href="/rooms">
+              <Link href="/rooms">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 text-lg px-12 py-6 rounded-full">
-        View All Rooms
+                  <Button variant="outline" size="lg" className="border-2 border-white/80 text-white hover:bg-white/15 text-base sm:text-lg px-10 py-6 rounded-full font-bold backdrop-blur-sm transition-all">
+                    <span>View All Rooms</span>
                   </Button>
                 </motion.div>
               </Link>
             </div>
 
             <motion.div 
-              className="text-white/80 text-sm mt-8"
+              className="text-emerald-100/90 text-sm mt-8 font-medium tracking-wide"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
