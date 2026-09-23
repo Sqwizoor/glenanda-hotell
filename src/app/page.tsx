@@ -147,8 +147,8 @@ function GalleryCarousel() {
       ...item,
       originalIndex,
       category: item.src.includes('spa') || item.src.includes('massage') ? 'wellness' :
-                (item.src.includes('dining') || item.src.includes('breakfast') || item.src.includes('catering') || item.src.includes('kitchen')) ? 'dining' :
-                (item.src.includes('group') || item.src.includes('lounge') || item.src.includes('conference') || item.src.includes('soccer')) ? 'groups' :
+                (item.src.includes('dining') || item.src.includes('breakfast') || item.src.includes('catering') || item.src.includes('kitchen') || item.src.includes('buffet') || item.src.includes('banquet') || item.src.includes('fryer')) ? 'dining' :
+                (item.src.includes('group') || item.src.includes('lounge') || item.src.includes('conference') || item.src.includes('soccer') || item.src.includes('gathering')) ? 'groups' :
                 item.src.includes('room') ? 'rooms' : 'all'
     }));
   }, []);
@@ -346,7 +346,7 @@ const homeServices = [
     price: "from R500 / night",
     popular: true,
     groupFriendly: false,
-    image: "/group5.jpeg",
+    image: "/room14.jpeg",
     description: "Comfortable single rooms with modern amenities, work desk, and quality service - ideal for individual travelers."
   },
   {
@@ -357,7 +357,7 @@ const homeServices = [
     price: "from R600 / night",
     popular: true,
     groupFriendly: false,
-    image: "/group13.jpeg",
+    image: "/room12.jpeg",
     description: "Spacious rooms with comfortable beds and modern amenities - perfect for couples and two guests sharing."
   },
   {
@@ -368,7 +368,7 @@ const homeServices = [
     price: "from R900 / night",
     popular: true,
     groupFriendly: true,
-    image: "/group16.jpeg",
+    image: "/room11.jpeg",
     description: "Extra-large rooms with multiple beds and family-friendly amenities - perfect for families and small groups."
   },
   {
@@ -395,23 +395,31 @@ type MediaItem =
 const resultsMedia: MediaItem[] = [
   // Mixed & Randomized - Real Hotel Dining, Lounges, Spa, Rooms, Braai, Soccer, Groups
   { type: "image", src: "/new-images/hotel-catering-fresh-sandwiches-chips.jpeg", alt: "Fresh hotel catering spread with golden fries and sandwiches" },
+  { type: "image", src: "/new-images/hotel-morning-buffet-sunlight-dining.jpeg", alt: "Morning breakfast buffet in our sunlit dining hall" },
   { type: "image", src: "/room14.jpeg", alt: "Presidential suite for VIP group stays" },
+  { type: "image", src: "/new-images/hotel-lounge-emerald-sofas.jpeg", alt: "Cozy guest lounge with plush emerald velvet seating" },
+  { type: "image", src: "/new-images/hotel-banquet-buffet-setup.jpeg", alt: "Banquet buffet dining setup for special occasions and functions" },
   { type: "image", src: "/new-images/hotel-full-breakfast-dining.jpeg", alt: "Full breakfast dining experience for hotel guests and groups" },
   { type: "image", src: "/brai.jpeg", alt: "Outdoor braai area with guests enjoying a barbecue" },
-  { type: "image", src: "/new-images/hotel-lounge-emerald-sofas.jpeg", alt: "Cozy guest lounge with plush emerald velvet seating" },
+  { type: "image", src: "/new-images/hotel-breakfast-social-dining.jpeg", alt: "Social breakfast dining atmosphere for hotel guests" },
   
   { type: "image", src: "/new-images/hotel-breakfast-buffet-service-staff.jpeg", alt: "Morning breakfast buffet service with dedicated hotel staff" },
   { type: "image", src: "/new-massages2.jpeg", alt: "Luxury spa facilities for ultimate relaxation" },
   { type: "image", src: "/room6.jpeg", alt: "Executive rooms perfect for business groups" },
+  { type: "image", src: "/new-images/hotel-buffet-station-tv-lounge.jpeg", alt: "Guest TV lounge with hot buffet station and comfortable seating" },
   { type: "image", src: "/new-images/hotel-breakfast-buffet-tableware.jpeg", alt: "Lavish dining buffet setup with chafing dishes and fine tableware" },
   { type: "image", src: "/new-images/hotel-conference-dining-table.jpeg", alt: "Group conference and dining gathering space" },
+  { type: "image", src: "/new-images/hotel-group-breakfast-meeting.jpeg", alt: "Group breakfast meeting in our private dining facilities" },
   
   { type: "image", src: "/new-images/hotel-kitchen-golden-chips-sausages.jpeg", alt: "Kitchen hot fryer - golden crispy chips & breakfast sausages" },
+  { type: "image", src: "/new-images/hotel-group-gathering-hall.jpeg", alt: "Spacious group gathering hall for celebrations and corporate events" },
   { type: "image", src: "/brai2.jpeg", alt: "Group gathering around the braai for a social event" },
   { type: "image", src: "/soccer4.jpeg", alt: "Professional soccer team group accommodation facilities" },
-  { type: "image", src: "/new-images/hotel-morning-buffet-sunlight-dining.jpeg", alt: "Morning breakfast buffet in our sunlit dining hall" },
+  { type: "image", src: "/new-images/hotel-guest-lounge-gathering.jpeg", alt: "Warm guest lounge gathering area for families and groups" },
   { type: "image", src: "/room11.jpeg", alt: "Connecting rooms for families and teams" },
+  { type: "image", src: "/new-images/hotel-kitchen-fryer-prep-station.jpeg", alt: "Commercial kitchen fryer and fresh food preparation station" },
   { type: "image", src: "/new-massages4.jpeg", alt: "Tranquil spa environment with natural elements" },
+  { type: "image", src: "/new-images/hotel-lounge-dining-atmosphere.jpeg", alt: "Relaxed lounge and dining atmosphere with ambient lighting" },
   
   { type: "image", src: "/soccer-dining2.jpeg", alt: "Sports team meal service with nutritious options" },
   { type: "image", src: "/niceview.jpeg", alt: "Panoramic views enjoyed by all our guests" },
@@ -1129,6 +1137,156 @@ export default function HomePage() {
             <GalleryCarousel />
           </div>
         </LightboxProvider>
+      </section>
+
+      {/* Hotel Dining, Lounges & Culinary Showcase - Authentic Real Hotel Experience */}
+      <section className="section-padding bg-slate-50 dark:bg-slate-950/80 border-t border-b border-slate-200/80 dark:border-white/5 relative overflow-hidden" id="dining-showcase">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            className="text-center mb-14"
+          >
+            <motion.div
+              variants={itemFadeUp}
+              className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold mb-4 bg-amber-100 text-amber-800 border border-amber-200 dark:bg-amber-500/10 dark:text-amber-300 dark:border-amber-500/20 shadow-sm"
+            >
+              <UtensilsCrossed className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 mr-1" />
+              <span>Authentic Hospitality &amp; Dining</span>
+            </motion.div>
+            <motion.h2 
+              variants={itemFadeUp} 
+              className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-slate-100 mb-6 tracking-tight"
+            >
+              Fresh Dining, Lounges &amp; Catering
+            </motion.h2>
+            <motion.p 
+              variants={itemFadeUp} 
+              className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed"
+            >
+              Enjoy real hospitality cooked with care. From our morning sunlit buffet and live breakfast fryers to generous catering platters and velvet executive lounges, our spaces are designed to bring guests together.
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-14"
+          >
+            {[
+              {
+                title: "Fresh Kitchen Catering & Platters",
+                tag: "Catering & Snacks",
+                image: "/new-images/hotel-catering-fresh-sandwiches-chips.jpeg",
+                description: "Crispy golden chips, freshly toasted sandwiches, and tailored platters prepared daily for hotel guests and private functions."
+              },
+              {
+                title: "Sunlit Morning Breakfast Buffet",
+                tag: "Morning Dining",
+                image: "/new-images/hotel-morning-buffet-sunlight-dining.jpeg",
+                description: "Full breakfast dining service featuring hot eggs, savory sausages, baked breads, and warm breakfast favorites in our airy dining hall."
+              },
+              {
+                title: "Executive Emerald Velvet Lounge",
+                tag: "Guest Lounges",
+                image: "/new-images/hotel-lounge-emerald-sofas.jpeg",
+                description: "Plush, relaxing seating area designed for casual debriefs, team discussions, family reunions, and unwinding in luxury."
+              },
+              {
+                title: "Live Fryer & Hot Breakfast Station",
+                tag: "Live Kitchen",
+                image: "/new-images/hotel-kitchen-golden-chips-sausages.jpeg",
+                description: "Hot golden chips, sizzling breakfast sausages, and freshly cooked morning specialties prepared hot and crispy."
+              },
+              {
+                title: "Banquet Buffet & Chafing Station",
+                tag: "Banquet Facilities",
+                image: "/new-images/hotel-banquet-buffet-setup.jpeg",
+                description: "Full-scale dining setup with heated stainless chafing dishes, perfect for large group banquets and corporate retreats."
+              },
+              {
+                title: "Guest TV Lounge & Social Amenities",
+                tag: "Common Areas",
+                image: "/new-images/hotel-buffet-station-tv-lounge.jpeg",
+                description: "Comfortable entertainment and dining space with flat screen TV, buffet access, and flexible seating for group hospitality."
+              }
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                variants={itemFadeUp}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="group"
+              >
+                <div className="h-full bg-white dark:bg-slate-900/90 rounded-3xl border border-slate-200/80 dark:border-white/10 shadow-lg hover:shadow-2xl hover:border-amber-400/40 transition-all duration-500 overflow-hidden flex flex-col justify-between">
+                  <div>
+                    <div className="relative h-64 overflow-hidden">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-amber-300 font-bold text-xs border border-white/15 shadow-md">
+                          {item.tag}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-7">
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-slate-600 dark:text-slate-300/90 text-sm leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="p-7 pt-0">
+                    <a
+                      href={`https://wa.me/27603114115?text=${encodeURIComponent(`Hi Glenanda Hotel, I'd like to enquire about ${item.title}.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3 rounded-2xl bg-amber-50 hover:bg-amber-500 dark:bg-white/5 dark:hover:bg-amber-500 text-amber-900 hover:text-slate-950 dark:text-amber-200 dark:hover:text-slate-950 font-bold text-xs sm:text-sm flex items-center justify-center space-x-1.5 transition-all duration-300 shadow-sm"
+                    >
+                      <span>Enquire via WhatsApp</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            variants={itemFadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/menu" className="group relative">
+                <Button size="lg" className="rounded-full px-10 py-6 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white text-base font-bold shadow-lg shadow-amber-600/25 transition-all hover:scale-105">
+                  <UtensilsCrossed className="w-4 h-4 mr-2" />
+                  <span>View Room Service &amp; Dining Menu</span>
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+              <Link href="/gallery">
+                <Button variant="outline" size="lg" className="rounded-full px-10 py-6 border-2 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-base transition-all hover:scale-105">
+                  <span>Explore All Spaces in Gallery</span>
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Modern Massage & Spa Section - Completely Redesigned */}
@@ -1905,10 +2063,10 @@ export default function HomePage() {
             
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { src: "/soccer-dining5.jpeg", title: "Team Dining", subtitle: "Nutritious Meals" },
-                { src: "/soccer7.jpeg", title: "Team Bonding", subtitle: "Common Areas" },
-                { src: "/soccer-dining9.jpeg", title: "Pre-Match Meals", subtitle: "Performance Focus" },
-                { src: "/soccer12.jpeg", title: "Comfortable Stay", subtitle: "Rest & Recovery" }
+                { src: "/new-images/hotel-full-breakfast-dining.jpeg", title: "Team Dining", subtitle: "Nutritious Meals" },
+                { src: "/new-images/hotel-guest-lounge-gathering.jpeg", title: "Team Bonding", subtitle: "Common Areas" },
+                { src: "/new-images/hotel-group-breakfast-meeting.jpeg", title: "Pre-Match Meals", subtitle: "Performance Focus" },
+                { src: "/room12.jpeg", title: "Comfortable Stay", subtitle: "Rest & Recovery" }
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -1989,7 +2147,7 @@ export default function HomePage() {
                 title: "Executive Boardroom",
                 capacity: "10-25 people",
                 features: ["Premium AV setup", "Climate controlled", "Private entrance"],
-                image: "/room6.jpeg",
+                image: "/new-images/hotel-group-breakfast-meeting.jpeg",
                 icon: "👔"
               },
               {
@@ -2003,7 +2161,7 @@ export default function HomePage() {
                 title: "Sports Team Venue",
                 capacity: "20-50 athletes",
                 features: ["Team briefing rooms", "Coach facilities", "Equipment storage"],
-                image: "/soccer6.jpeg",
+                image: "/new-images/hotel-group-gathering-hall.jpeg",
                 icon: "⚽"
               },
               {
@@ -2017,7 +2175,7 @@ export default function HomePage() {
                 title: "Grand Banquet Hall",
                 capacity: "200-350 people",
                 features: ["Elegant chandeliers", "Dance floor", "Full catering kitchen"],
-                image: "/new-images/hotel-breakfast-buffet-tableware.jpeg",
+                image: "/new-images/hotel-banquet-buffet-setup.jpeg",
                 icon: "🏛️"
               },
               {
