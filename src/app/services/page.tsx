@@ -65,7 +65,7 @@ const groupServices = [
     description: "Complete business event hosting from board meetings to company retreats.",
     features: ["Meeting rooms", "AV equipment", "Business center", "Executive services"],
     capacity: "10-200 people",
-    image: "/group14.jpeg"
+    image: "/new-images/hotel-conference-dining-table.jpeg"
   },
   {
     icon: PartyPopper,
@@ -73,7 +73,7 @@ const groupServices = [
     description: "Memorable celebrations for families, weddings, and special occasions.",
     features: ["Event planning", "Decoration services", "Photography", "Entertainment coordination"],
     capacity: "20-300 people", 
-    image: "/group3.jpeg"
+    image: "/new-images/hotel-lounge-emerald-sofas.jpeg"
   },
   {
     icon: ChefHat,
@@ -81,7 +81,7 @@ const groupServices = [
     description: "Customized dining experiences for groups of all sizes and preferences.",
     features: ["Custom menus", "Dietary accommodations", "Buffet or plated service", "Private dining rooms"],
     capacity: "Any size group",
-    image: "/dining2.jpeg"
+    image: "/new-images/hotel-catering-fresh-sandwiches-chips.jpeg"
   },
   {
     icon: Mic,
@@ -89,7 +89,7 @@ const groupServices = [
     description: "Professional conference hosting with full technical support.",
     features: ["Live streaming", "Recording services", "Translation services", "Registration support"],
     capacity: "50-500 attendees",
-    image: "/group12.jpeg"
+    image: "/new-images/hotel-breakfast-buffet-tableware.jpeg"
   }
 ];
 

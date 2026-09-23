@@ -388,6 +388,61 @@ Please deliver to my room. Thank you!`;
             </div>
           </motion.div>
 
+          {/* Fresh Kitchen & Catering Showcase */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-14"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="group relative h-64 rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src="/new-images/hotel-kitchen-golden-chips-sausages.jpeg"
+                  alt="Freshly fried golden crispy chips and breakfast sausages"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <span className="bg-amber-500/90 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">Kitchen Fresh</span>
+                  <h4 className="font-bold text-lg mt-2">Crispy Golden Chips</h4>
+                  <p className="text-xs text-gray-200">Cooked fresh to order in our commercial fryers</p>
+                </div>
+              </div>
+
+              <div className="group relative h-64 rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src="/new-images/hotel-catering-fresh-sandwiches-chips.jpeg"
+                  alt="Hotel catering platters with fresh sandwiches and chips"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <span className="bg-emerald-600/90 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">Catering & Platters</span>
+                  <h4 className="font-bold text-lg mt-2">Gourmet Sandwiches & Buffets</h4>
+                  <p className="text-xs text-gray-200">Generous platters for events, teams & groups</p>
+                </div>
+              </div>
+
+              <div className="group relative h-64 rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src="/new-images/hotel-full-breakfast-dining.jpeg"
+                  alt="Full English breakfast buffet dining"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <span className="bg-teal-600/90 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">Hotel Dining</span>
+                  <h4 className="font-bold text-lg mt-2">Full Breakfast Dining</h4>
+                  <p className="text-xs text-gray-200">Hot breakfast, juices, tea & coffee buffet</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           <AnimatePresence mode="wait">
             <motion.div
               key={selectedCategory}

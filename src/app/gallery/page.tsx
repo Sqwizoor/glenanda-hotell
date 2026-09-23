@@ -15,15 +15,16 @@ const mediaData: Array<{ id: string; type: "image"; src: string; alt: string; ta
   { id: "g2", type: "image", src: "/group3.jpeg", alt: "Family reunion celebration", tags: ["groups", "family", "celebrations"], category: "Group Events" },
   { id: "g3", type: "image", src: "/group4.jpeg", alt: "Wedding party gathering", tags: ["groups", "weddings", "celebrations"], category: "Group Events" },
   { id: "g4", type: "image", src: "/group5.jpeg", alt: "Conference networking event", tags: ["groups", "corporate", "networking"], category: "Group Events" },
-  { id: "g5", type: "image", src: "/group8.jpeg", alt: "Birthday celebration with friends", tags: ["groups", "celebrations", "social"], category: "Group Events" },
+  { id: "g-new1", type: "image", src: "/new-images/hotel-lounge-emerald-sofas.jpeg", alt: "Group guests relaxing in luxury emerald velvet lounge", tags: ["groups", "events", "social"], category: "Group Events" },
+  { id: "g-new2", type: "image", src: "/new-images/hotel-conference-dining-table.jpeg", alt: "Conference & group breakfast gathering", tags: ["groups", "corporate", "meetings"], category: "Group Events" },
+  { id: "g-new3", type: "image", src: "/new-images/hotel-breakfast-social-dining.jpeg", alt: "Group dining experience and morning breakfast social", tags: ["groups", "dining", "social"], category: "Group Events" },
+  { id: "g-new4", type: "image", src: "/new-images/hotel-group-gathering-hall.jpeg", alt: "Executive group meeting & social gathering hall", tags: ["groups", "corporate", "events"], category: "Group Events" },
   { id: "g6", type: "image", src: "/group9.jpeg", alt: "Business retreat planning session", tags: ["groups", "corporate", "meetings"], category: "Group Events" },
   { id: "g7", type: "image", src: "/group11.jpeg", alt: "Large group dining experience", tags: ["groups", "dining", "social"], category: "Group Events" },
   { id: "g8", type: "image", src: "/group12.jpeg", alt: "Team collaboration workshop", tags: ["groups", "corporate", "teamwork"], category: "Group Events" },
   { id: "g9", type: "image", src: "/group13.jpeg", alt: "Multi-generational family gathering", tags: ["groups", "family", "celebrations"], category: "Group Events" },
   { id: "g10", type: "image", src: "/group14.jpeg", alt: "Executive board meeting", tags: ["groups", "corporate", "executive"], category: "Group Events" },
   { id: "g11", type: "image", src: "/group16.jpeg", alt: "Social club annual meeting", tags: ["groups", "social", "community"], category: "Group Events" },
-  { id: "g12", type: "image", src: "/group17.jpeg", alt: "Extended family weekend gathering", tags: ["groups", "family", "weekend"], category: "Group Events" },
-  { id: "g13", type: "image", src: "/group18.jpeg", alt: "Corporate training seminar", tags: ["groups", "corporate", "training"], category: "Group Events" },
   
   // Luxury Accommodations
   { id: "r1", type: "image", src: "/room14.jpeg", alt: "Presidential suite panoramic view", tags: ["rooms", "luxury", "suites"], category: "Accommodations" },
@@ -37,7 +38,6 @@ const mediaData: Array<{ id: string; type: "image"; src: string; alt: string; ta
   { id: "r9", type: "image", src: "/room9.jpeg", alt: "Accessible deluxe room", tags: ["rooms", "accessible", "deluxe"], category: "Accommodations" },
   { id: "r10", type: "image", src: "/room10.jpeg", alt: "Connecting family rooms", tags: ["rooms", "family", "connecting"], category: "Accommodations" },
   { id: "r11", type: "image", src: "/room12.jpeg", alt: "VIP penthouse suite", tags: ["rooms", "vip", "penthouse"], category: "Accommodations" },
-  { id: "r12", type: "image", src: "/room43.jpeg", alt: "Grand luxury suite", tags: ["rooms", "luxury", "grand"], category: "Accommodations" },
   { id: "r13", type: "image", src: "/rooma.jpeg", alt: "Classic heritage room", tags: ["rooms", "classic", "heritage"], category: "Accommodations" },
   { id: "r14", type: "image", src: "/roomb.jpeg", alt: "Modern minimalist suite", tags: ["rooms", "modern", "minimalist"], category: "Accommodations" },
   { id: "r15", type: "image", src: "/roomc.jpeg", alt: "Business traveler suite", tags: ["rooms", "business", "traveler"], category: "Accommodations" },
@@ -46,9 +46,14 @@ const mediaData: Array<{ id: string; type: "image"; src: string; alt: string; ta
   { id: "r18", type: "image", src: "/roomf.jpeg", alt: "Premium workspace suite", tags: ["rooms", "workspace", "premium"], category: "Accommodations" },
 
   // Dining & Culinary Experiences
+  { id: "d-new1", type: "image", src: "/new-images/hotel-catering-fresh-sandwiches-chips.jpeg", alt: "Fresh hotel catering spread with golden fries & club sandwiches", tags: ["dining", "restaurant", "events"], category: "Dining" },
+  { id: "d-new2", type: "image", src: "/new-images/hotel-full-breakfast-dining.jpeg", alt: "Full English breakfast buffet with fresh juice, tea & savory dishes", tags: ["dining", "casual", "breakfast"], category: "Dining" },
+  { id: "d-new3", type: "image", src: "/new-images/hotel-breakfast-buffet-service-staff.jpeg", alt: "Morning breakfast buffet with attentive hotel hospitality staff", tags: ["dining", "social", "breakfast"], category: "Dining" },
+  { id: "d-new4", type: "image", src: "/new-images/hotel-breakfast-buffet-tableware.jpeg", alt: "Deluxe breakfast buffet spread with hot chafing dishes & glassware", tags: ["dining", "formal", "restaurant"], category: "Dining" },
+  { id: "d-new5", type: "image", src: "/new-images/hotel-kitchen-golden-chips-sausages.jpeg", alt: "Fresh kitchen preparation - golden crispy chips & breakfast sausages", tags: ["dining", "casual"], category: "Dining" },
+  { id: "d-new6", type: "image", src: "/new-images/hotel-morning-buffet-sunlight-dining.jpeg", alt: "Sunlit dining hall & morning refreshments buffet", tags: ["dining", "casual", "breakfast"], category: "Dining" },
   { id: "d1", type: "image", src: "/dining.jpeg", alt: "Main restaurant dining hall", tags: ["dining", "restaurant", "formal"], category: "Dining" },
   { id: "d2", type: "image", src: "/dining2.jpeg", alt: "Private dining room", tags: ["dining", "private", "exclusive"], category: "Dining" },
-  { id: "d3", type: "image", src: "/dining4.jpeg", alt: "Casual café breakfast", tags: ["dining", "casual", "breakfast"], category: "Dining" },
   { id: "d4", type: "image", src: "/gesta.jpeg", alt: "Elegant dinner setting", tags: ["dining", "elegant", "dinner"], category: "Dining" },
   
   // Wellness & Spa Facilities
@@ -58,6 +63,10 @@ const mediaData: Array<{ id: string; type: "image"; src: string; alt: string; ta
   { id: "w4", type: "image", src: "/bathroom3.jpeg", alt: "Premium spa treatment room", tags: ["wellness", "spa", "treatment"], category: "Wellness" },
   
   // Hotel Ambience & Common Areas
+  { id: "a-new1", type: "image", src: "/new-images/hotel-dining-hall-buffet-wide.jpeg", alt: "Spacious dining hall with morning breakfast buffet station", tags: ["ambience", "dining"], category: "Hotel Features" },
+  { id: "a-new2", type: "image", src: "/new-images/hotel-guest-lounge-gathering.jpeg", alt: "Guest lounge relaxation area with nautical art decor", tags: ["ambience", "lounge", "social"], category: "Hotel Features" },
+  { id: "a-new3", type: "image", src: "/new-images/hotel-buffet-station-tv-lounge.jpeg", alt: "Guest entertainment lounge and buffet amenities station", tags: ["ambience", "lounge"], category: "Hotel Features" },
+  { id: "a-new4", type: "image", src: "/new-images/hotel-lounge-dining-atmosphere.jpeg", alt: "Open-plan guest lounge & dining hall atmosphere", tags: ["ambience", "social"], category: "Hotel Features" },
   { id: "a1", type: "image", src: "/hallway.jpeg", alt: "Grand entrance hallway", tags: ["ambience", "entrance", "grand"], category: "Hotel Features" },
   { id: "a2", type: "image", src: "/niceview.jpeg", alt: "Panoramic city views", tags: ["views", "panoramic", "city"], category: "Hotel Features" },
   { id: "a3", type: "image", src: "/guests2.jpeg", alt: "Guest lounge social area", tags: ["lounge", "social", "guests"], category: "Hotel Features" },
@@ -478,7 +487,7 @@ export default function GalleryPage() {
               viewport={{ once: true }}
               className="grid grid-cols-2 gap-4"
             >
-              {['/dining.jpeg', '/bath.jpeg', '/dining2.jpeg', '/bath2.jpeg'].map((src, index) => (
+              {['/new-images/hotel-catering-fresh-sandwiches-chips.jpeg', '/new-images/hotel-full-breakfast-dining.jpeg', '/new-images/hotel-lounge-emerald-sofas.jpeg', '/bath.jpeg'].map((src, index) => (
                 <motion.div
                   key={src}
                   whileHover={{ scale: 1.05 }}

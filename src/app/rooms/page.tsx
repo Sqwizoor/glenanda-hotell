@@ -138,7 +138,7 @@ const roomTypes = [
     name: "Group Accommodation (10-50 People)",
     price: 300,
     originalPrice: 400,
-    image: "/group14.jpeg",
+    image: "/new-images/hotel-conference-dining-table.jpeg",
     category: "Group",
     size: "Various sizes",
     guests: 50,

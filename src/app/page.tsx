@@ -148,15 +148,15 @@ function GalleryCarousel() {
           {resultsMedia.map((item, idx) => {
             // Determine content type for badge
             const contentType = item.src.includes('spa') ? 'Spa & Wellness' :
-                               item.src.includes('group') ? 'Group Events' :
+                               (item.src.includes('group') || item.src.includes('lounge') || item.src.includes('conference')) ? 'Group Events' :
                                item.src.includes('room') ? 'Accommodations' :
-                               item.src.includes('dining') ? 'Dining' :
+                               (item.src.includes('dining') || item.src.includes('breakfast') || item.src.includes('catering') || item.src.includes('kitchen')) ? 'Dining' :
                                'Hotel Amenities';
             
             const badgeColor = item.src.includes('spa') ? 'bg-emerald-500' :
-                              item.src.includes('group') ? 'bg-purple-500' :
+                              (item.src.includes('group') || item.src.includes('lounge') || item.src.includes('conference')) ? 'bg-purple-500' :
                               item.src.includes('room') ? 'bg-blue-500' :
-                              item.src.includes('dining') ? 'bg-amber-500' :
+                              (item.src.includes('dining') || item.src.includes('breakfast') || item.src.includes('catering') || item.src.includes('kitchen')) ? 'bg-amber-500' :
                               'bg-gray-500';
             
             return (
@@ -289,7 +289,7 @@ const homeServices = [
     price: "R300 per person sharing room",
     popular: false,
     groupFriendly: true,
-    image: "/soccer3.jpeg",
+    image: "/new-images/hotel-lounge-emerald-sofas.jpeg",
     description: "Best group rates for large bookings with shared accommodations and group amenities - perfect for corporate groups and events."
   }
 ];
@@ -303,22 +303,23 @@ type MediaItem =
   | { type: "video"; src: string; alt: string; poster?: string };
 
 const resultsMedia: MediaItem[] = [
-  // Mixed & Randomized - Spa, Rooms, Braai, Soccer, Dining, Groups
-  { type: "image", src: "/new-massages.jpeg", alt: "Serene spa treatment room with calming ambiance" },
+  // Mixed & Randomized - Real Hotel Dining, Lounges, Spa, Rooms, Braai, Soccer, Groups
+  { type: "image", src: "/new-images/hotel-catering-fresh-sandwiches-chips.jpeg", alt: "Fresh hotel catering spread with golden fries and sandwiches" },
   { type: "image", src: "/room14.jpeg", alt: "Presidential suite for VIP group stays" },
-  { type: "image", src: "/soccer3.jpeg", alt: "Soccer team accommodation - team bonding and training stays" },
+  { type: "image", src: "/new-images/hotel-full-breakfast-dining.jpeg", alt: "Full breakfast dining experience for hotel guests and groups" },
   { type: "image", src: "/brai.jpeg", alt: "Outdoor braai area with guests enjoying a barbecue" },
-  { type: "image", src: "/group11.jpeg", alt: "Large group enjoying hotel amenities together" },
+  { type: "image", src: "/new-images/hotel-lounge-emerald-sofas.jpeg", alt: "Cozy guest lounge with plush emerald velvet seating" },
   
+  { type: "image", src: "/new-images/hotel-breakfast-buffet-service-staff.jpeg", alt: "Morning breakfast buffet service with dedicated hotel staff" },
   { type: "image", src: "/new-massages2.jpeg", alt: "Luxury spa facilities for ultimate relaxation" },
-  { type: "image", src: "/soccer-dining.jpeg", alt: "Soccer team group dining setup" },
   { type: "image", src: "/room6.jpeg", alt: "Executive rooms perfect for business groups" },
-  { type: "image", src: "/dining.jpeg", alt: "Fine dining restaurant services" },
-  { type: "image", src: "/new-massages3.jpeg", alt: "Professional massage therapy services" },
+  { type: "image", src: "/new-images/hotel-breakfast-buffet-tableware.jpeg", alt: "Lavish dining buffet setup with chafing dishes and fine tableware" },
+  { type: "image", src: "/new-images/hotel-conference-dining-table.jpeg", alt: "Group conference and dining gathering space" },
   
+  { type: "image", src: "/new-images/hotel-kitchen-golden-chips-sausages.jpeg", alt: "Kitchen hot fryer - golden crispy chips & breakfast sausages" },
   { type: "image", src: "/brai2.jpeg", alt: "Group gathering around the braai for a social event" },
   { type: "image", src: "/soccer4.jpeg", alt: "Professional soccer team group accommodation facilities" },
-  { type: "image", src: "/group12.jpeg", alt: "Corporate team meeting in our conference facilities" },
+  { type: "image", src: "/new-images/hotel-morning-buffet-sunlight-dining.jpeg", alt: "Morning breakfast buffet in our sunlit dining hall" },
   { type: "image", src: "/room11.jpeg", alt: "Connecting rooms for families and teams" },
   { type: "image", src: "/new-massages4.jpeg", alt: "Tranquil spa environment with natural elements" },
   
@@ -337,7 +338,7 @@ const resultsMedia: MediaItem[] = [
   { type: "image", src: "/soccer6.jpeg", alt: "Soccer team members enjoying hotel amenities" },
   { type: "image", src: "/group14.jpeg", alt: "Wedding party in our elegant dining room" },
   { type: "image", src: "/new-massages7.jpeg", alt: "Facial treatment and premium skincare" },
-  { type: "image", src: "/soccer-dining-3.jpeg", alt: "Team dining facilities for sports groups" },
+  { type: "image", src: "/new-images/hotel-dining-hall-buffet-wide.jpeg", alt: "Spacious dining hall with breakfast buffet setup" },
   { type: "image", src: "/group16.jpeg", alt: "Business retreat participants networking" },
   
   { type: "image", src: "/brai5.jpeg", alt: "Evening braai event with festive lighting" },
@@ -348,33 +349,24 @@ const resultsMedia: MediaItem[] = [
   
   { type: "image", src: "/new-massages9.jpeg", alt: "Spa therapy and holistic healing" },
   { type: "image", src: "/soccer8.jpeg", alt: "Soccer team accommodation setup" },
-  { type: "image", src: "/dining4.jpeg", alt: "Elegant dining experience for guests" },
   { type: "image", src: "/group18.jpeg", alt: "Social club event with group dining" },
   { type: "image", src: "/new-massages10.jpeg", alt: "Premium spa amenities and services" },
   
   { type: "image", src: "/soccer10.jpeg", alt: "Sports event participants in hotel facilities" },
-  { type: "image", src: "/soccer-dining4.jpeg", alt: "Large group dining for soccer teams" },
   { type: "image", src: "/group2.jpeg", alt: "Corporate conference with full group accommodation" },
   { type: "image", src: "/soccer11.jpeg", alt: "Soccer team enjoying hospitality services" },
   { type: "image", src: "/group3.jpeg", alt: "Birthday celebration party setup" },
   
-  { type: "image", src: "/soccer-dining5.jpeg", alt: "Professional catering for sports events" },
   { type: "image", src: "/soccer12.jpeg", alt: "Professional sports team accommodation" },
   { type: "image", src: "/group4.jpeg", alt: "Team building activities in common areas" },
-  { type: "image", src: "/soccer-dining6.jpeg", alt: "Team meal times at hotel dining area" },
   { type: "image", src: "/soccer13.jpeg", alt: "Team sports event hosting facilities" },
   
   { type: "image", src: "/group5.jpeg", alt: "Anniversary dinner with extended family" },
-  { type: "image", src: "/soccer-dining7.jpeg", alt: "Soccer team breakfast and dining services" },
   { type: "image", src: "/soccer14.jpeg", alt: "Soccer team group photo at hotel" },
   { type: "image", src: "/group8.jpeg", alt: "Executive retreat with group accommodation" },
   { type: "image", src: "/soccer-new.jpeg", alt: "Modern facilities for sports team accommodation" },
   
-  { type: "image", src: "/soccer-dining8.jpeg", alt: "Group dining setup for athletic teams" },
   { type: "image", src: "/group9.jpeg", alt: "Social gathering in our spacious lounge" },
-  { type: "image", src: "/soccer-dining9.jpeg", alt: "Sports nutrition and team dining" },
-  { type: "image", src: "/soccer-dining10.jpeg", alt: "Team celebration dining experience" },
-  { type: "image", src: "/soccer-dining11.jpeg", alt: "Professional sports team catering services" },
   
   { type: "image", src: "/soccer-bus.jpeg", alt: "Team transportation services and shuttle bus" },
   { type: "image", src: "/soccer-bus2.jpeg", alt: "Group transportation for sports teams and events" },
@@ -1901,7 +1893,7 @@ export default function HomePage() {
                 title: "Conference Hall",
                 capacity: "50-150 people",
                 features: ["Theater-style seating", "Stage platform", "Live streaming"],
-                image: "/group14.jpeg", 
+                image: "/new-images/hotel-conference-dining-table.jpeg", 
                 icon: "🎤"
               },
               {
@@ -1922,7 +1914,7 @@ export default function HomePage() {
                 title: "Grand Banquet Hall",
                 capacity: "200-350 people",
                 features: ["Elegant chandeliers", "Dance floor", "Full catering kitchen"],
-                image: "/dining2.jpeg",
+                image: "/new-images/hotel-breakfast-buffet-tableware.jpeg",
                 icon: "🏛️"
               },
               {

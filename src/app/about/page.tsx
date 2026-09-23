@@ -80,7 +80,7 @@ const team = [
     name: "Chef Roberto Silva",
     role: "Culinary Head",
     description: "Crafts fresh, comforting seasonal menus highlighting local produce and simple elegance.",
-    image: "/dining.jpeg"
+    image: "/new-images/hotel-dining-hall-buffet-wide.jpeg"
   }
 ];
 
